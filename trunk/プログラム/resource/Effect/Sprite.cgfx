@@ -1,0 +1,95 @@
+
+// スプライト用シェーダ
+
+// テクスチャの設定
+sampler2D g_BaseMap = sampler_state{
+	minFilter = Linear;
+	magFilter = Linear;
+	WrapS = ClampToEdge;
+	WrapT = ClampToEdge;
+};
+
+// ビュープロジェクション変換行列
+float4x4 g_ModelViewProjectionMatrix;
+
+// スプライトの色
+float4 g_Color;
+
+
+// 入力頂点構造体
+struct VS_INPUT
+{
+   float4 position : POSITION;   // 頂点座標
+   float3 normal   : NORMAL;
+   float2 texcoord : TEXCOORD0;	 // テクスチャ座標
+};
+
+// 出力頂点構造体
+struct VS_OUTPUT
+{
+   float4 position  : POSITION;  // 頂点座標
+   float2 texcoord	: TEXCOORD0; // テクスチャ座標
+};
+
+// 頂点シェーダー
+VS_OUTPUT vs_main( 
+	VS_INPUT input,
+	uniform float4x4 g_ModelViewProjectionMatrix
+) {
+	VS_OUTPUT  output;
+    // 入力頂点をそのまま出力
+    output.position = mul( input.position, g_ModelViewProjectionMatrix );
+    output.texcoord = input.texcoord;
+    return output;
+}
+
+// ピクセルシェーダー
+float4 ps_main
+( 
+	VS_OUTPUT input,
+	uniform float4 g_Color,
+	uniform sampler2D g_BaseMap
+	) : COLOR0
+{
+	// テクスチャのカラーを取得
+	float4 baseColor = tex2D( g_BaseMap, input.texcoord );
+
+	// カラーを設定
+	float4 color = baseColor * g_Color;
+
+	if( baseColor.a == 0.0f ){
+		color.a = 0.0f;
+	}
+
+	// カラーを出力
+	return color;
+}
+
+// テクニック
+technique Sprite
+{
+   // パス0
+   pass Pass0
+   {
+	  ZEnable = false;			// zバッファ			: 無効
+	  ZWriteEnable = false;		// zバッファ書き込み	: 無効
+	  BlendEnable = true;
+	  DepthTestEnable = true;	// デプステスト			: 有効
+	  DepthMask	= false;
+	  CullFaceEnable = false;	// 面カリング			: 無効
+	  AlphaBlendEnable = true;
+	  AlphaTestEnable = true;	// アルファテスト		: 有効
+	  
+	  // ブレンド関数をアルファブレンドに設定
+	  BlendFunc = int2( SrcAlpha, OneMinusSrcAlpha );
+	  BlendEquation = FuncAdd;
+	  
+	  // 頂点シェーダ
+      VertexProgram   = compile arbvp1 vs_main( g_ModelViewProjectionMatrix ); 
+
+	  // ピクセルシェーダ
+      FragmentProgram = compile arbfp1 ps_main( g_Color, g_BaseMap );
+   }
+}
+
+// EOF

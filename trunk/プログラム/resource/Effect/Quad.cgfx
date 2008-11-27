@@ -1,0 +1,97 @@
+
+// 四角形ポリゴン用シェーダ
+
+// テクスチャの設定
+sampler2D g_BaseMap = sampler_state{
+	minFilter = LinearMipMapLinear;
+	magFilter = Linear;
+	WrapS = Clamp;
+	WrapT = Clamp;
+};
+
+// ビュープロジェクション変換行列
+float4x4 g_ModelViewProjectionMatrix;
+
+// ポリゴンのカラー
+float4 g_Color;
+
+// 入力頂点構造体
+struct VS_INPUT {
+   float4 position : POSITION;   // 頂点座標
+   float3 normal   : NORMAL;
+   float2 texcoord : TEXCOORD0;	 // テクスチャ座標
+};
+
+// 出力頂点構造体
+struct VS_OUTPUT  {
+   float4 position  : POSITION;  // 頂点座標
+   float2 texcoord	: TEXCOORD0; // テクスチャ座標
+};
+
+// 頂点シェーダー
+VS_OUTPUT vs_main( 
+	VS_INPUT input,
+	uniform float4x4 g_ModelViewProjectionMatrix
+) {
+	VS_OUTPUT  output;
+    // 入力頂点をそのまま出力
+    output.position = mul( input.position, g_ModelViewProjectionMatrix );
+    output.texcoord = input.texcoord;
+    return output;
+}
+
+// ピクセルシェーダー
+float4 ps_main( VS_OUTPUT input ) : COLOR0 {
+    
+	// テクスチャのカラーを取得
+	float4 baseColor = tex2D( g_BaseMap, input.texcoord );
+
+	// カラーを出力
+	return baseColor;
+}
+
+// テクニック( アルファブレンド )
+technique Quad
+{
+   // パス0
+   pass Pass0
+   {
+	  ZEnable			= true;
+	  ZWriteEnable		= true;
+	  BlendEnable		= true;
+	  DepthTestEnable	= true;
+      DepthMask			= false;
+	  CullFaceEnable	= false;
+      AlphaBlendEnable  = true;
+	  AlphaTestEnable	= true;
+	  BlendFunc			= int2( SrcAlpha, OneMinusSrcAlpha );
+	  BlendEquation		= FuncAdd;
+
+      VertexProgram		= compile arbvp1 vs_main( g_ModelViewProjectionMatrix );      
+      FragmentProgram	= compile arbfp1 ps_main();
+   }
+}
+
+// テクニック( 加算ブレンド )
+technique QuadAdd
+{
+   // パス0
+   pass Pass0
+   {
+	  ZEnable			= true;
+	  ZWriteEnable		= true;
+	  BlendEnable		= true;
+	  DepthTestEnable	= true;
+	  DepthMask			= false;
+	  CullFaceEnable	= false;
+	  AlphaBlendEnable  = true;
+	  AlphaTestEnable	= true;
+	  BlendFunc			= int2( SrcAlpha, One );
+	  BlendEquation		= FuncAdd;
+
+	  VertexProgram		= compile arbvp1 vs_main( g_ModelViewProjectionMatrix );      
+	  FragmentProgram	= compile arbfp1 ps_main();
+   }
+}
+
+// EOF
