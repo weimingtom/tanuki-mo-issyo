@@ -1,0 +1,284 @@
+
+// スキンメッシュシェーダ( マテリアル計算なし )
+
+#define MAX_BONE_MATRIX 3	// 限界のボーン数
+
+// ベーステクスチャ
+sampler2D g_BaseMap = sampler_state {
+	minFilter = LinearMipMapLinear;
+	magFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+// ボーン変換行列配列
+float4x4 g_BoneMatrices[MAX_BONE_MATRIX];
+
+// モデルビュープロジェクショントランスフォーム行列
+float4x4 g_ModelViewProjectionMatrix;
+
+// モデルビュー変換行列
+float4x4 g_ModelViewMatrix;
+
+// 法線ベクトル変換行列
+float4x4 g_NormalMatrix;
+
+// 視点空間へのライト位置変換行列
+float3   g_LightPositionEye;
+
+// ライト色
+float4   g_AmbientLightColor;
+float4   g_DiffuseLightColor;
+float4   g_SpecularLightColor;
+
+// 入力頂点構造体
+struct VS_INPUT
+{
+	float4	position		: POSITION;		// 座標
+	float3	normal			: NORMAL;		// 法線
+	float2	texcoord		: TEXCOORD;		// テクスチャ座標
+	float4	matrixIndices	: BLENDINDICES;	// 変換行列のインデックス
+	float4	weights			: BLENDWEIGHT;	// ウェイト
+};
+
+// 出力頂点構造体
+struct VS_OUTPUT 
+{
+   float4 position:  POSITION;
+   float2 texcoord:  TEXCOORD0;
+   float3 normal:    TEXCOORD1;
+   float3 light:     TEXCOORD2;
+   float3 view:      TEXCOORD3;
+};
+
+
+// 頂点シェーダ関数
+VS_OUTPUT vs_main
+(
+	VS_INPUT input,
+	uniform float4x4 g_ModelViewProjectionMatrix,
+	uniform float4x4 g_ModelViewMatrix,
+	uniform float4x4 g_NormalMatrix,
+	uniform float3   g_LightPositionEye,
+	uniform float4x4 g_BoneMatrices[MAX_BONE_MATRIX]
+)
+{
+    VS_OUTPUT 	output;
+	float4		position;
+	float3		normal;
+	float3		tangent;
+	int4		index;
+
+	index = min( input.matrixIndices, MAX_BONE_MATRIX-1 );
+
+	// 頂点座標の座標変換
+	position = float4( mul( input.position, g_BoneMatrices[index.x] ).xyz, 1.0f ) * input.weights.x
+		     + float4( mul( input.position, g_BoneMatrices[index.y] ).xyz, 1.0f ) * input.weights.y
+			 + float4( mul( input.position, g_BoneMatrices[index.z] ).xyz, 1.0f ) * input.weights.z
+			 + float4( mul( input.position, g_BoneMatrices[index.w] ).xyz, 1.0f ) * input.weights.w;
+	position.w = 1.0f;
+
+	// 法線ベクトルの座標変換
+	normal = mul( input.normal, (float3x3)g_BoneMatrices[index.x] ) * input.weights.x
+		   + mul( input.normal, (float3x3)g_BoneMatrices[index.y] ) * input.weights.y
+		   + mul( input.normal, (float3x3)g_BoneMatrices[index.z] ) * input.weights.z
+		   + mul( input.normal, (float3x3)g_BoneMatrices[index.w] ) * input.weights.w;
+	// 法線ベクトルを正規化する
+	normal = normalize( normal );
+
+	// 視点座標系の頂点座標を求める
+    float3 PosEye = mul( g_ModelViewMatrix, position ).xyz;
+    
+	// 出力頂点を求める
+    output.position = mul( position, g_ModelViewProjectionMatrix );
+   
+	// 出力法線を求める
+	output.normal   = mul( (float3x3)g_NormalMatrix, normal );
+   
+	// 出力テクスチャ座標を求める
+	output.texcoord = input.texcoord;
+
+	// 出力ライト位置を求める
+    output.light    = g_LightPositionEye - PosEye;
+
+	// 出力ビュー位置を求める
+    output.view     = -PosEye;
+
+    return  output;
+}
+
+// 入力ピクセル構造体
+struct PS_INPUT 
+{
+   float2 texcoord:  TEXCOORD0;
+   float3 normal:    TEXCOORD1;
+   float3 light:     TEXCOORD2;
+   float3 view:      TEXCOORD3;
+};
+
+
+// ピクセルシェーダ関数
+float4 ps_main
+(
+	PS_INPUT input,
+	uniform float4    g_AmbientLightColor,
+	uniform float4    g_DiffuseLightColor,
+	uniform float4    g_SpecularLightColor,
+	uniform sampler2D g_BaseMap
+) : COLOR0
+{
+    float3 N = normalize( input.normal );
+    float3 L = normalize( input.light  );
+    float3 V = normalize( input.view   );
+    float3 H = normalize( L+V );
+    
+    // 反射度
+	float shininess = 350.0f;
+	
+	// マテリアルの鏡面反射光
+	float4 matSpecular = float4( 0.0f, 0.0f, 0.0f, 1.0f );
+
+	// 拡散反射成分を求める
+    float diffuse  = max( dot( N, L ), 0.0f );
+
+	// 鏡面反射成分を求める
+    float specular = pow( max( dot( N, H ), 0.0f ), shininess );
+
+	// テクスチャのカラーを取得
+	float4 baseColor = tex2D( g_BaseMap, input.texcoord );
+
+	// 各カラーを求める
+    float4 totalAmbient  = g_AmbientLightColor  * baseColor; 
+    float4 totalDiffuse  = g_DiffuseLightColor  * diffuse * baseColor; 
+    float4 totalSpecular = matSpecular * g_SpecularLightColor * specular;
+
+	// 出力カラーを求める
+    float4 color = totalAmbient + totalDiffuse + totalSpecular;
+    
+	// テクスチャのアルファがあるか
+    if( baseColor.a < 0.5f ){
+		// アルファを0にする
+		color.a = 0.0f;
+	}
+	else{
+		color.a = 1.0f;
+	}
+	
+	// カラーを出力
+    return color;
+}
+
+
+// ピクセルシェーダ関数( テクスチャなし )
+float4 ps_main_nt
+(
+	PS_INPUT input,
+	uniform float4    g_AmbientLightColor,
+	uniform float4    g_DiffuseLightColor,
+	uniform float4    g_SpecularLightColor
+) : COLOR0
+{
+    float3 N = normalize( input.normal );
+    float3 L = normalize( input.light  );
+    float3 V = normalize( input.view   );
+    float3 H = normalize( L+V );
+    
+    // 反射度
+	float shininess = 350.0f;
+	
+	// マテリアルの鏡面反射光
+	float4 matSpecular = float4( 0.0f, 0.0f, 0.0f, 1.0f );
+
+	// 拡散反射成分を求める
+    float diffuse  = max( dot( N, L ), 0.0f );
+
+	// 鏡面反射成分を求める
+    float specular = pow( max( dot( N, H ), 0.0f ), shininess );
+
+	// 各カラーを求める
+    float4 totalAmbient  = g_AmbientLightColor; 
+    float4 totalDiffuse  = g_DiffuseLightColor  * diffuse; 
+    float4 totalSpecular = matSpecular * g_SpecularLightColor * specular;
+
+	// 出力カラーを求める
+    float4 color = totalAmbient + totalDiffuse + totalSpecular;
+	
+	// カラーを出力
+    return color;
+}
+
+
+// テクニック
+technique Skin
+{
+	// パス0
+   pass Pass_0
+   {
+	  // 頂点シェーダを設定
+      VertexProgram = compile vp30 vs_main
+      (
+		g_ModelViewProjectionMatrix,
+		g_ModelViewMatrix,
+		g_NormalMatrix,
+		g_LightPositionEye,
+		g_BoneMatrices
+      );
+      
+      ZEnable = true;			// zバッファ			: 有効
+	  ZWriteEnable = true;		// zバッファ書き込み	: 有効
+	  CullFaceEnable = true;	// 面カリング			: 有効
+	  AlphaBlendEnable = true;	// アルファブレンド		: 有効
+      AlphaTestEnable = true;	// アルファテスト		: 有効
+
+	  // ブレンド関数をアルファブレンドに設定
+	  BlendEquation = FuncAdd;
+	  BlendFunc = int2( SrcAlpha, OneMinusSrcAlpha );
+
+	  // ピクセルシェーダを設定
+      FragmentProgram = compile fp30 ps_main
+      (
+		g_AmbientLightColor,
+		g_DiffuseLightColor,
+		g_SpecularLightColor,
+		g_BaseMap
+	  );
+   }
+}
+
+// テクスチャなしテクニック
+technique SkinNT
+{
+	// パス0
+   pass Pass_0
+   {
+	  // 頂点シェーダを設定
+      VertexProgram = compile vp30 vs_main
+      (
+		g_ModelViewProjectionMatrix,
+		g_ModelViewMatrix,
+		g_NormalMatrix,
+		g_LightPositionEye,
+		g_BoneMatrices
+      );
+      
+      ZEnable = true;			// zバッファ			: 有効
+	  ZWriteEnable = true;		// zバッファ書き込み	: 有効
+	  CullFaceEnable = true;	// 面カリング			: 有効
+	  AlphaBlendEnable = true;	// アルファブレンド		: 有効
+      AlphaTestEnable = true;	// アルファテスト		: 有効
+
+	  // ブレンド関数をアルファブレンドに設定
+	  BlendEquation = FuncAdd;
+	  BlendFunc = int2( SrcAlpha, OneMinusSrcAlpha );
+
+	  // ピクセルシェーダを設定
+      FragmentProgram = compile fp30 ps_main_nt
+      (
+		g_AmbientLightColor,
+		g_DiffuseLightColor,
+		g_SpecularLightColor
+	  );
+   }
+}
+
+//----- EOF -------------------------------------------------------------------*
