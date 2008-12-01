@@ -16,7 +16,7 @@
 
 /*===== インクルード ==========================================================*/
 #include	"IGameDevice.h"
-#include	"Manager/Object/ObjectManagerMediator.h"
+#include	"Manager/Object/ObjectManager.h"
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
@@ -40,7 +40,7 @@ public:
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	Player(IGameDevice& device, ObjectManagerMediator& objectManagerMediator, Option& option, GameSceneState& gameSceneState);
+	Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
@@ -89,7 +89,7 @@ private:
 	/** ゲームデバイス */
 	IGameDevice& m_device;
 	/** オブジェクトマネージャメディエータ */
-	ObjectManagerMediator& m_objectManagerMediator;
+	ObjectManager& m_objectManager;
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */

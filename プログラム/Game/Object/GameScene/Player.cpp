@@ -25,11 +25,11 @@
  * @param[in] option ゲームオプション.
  * @param[in] gameSceneState ゲームシーンステート.
  */
-Player::Player(IGameDevice& device, ObjectManagerMediator& objectManagerMediator, Option &option, GameSceneState& gameSceneState) :
-	m_device(device), m_objectManagerMediator(objectManagerMediator), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
+Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
 {
 	m_gameSceneState.AddPlayer(this);
-	m_block = new Block(device,objectManagerMediator,option,gameSceneState);
+	m_block = m_objectManager.GetObjectFactory().CreateBlock(m_gameSceneState);
 }
 
 /*=============================================================================*/

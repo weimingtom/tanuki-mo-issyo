@@ -1,6 +1,6 @@
 /*******************************************************************************/
 /*
- * @file GameSceneObjectFactory.cpp.
+ * @file ObjectFactory.cpp.
  * 
  * @brief ゲームシーンのオブジェクト生成クラス定義.
  *
@@ -13,21 +13,25 @@
 /*******************************************************************************/
 
 /*===== インクルード ==========================================================*/
-#include	"Scene/Factory/GameSceneObjectFactory.h"
-#include	"Object/GameScene/Player.h"
+
+#include	"Manager/Object/ObjectFactory.h"
 #include	"Define/GameSceneObjectID.h"
+
+#include	"Object/GameScene/Player.h"
+#include	"Object/GameScene/Block.h"
+#include	"Manager/Object/ObjectManager.h"
 
 /*=============================================================================*/
 /**
  * @brief コンストラクタ.
  * 
  * @param[in] device ゲームデバイス.
- * @param[in] objectManagerMediator オブジェクトマネージャメディエータ.
+ * @param[in] ObjectManager オブジェクトマネージャメディエータ.
  * @param[in] option ゲームオプション.
- * @param[in] gameSceneState ゲームシーンステート.
+ * @param[in] State ゲームシーンステート.
  */
-GameSceneObjectFactory::GameSceneObjectFactory(IGameDevice &device, ObjectManagerMediator &objectManagerMediator, Option &option, GameSceneState &gameSceneState) :
-	m_device(device), m_objectManagerMediator(objectManagerMediator), m_option(option), m_gameSceneState(gameSceneState)
+ObjectFactory::ObjectFactory(IGameDevice &device, ObjectManager &ObjectManager, Option &option) :
+	m_device(device), m_objectManager(ObjectManager), m_option(option)
 {
 
 }
@@ -37,7 +41,7 @@ GameSceneObjectFactory::GameSceneObjectFactory(IGameDevice &device, ObjectManage
  * @brief デストラクタ.
  *
  */
-GameSceneObjectFactory::~GameSceneObjectFactory()
+ObjectFactory::~ObjectFactory()
 {
 
 }
@@ -49,14 +53,20 @@ GameSceneObjectFactory::~GameSceneObjectFactory()
  * @param[in] objectID 生成するオブジェクトのID.
  * @return 生成したオブジェクトのポインタ.
  */
-ObjectBase* GameSceneObjectFactory::CreateObject(int objectID)
+
+Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState)
 {
-	ObjectBase* object = 0;
-	switch(objectID)
-	{
-	case GAME_SCENE_OBJECT_ID_PLAYER:
-		object = new Player(m_device, m_objectManagerMediator, m_option, m_gameSceneState);
-	}
+	Player* object;
+	object = new Player(m_device, m_objectManager, m_option, gameSceneState);
+	//m_objectManager.AddObject(object);
+	return object;
+}
+
+Block* ObjectFactory::CreateBlock(GameSceneState& gameSceneState)
+{
+	Block* object;
+	object = new Block(m_device, m_objectManager, m_option, gameSceneState);
+	//m_objectManager.AddObject(object);
 	return object;
 }
 

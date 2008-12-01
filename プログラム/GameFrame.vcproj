@@ -349,7 +349,11 @@
 					Name="Object"
 					>
 					<File
-						RelativePath=".\Game\Manager\Object\ObjectFactoryBase.h"
+						RelativePath=".\Game\Manager\Object\ObjectFactory.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Manager\Object\ObjectFactory.h"
 						>
 					</File>
 					<File
@@ -358,10 +362,6 @@
 					</File>
 					<File
 						RelativePath=".\Game\Manager\Object\ObjectManager.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Game\Manager\Object\ObjectManagerMediator.h"
 						>
 					</File>
 				</Filter>
@@ -375,10 +375,6 @@
 				</File>
 				<File
 					RelativePath=".\Game\Define\EffectID.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\GameSceneObjectID.h"
 					>
 				</File>
 				<File
@@ -417,18 +413,6 @@
 					RelativePath=".\Game\Scene\SceneBase.h"
 					>
 				</File>
-				<Filter
-					Name="Factory"
-					>
-					<File
-						RelativePath=".\Game\Scene\Factory\GameSceneObjectFactory.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Game\Scene\Factory\GameSceneObjectFactory.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="Object"

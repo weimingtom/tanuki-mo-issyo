@@ -1,8 +1,8 @@
 /*******************************************************************************/
 /**
- * @file GameSceneObjectFactory.h.
+ * @file ObjectFactory.h.
  * 
- * @brief ゲームシーンのオブジェクト生成クラス定義.
+ * @brief オブジェクト生成基底クラスの定義.
  *
  * @date 2008/11/25.
  *
@@ -11,22 +11,25 @@
  * @author Kenji Iwata.
  */
 /*******************************************************************************/
-#ifndef _GAME_SCENE_OBJECT_FACTORY_H_
-#define _GAME_SCENE_OBJECT_FACTORY_H_
+#ifndef _OBJECT_FACTORY_H_
+#define _OBJECT_FACTORY_H_
 
 /*===== インクルード ==========================================================*/
-#include	"IGameDevice.h"
-#include	"Manager/Object/ObjectFactoryBase.h"
-#include	"Manager/Object/ObjectManagerMediator.h"
-#include	"Manager/Scene/Option/Option.h"
-#include	"Object/ObjectBase.h"
-#include	"Scene/GameSceneState.h"
+class ObjectManager;
+
+class	IGameDevice;
+class	Option;
+class	ObjectBase;
+class	GameScene;
+class	GameSceneState;
+class Player;
+class Block;
 
 
 /**
- * @brief クラス名．
+ * @brief ObjectFactory．
  */
-class GameSceneObjectFactory : public ObjectFactoryBase
+class ObjectFactory
 {
 public:
 
@@ -35,17 +38,16 @@ public:
 	 * @brief コンストラクタ.
 	 * 
 	 * @param[in] device ゲームデバイス.
-	 * @param[in] objectManagerMediator オブジェクトマネージャメディエータ.
+	 * @param[in] ObjectManager オブジェクトマネージャメディエータ.
 	 * @param[in] option ゲームオプション.
-	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	GameSceneObjectFactory(IGameDevice& device, ObjectManagerMediator& objectManagerMediator, Option& option, GameSceneState& gameSceneState);
+	ObjectFactory(IGameDevice& device, ObjectManager& objectManager, Option& option);
+
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
-	 *
 	 */
-	~GameSceneObjectFactory();
+	~ObjectFactory();
 
 	/*=========================================================================*/
 	/**
@@ -54,16 +56,16 @@ public:
 	 * @param[in] objectID 生成するオブジェクトのID.
 	 * @return 生成したオブジェクトのポインタ.
 	 */
-	ObjectBase* CreateObject(int objectID);
+
+	Player* CreatePlayer(GameSceneState& gameSceneState);
+	Block* CreateBlock(GameSceneState& gameSceneState);
 
 private:
-	
+
 	/** ゲームデバイス */
 	IGameDevice& m_device;
 	/** オブジェクトマネージャメディエータ */
-	ObjectManagerMediator& m_objectManagerMediator;
-	/** ゲームシーンステート */
-	GameSceneState& m_gameSceneState;
+	ObjectManager& m_objectManager;
 	/** ゲームオプション */
 	Option& m_option;
 };

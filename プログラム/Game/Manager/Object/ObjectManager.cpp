@@ -14,6 +14,7 @@
 
 /*===== インクルード ==========================================================*/
 #include	"Manager/Object/ObjectManager.h"
+#include "Object/ObjectBase.h"
 
 
 /*=============================================================================*/
@@ -21,10 +22,10 @@
  * @brief コンストラクタ.
  *
  */
-ObjectManager::ObjectManager() :
-	m_objectFactory(0)
+ObjectManager::ObjectManager(IGameDevice &device, Option &option) :
+	m_device(device), m_option(option)
 {
-
+	m_objectFactory = new ObjectFactory(device, *this, option);
 }
 
 /*=============================================================================*/
@@ -34,10 +35,8 @@ ObjectManager::ObjectManager() :
  */
 ObjectManager::~ObjectManager()
 {
-	if(m_objectFactory)
-	{
-		delete m_objectFactory;
-	}
+	delete m_objectFactory;
+
 	for(std::vector<ObjectBase*>::iterator i = m_object.begin(); i != m_object.end();)
 	{
 		if(!(*i)->IsTerminated())
@@ -86,10 +85,8 @@ bool ObjectManager::IsTerminated()
  * 
  * @param[in] objectID 追加するオブジェクト.
  */
-void ObjectManager::AddObject(int objectID)
+void ObjectManager::AddObject(ObjectBase* object)
 {
-	ObjectBase* object;
-	object = m_objectFactory->CreateObject(objectID);
 	object->Initialize();
 	m_object.push_back(object);
 }
@@ -137,6 +134,7 @@ void ObjectManager::RenderObject()
  */
 void ObjectManager::UpdateObject(float frameTimer)
 {
+/*
 	for(std::vector<ObjectBase*>::iterator i = m_object.begin(); i != m_object.end();)
 	{
 		if(!(*i)->IsTerminated())
@@ -150,21 +148,27 @@ void ObjectManager::UpdateObject(float frameTimer)
 		}
 		i++;
 	}
+*/
+
+	for(unsigned int i = 0; i < m_object.size(); i++)
+	{
+		std::vector<ObjectBase*>::iterator j = m_object.begin() += i;
+
+		if(!(*j)->IsTerminated())
+		{
+			(*j)->UpdateObject(frameTimer);
+		} else
+		{
+			delete (*j);
+			m_object.erase(j);
+			i--;
+		}
+	}
 }
 
-/*=============================================================================*/
-/**
- * @brief オブジェクトファクトリの設定.
- * 
- * @param[in] objectFactory 設定するファクトリ.
- */
-void ObjectManager::SetFactory(ObjectFactoryBase *objectFactory)
+ObjectFactory& ObjectManager::GetObjectFactory()
 {
-	if(m_objectFactory)
-	{
-		delete m_objectFactory;
-	}
-	m_objectFactory = objectFactory;
+	return *m_objectFactory;
 }
 
 /*===== EOF ===================================================================*/

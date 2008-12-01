@@ -68,7 +68,7 @@ public:
 protected:
 
 	/** オブジェクトマネージャ */
-	ObjectManager m_objectManager;
+	ObjectManager* m_objectManager;
 
 };
 
