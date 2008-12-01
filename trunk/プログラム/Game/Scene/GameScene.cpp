@@ -16,7 +16,6 @@
 #include	"Scene/GameScene.h"
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/GameScene/Player.h"
-#include	"Define/GameSceneObjectID.h"
 
 
 /*=============================================================================*/
