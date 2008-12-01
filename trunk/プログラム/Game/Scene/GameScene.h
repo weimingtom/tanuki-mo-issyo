@@ -82,15 +82,15 @@ public:
 private:
 
 	/** ゲームデバイス */
-	IGameDevice& m_device;
+	IGameDevice&					m_device;
 	/** シーンマネージャメディエータ */
-	SceneManagerMediator& m_sceneManagerMediator;
+	SceneManagerMediator&			m_sceneManagerMediator;
 	/** ゲームオプション */
-	Option& m_option;
+	Option&							m_option;
 	/** 終了フラグ */
-	bool m_isTerminated;
+	bool							m_isTerminated;
 	/** シーンステート */
-	GameSceneState m_state;
+	GameSceneState					m_state;
 
 };
 

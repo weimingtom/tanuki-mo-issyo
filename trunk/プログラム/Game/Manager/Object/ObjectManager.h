@@ -16,14 +16,14 @@
 
 /*===== インクルード ==========================================================*/
 #include	<vector>
-#include	"Manager/Object/ObjectManagerMediator.h"
-#include	"Manager/Object/ObjectFactoryBase.h"
+
+#include	"Manager/Object/ObjectFactory.h"
 
 
 /**
  * @brief ObjectManager．
  */
-class ObjectManager : public ObjectManagerMediator
+class ObjectManager
 {
 public:
 
@@ -32,7 +32,7 @@ public:
 	 * @brief コンストラクタ.
 	 *
 	 */
-	ObjectManager();
+	ObjectManager(IGameDevice &device, Option &option);
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
@@ -66,7 +66,7 @@ public:
 	 * 
 	 * @param[in] objectID 追加するオブジェクト.
 	 */
-	void AddObject(int objectID);
+	void AddObject(ObjectBase* object);
 	/*=========================================================================*/
 	/**
 	 * @brief オブジェクトの削除.
@@ -88,22 +88,21 @@ public:
 	 */
 	void UpdateObject(float frameTimer);
 
-	/*=========================================================================*/
-	/**
-	 * @brief オブジェクトファクトリの設定.
-	 * 
-	 * @param[in] objectFactory 設定するファクトリ.
-	 */
-	void SetFactory(ObjectFactoryBase* objectFactory);
+	ObjectFactory& GetObjectFactory();
 
 private:
 
 	/** オブジェクトファクトリ */
-	ObjectFactoryBase* m_objectFactory;
+	ObjectFactory* m_objectFactory;
 	/** オブジェクトリスト */
 	std::vector<ObjectBase*> m_object;
 	/** 終了フラグ */
 	bool m_isTerminated;
+	
+	/** ゲームデバイス */
+	IGameDevice& m_device;
+	/** ゲームオプション */
+	Option& m_option;
 
 };
 

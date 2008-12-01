@@ -2,7 +2,7 @@
 #define _BLOCK_H_
 
 #include	"IGameDevice.h"
-#include	"Manager/Object/ObjectManagerMediator.h"
+#include	"Manager/Object/ObjectManager.h"
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
@@ -11,7 +11,7 @@ class		IGameDevice;
 class  Block : public ObjectBase
 {
 public:
-	Block(IGameDevice& device, ObjectManagerMediator& objectManagerMediator, Option& option, GameSceneState& gameSceneState);
+	Block(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
 	~Block();
 
 	void Initialize();
@@ -27,7 +27,7 @@ private:
 	/** ゲームデバイス */
 	IGameDevice& m_device;
 	/** オブジェクトマネージャメディエータ */
-	ObjectManagerMediator& m_objectManagerMediator;
+	ObjectManager& m_objectManager;
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */

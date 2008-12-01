@@ -2,8 +2,8 @@
 #include	"Define/TextureID.h"
 #include	"Define/EffectID.h"
 
-Block::Block(IGameDevice &device, ObjectManagerMediator &objectManagerMediator, Option &option, GameSceneState &gameSceneState) :
-	m_device(device), m_objectManagerMediator(objectManagerMediator), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
+Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState) :
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
 {
 
 	x = 0.0f;
