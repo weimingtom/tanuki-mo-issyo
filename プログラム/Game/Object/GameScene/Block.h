@@ -11,7 +11,7 @@ class		IGameDevice;
 class  Block : public ObjectBase
 {
 public:
-	Block(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+	Block(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, int blockCID, int blockMID);
 	~Block();
 
 	void Initialize();
@@ -19,6 +19,7 @@ public:
 	bool IsTerminated();
 	void RenderObject();
 	void UpdateObject(float frameTimer);
+	void InitializeMatrix();
 
 private:
 
@@ -32,6 +33,12 @@ private:
 	Option& m_option;
 	/** ゲームシーンステート */
 	GameSceneState m_gameSceneState;
+	/** ブロックの配列 */
+	int blockMatrix[3][3];
+	/** ブロックのID */
+	int blockID[2];
+	/** スピード */
+	float speed;
 
 	float x;
 	float y;

@@ -61,10 +61,10 @@ Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState)
 	return object;
 }
 
-Block* ObjectFactory::CreateBlock(GameSceneState& gameSceneState)
+Block* ObjectFactory::CreateBlock(GameSceneState& gameSceneState, int blockCID, int blockMID)
 {
 	Block* object;
-	object = new Block(m_device, m_objectManager, m_option, gameSceneState);
+	object = new Block(m_device, m_objectManager, m_option, gameSceneState, blockCID, blockMID);
 	//m_objectManager.AddObject(object);
 	return object;
 }

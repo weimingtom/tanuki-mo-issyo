@@ -29,7 +29,7 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
 {
 	m_gameSceneState.AddPlayer(this);
-	m_block = m_objectManager.GetObjectFactory().CreateBlock(m_gameSceneState);
+	m_block = m_objectManager.GetObjectFactory().CreateBlock(m_gameSceneState, 1, 1);
 }
 
 /*=============================================================================*/
