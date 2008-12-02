@@ -58,7 +58,7 @@ public:
 	 */
 
 	Player* CreatePlayer(GameSceneState& gameSceneState);
-	Block* CreateBlock(GameSceneState& gameSceneState);
+	Block* CreateBlock(GameSceneState& gameSceneState, int blockCID, int blockMID);
 
 private:
 
