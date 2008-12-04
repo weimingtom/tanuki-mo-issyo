@@ -22,6 +22,7 @@
 #include	"Manager/Scene/Option/Option.h"
 class		IGameDevice;
 #include	"Object/GameScene/Block.h"
+#include    "Object/GameScene/PuzzleScreen.h"
 
 
 /**
@@ -95,7 +96,8 @@ private:
 	/** ゲームシーンステート */
 	GameSceneState m_gameSceneState;
 
-	Block* m_block;
+	Block*			m_block;
+	PuzzleScreen	m_puzzleScreen;
 };
 
 #endif

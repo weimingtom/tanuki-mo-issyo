@@ -26,7 +26,8 @@
  * @param[in] gameSceneState ゲームシーンステート.
  */
 Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false),
+		m_puzzleScreen(device,objectManager,option,gameSceneState)
 {
 	m_gameSceneState.AddPlayer(this);
 	m_block = m_objectManager.GetObjectFactory().CreateBlock(m_gameSceneState, 1, 1);
@@ -50,6 +51,7 @@ Player::~Player()
 void Player::Initialize()
 {
 	m_block->Initialize();
+	m_puzzleScreen.Initialize();
 }
 
 /*=============================================================================*/
@@ -60,6 +62,7 @@ void Player::Initialize()
 void Player::Terminate()
 {
 	m_block->Terminate();
+	m_puzzleScreen.Terminate();
 	m_isTerminated = true;
 }
 
@@ -72,6 +75,7 @@ void Player::Terminate()
 bool Player::IsTerminated()
 {
 	return m_isTerminated;
+
 }
 
 /*=============================================================================*/
@@ -82,6 +86,7 @@ bool Player::IsTerminated()
 void Player::RenderObject()
 {
 	m_block->RenderObject();
+	m_puzzleScreen.RenderObject();
 }
 
 /*=============================================================================*/
@@ -93,6 +98,7 @@ void Player::RenderObject()
 void Player::UpdateObject(float frameTimer)
 {
 	m_block->UpdateObject(frameTimer);
+	m_puzzleScreen.UpdateObject(frameTimer);
 }
 
 /*===== EOF ===================================================================*/
