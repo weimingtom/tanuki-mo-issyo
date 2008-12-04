@@ -36,7 +36,7 @@ public:
 	 * @brief コンストラクタ.
 	 * 
 	 * @param[in] device ゲームデバイス.
-	 * @param[in] objectManagerMediator オブジェクトマネージャメディエータ.
+	 * @param[in] objectManager オブジェクトマネージャ.
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
