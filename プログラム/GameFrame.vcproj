@@ -441,11 +441,27 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\BlockManager.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\BlockManager.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Player.cpp"
 						>
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\Player.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\PuzzleScreen.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\PuzzleScreen.h"
 						>
 					</File>
 				</Filter>

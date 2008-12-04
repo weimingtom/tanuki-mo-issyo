@@ -66,7 +66,7 @@ void ObjectParam::SetPosition(Vector2 position)
  */
 Vector2 ObjectParam::GetPosition()
 {
-
+	return 0;
 }
 
 /*=============================================================================*/
@@ -100,7 +100,7 @@ void ObjectParam::SetSize(Vector2 size)
  */
 Vector2 ObjectParam::GetSize()
 {
-
+	return 0;
 }
 
 /*=============================================================================*/
@@ -122,7 +122,7 @@ void ObjectParam::SetTextureID(int texture)
  */
 int ObjectParam::GetTextureID()
 {
-
+	return 0;
 }
 
 /*===== EOF ===================================================================*/
