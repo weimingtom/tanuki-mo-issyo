@@ -1,0 +1,110 @@
+/*******************************************************************************/
+/**
+ * @file FallBlock.h.
+ * 
+ * @brief フォールブロッククラスヘッダ定義.
+ *
+ * @date 2008/12/8.
+ *
+ * @version 1.00.
+ *
+ * @author Ryosuke Ogawa.
+ */
+/*******************************************************************************/
+#ifndef _FALL_BLOCK_H_
+#define _FALL_BLOCK_H_
+
+#include	"IGameDevice.h"
+#include	"Manager/Object/ObjectManager.h"
+#include	"Object/ObjectBase.h"
+#include	"Scene/GameSceneState.h"
+#include	"Manager/Scene/Option/Option.h"
+#include	"Object/GameScene/Block.h"
+#include	"Object/ObjectBase.h"
+
+/**
+ * @brief ObjectBase．
+ */
+class FallBlock : public ObjectBase
+{
+public:
+
+	/*=========================================================================*/
+	/**
+	 * @brief コンストラクタ
+	 *
+	 */
+	FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+
+	/*=========================================================================*/
+	/**
+	 * @brief デストラクタ.
+	 * 
+	 */
+	~FallBlock();
+
+	/*=========================================================================*/
+	/**
+	 * @brief 初期化処理.
+	 * 
+	 */
+	void Initialize();
+
+	/*=========================================================================*/
+	/**
+	 * @brief 終了処理.
+	 * 
+	 */
+	void Terminate();
+
+	/*=========================================================================*/
+	/**
+	 * @brief 終了しているかどうか.
+	 * 
+	 * @return 終了フラグ.
+	 */
+	bool IsTerminated();
+
+	/*=========================================================================*/
+	/**
+	 * @brief オブジェクトの描画処理.
+	 * 
+	 */
+	void RenderObject();
+
+	/*=========================================================================*/
+	/**
+	 * @brief オブジェクトの更新処理.
+	 * 
+	 * @param[in] frameTimer 更新タイマ.
+	 */
+	void UpdateObject(float frameTimer);
+
+private:
+	/** 終了フラグ */
+	bool m_isTerminated;
+	/** ゲームデバイス */
+	IGameDevice& m_device;
+	/** オブジェクトマネージャメディエータ */
+	ObjectManager& m_objectManager;
+	/** ゲームオプション */
+	Option& m_option;
+	/** ゲームシーンステート */
+	GameSceneState m_gameSceneState;
+
+	/**	ブロックID */
+	int blockID[2];
+	/** 落下スピード */
+	float m_speed;
+	/** y座標　*/
+	float m_y;
+	/** x座標　*/
+	float m_x;
+	/** ブロックサイズ　*/
+	float m_size;
+
+};
+
+#endif
+
+/*===== EOF ===================================================================*/
