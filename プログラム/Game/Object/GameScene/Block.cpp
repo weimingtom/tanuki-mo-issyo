@@ -39,6 +39,15 @@ Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, 
 	m_blockID[1] = blockMID;
 	InitializeMatrix();
 	m_speed = 1.0f;
+	m_tx = m_x;
+	for(int i=0; i<16; i++){
+		for(int j=0; j<9; j++){
+			frame[i][j] = 0;
+			if(j==0||j==9||i==16){
+				frame[i][j]=1;
+			}
+		}
+	}
 
 	device.GetGraphicDevice().LoadTexture(TEXTUREID_TEST,"block.dds",COLORKEYFLAG_NONE);
 }
@@ -92,7 +101,6 @@ bool Block::IsTerminated()
 void Block::RenderObject()
 {
 	Matrix4 rotate;
-	rotate.setTranslate(1.0f,0.5f,0.5f);
 	SpriteDesc sd;
 	sd.textureID = TEXTUREID_TEST;
 	for(int i=0; i<3; i++){
@@ -114,13 +122,15 @@ void Block::RenderObject()
  */
 void Block::UpdateObject(float frameTimer)
 {
-	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_LEFT) == true) 
+	float m_bspeed = 7.0f;
+
+	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_LEFT) == true) 
 	{
-		m_x += 1.0f;
+		m_tx += m_size;
 	}
-	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_RIGHT) == true) 
+	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_RIGHT) == true) 
 	{
-		m_x -= 1.0f;
+		m_tx -= m_size;
 	}
 	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_UP) == true) 
 	{
@@ -138,8 +148,24 @@ void Block::UpdateObject(float frameTimer)
 	{
 		SpinBlock(SPINBLOCK_LEFT);
 	}
-
+	if(m_x<m_tx)
+	{
+		m_x += m_bspeed;
+		if(m_x>m_tx)
+		{
+			m_x = m_tx;
+		}
+	}
+	else if(m_x>m_tx)
+	{
+		m_x -= m_bspeed;
+		if(m_x<m_tx)
+		{
+			m_x = m_tx;
+		}
+	}
 	m_y += m_speed;
+
 }
 
 /*=============================================================================*/
@@ -186,4 +212,18 @@ void Block::SpinBlock(int direction)
 	}
 }
 
+/*=============================================================================*/
+/**
+ * @brief フィールド上のブロックの現在位置のインデックスを取得する.
+ * 
+ */
+Vector2 Block::GetFieldMatrixPosition()
+{
+	Vector2 tmp;
+	Vector2 fieldPosition = Vector2(300,0);
+	tmp.x = (m_tx-fieldPosition.x)/m_size;
+	tmp.y = (m_y-fieldPosition.y)/m_size;
+
+	return tmp;
+}
 /*===== EOF ===================================================================*/

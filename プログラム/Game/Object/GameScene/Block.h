@@ -103,6 +103,7 @@ public:
 	 * @param[in] direction 回転方向定数.
 	 */
 	void SpinBlock(int direction);
+	Vector2 GetFieldMatrixPosition();
 
 private:
 
@@ -129,6 +130,12 @@ private:
 	float m_y;
 	/** ブロックのサイズ */
 	float m_size;
+
+	/**	目的のx座標 */
+	float m_tx;
+
+	/** フレーム */
+	int frame[9][16];
 };
 
 #endif
