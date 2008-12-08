@@ -421,14 +421,6 @@
 					RelativePath=".\Game\Object\ObjectBase.h"
 					>
 				</File>
-				<File
-					RelativePath=".\Game\Object\ObjectParam.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Object\ObjectParam.h"
-					>
-				</File>
 				<Filter
 					Name="GameScene"
 					>
