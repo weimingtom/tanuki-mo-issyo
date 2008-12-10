@@ -27,7 +27,7 @@
 #include	<Ngl/ISoundDevice.h>
 #include	<Ngl/ITexture.h>
 #include	<Ngl/FileInputC.h>
-#include	<Ngl/Random.h>
+#include	<Ngl/Random/RandomSFMT.h>
 
 /*--------
   値定義
@@ -117,7 +117,7 @@ typedef Ngl::TextureDesc	TextureDesc;
    クラス定義
 ----------------*/
 typedef Ngl::FileInputC	FileInput;
-typedef Ngl::Random		Random;
+static Ngl::RandomSFMT Random;
 
 
 #endif

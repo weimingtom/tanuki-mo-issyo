@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)\FrameWork&quot;;&quot;$(SolutionDir)\Game&quot;;&quot;$(SolutionDir)\Ngllib\inc&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\FrameWork&quot;;&quot;$(SolutionDir)\Game&quot;;&quot;$(SolutionDir)\Ngllib\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -498,773 +498,17 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Ngl"
+			Name="Ngllib"
 			>
 			<Filter
-				Name="inc"
-				>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Animation.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\AnimationController.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\AnimationRect.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\AnimationTake.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Bone.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\BufferDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Collision.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\CollisionReport.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Color4.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\DeleteInstance.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\EffectExtension.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\EffectOutputDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\EffectParameter.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\EffectPass.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\EffectTechnique.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Exception.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\FileInputBinary.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\FileInputC.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\FrameTimer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\FrameWorkDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Frustum.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IAnimation.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IBone.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IBoneframe.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IBuffer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IClonable.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffect.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectExtension.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectMatrixParameter.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectParameter.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectPass.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectScalarParameter.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectTechnique.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectTextureParameter.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IEffectVectorParameter.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IFrameWork.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IInputDevice.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IInputStream.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IKeyframe.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IMapMesh.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IMesh.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IMeshCollision.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IMeshCreator.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\InputDeviceManager.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\InputSignatureDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IRenderer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\ISkeleton.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\ISoundDevice.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\ISoundResource.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\ITexture.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\ITextureCreator.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\ITextureFilter.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IVertexDeclaration.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IVideoPlayer.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IXMLElement.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\IXMLFile.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\KeyFrame.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\KeyframeData.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Line.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Manipulator.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Material.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\MathUtility.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Matrix4.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\MatrixStacker.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Mesh.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\MeshCollision.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\MeshInfo.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Plane.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\PlaneCollisionReport.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\PolygonQuad.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Quaternion.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Random.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Ray.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Rect.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Skeleton.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\SmartPtr.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\SoundDeviceBase.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\SoundDeviceManager.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\SoundParameterDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\SoundStateDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Sphere.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\TextureDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\TextureFilterColorKey.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\TextureFilterColorKeyAuto.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\TextureFilterGrayScale.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Utility.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Vector2.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Vector3.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\Vector4.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\VertexDeclarationDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\VertexStreamDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Ngllib\inc\Ngl\ViewportDesc.h"
-					>
-				</File>
-				<Filter
-					Name="OpenGL"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\BufferGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\BufferGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\EffectCgGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\EffectCgGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\FrameWorkGLUT.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\FrameWorkGLUT.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\OpenGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\RendererGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\RendererGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\Texture1DGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\Texture1DGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\Texture2DGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\Texture2DGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\Texture3DGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\Texture3DGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\TextureGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\TextureGL.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\VertexDeclarationGL.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\OpenGL\VertexDeclarationGL.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="DirectInput"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\DirectInput.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\JoystickDeviceDI8.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\JoystickDeviceDI8.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\JoystickDI8.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\JoystickDI8.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\JoystickKeyDI8.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\KeyboardDeviceDI8.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\KeyboardDeviceDI8.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\KeyboardKeyDI8.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\MouseDeviceDI8.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\MouseDeviceDI8.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectInput\MouseKeyDI8.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="DirectSound"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\DirectSound.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\DirectSoundSocket.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\DirectSoundSocket.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\DSSocketCreator.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\DSSocketCreator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\IDirectSoundResource.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\SoundDeviceDS.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\SoundDeviceDS.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\WaveDSException.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\WaveResourceDS.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DirectSound\WaveResourceDS.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Manager"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\AndEvaluator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\BubbleSorter.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\CombSorter.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\DefaultDestroy.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityEvaluatorMemFun.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityEvaluatorMemFun1.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityEvaluatorMemFun2.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityEvaluatorMemFun3.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityGroupManager.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityManager.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityVisitorMemFun.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityVisitorMemFun1.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityVisitorMemFun2.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\EntityVisitorMemFun3.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\IEntityEvaluator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\IEntityPairEvaluator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\IEntityPairVisitor.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\IEntityVisitor.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\NoDestroy.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\NotEvaluator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\ObjectManager.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\OrEvaluator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\PairAdapterVisitor.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manager\PairManagerVisitor.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Manipulator"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manipulator\Color4Input.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manipulator\Matrix4Input.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manipulator\QuaternionInput.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manipulator\Vector2Input.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manipulator\Vector3Input.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Manipulator\Vector4Input.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Vox"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Vox\SoundDeviceVox.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Vox\SoundDeviceVox.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Msh"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Msh\AnmCreator.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Msh\AnmCreator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Msh\MshExCreator.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Msh\MshExCreator.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Msh\SklCreator.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Msh\SklCreator.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Oct"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Oct\MapMeshOct.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Oct\MapMeshOct.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="DDS"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DDS\DDSFile.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DDS\DDSFile.h"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DDS\TextureCreatorDDS.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\DDS\TextureCreatorDDS.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Factory"
-					>
-					<File
-						RelativePath=".\Ngllib\inc\Ngl\Factory\Factory.h"
-						>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="src"
+				Name="Ngl"
 				>
 				<File
 					RelativePath=".\Ngllib\src\Animation.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Animation.h"
 					>
 				</File>
 				<File
@@ -1272,7 +516,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\AnimationController.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\AnimationRect.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\AnimationRect.h"
 					>
 				</File>
 				<File
@@ -1280,7 +532,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\AnimationTake.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\Bone.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Bone.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\BufferDesc.h"
 					>
 				</File>
 				<File
@@ -1288,7 +552,23 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Collision.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\CollisionReport.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\Color4.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Color4.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\DeleteInstance.h"
 					>
 				</File>
 				<File
@@ -1296,7 +576,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\EffectExtension.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\EffectOutputDesc.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\EffectParameter.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\EffectParameter.h"
 					>
 				</File>
 				<File
@@ -1304,7 +596,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\EffectPass.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\EffectTechnique.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\EffectTechnique.h"
 					>
 				</File>
 				<File
@@ -1312,7 +612,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Exception.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\FileInputBinary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\FileInputBinary.h"
 					>
 				</File>
 				<File
@@ -1320,7 +628,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\FileInputC.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\FrameTimer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\FrameTimer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\FrameWorkDesc.h"
 					>
 				</File>
 				<File
@@ -1328,7 +648,159 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Frustum.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IAnimation.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IBone.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IBoneframe.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IBuffer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IClonable.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffect.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectExtension.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectMatrixParameter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectParameter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectPass.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectScalarParameter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectTechnique.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectTextureParameter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IEffectVectorParameter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IFrameWork.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IInputDevice.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IInputStream.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IKeyframe.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IMapMesh.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IMesh.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IMeshCollision.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IMeshCreator.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IMeshFile.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\InputDeviceManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\InputDeviceManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\InputSignatureDesc.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IRenderer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\ISkeleton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\ISoundDevice.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\ISoundResource.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\ITexture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\ITextureCreator.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\ITextureFilter.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IVertexDeclaration.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IVideoPlayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IXMLElement.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IXMLFile.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\IXMLText.h"
 					>
 				</File>
 				<File
@@ -1336,7 +808,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\KeyFrame.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\KeyframeData.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\Line3.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Line3.h"
 					>
 				</File>
 				<File
@@ -1344,7 +828,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Manipulator.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Material.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\MathUtility.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\MathUtility.h"
 					>
 				</File>
 				<File
@@ -1352,7 +848,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Matrix4.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\MatrixStacker.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\MatrixStacker.h"
 					>
 				</File>
 				<File
@@ -1360,7 +864,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Mesh.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\MeshCollision.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\MeshCollision.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\MeshInfo.h"
 					>
 				</File>
 				<File
@@ -1368,7 +884,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Plane.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\PolygonQuad.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\PolygonQuad.h"
 					>
 				</File>
 				<File
@@ -1376,7 +900,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Ngllib\src\Random.cpp"
+					RelativePath=".\Ngllib\include\Ngl\Quaternion.h"
 					>
 				</File>
 				<File
@@ -1384,7 +908,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Ray.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\Rect.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Rect.h"
 					>
 				</File>
 				<File
@@ -1392,7 +924,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Skeleton.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\SmartPtr.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\SoundDeviceBase.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\SoundDeviceBase.h"
 					>
 				</File>
 				<File
@@ -1400,7 +944,27 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\SoundDeviceManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\SoundParameterDesc.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\SoundStateDesc.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\Sphere.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Sphere.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\TextureDesc.h"
 					>
 				</File>
 				<File
@@ -1408,7 +972,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\TextureFilterColorKey.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\TextureFilterColorKeyAuto.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\TextureFilterColorKeyAuto.h"
 					>
 				</File>
 				<File
@@ -1416,7 +988,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\TextureFilterGrayScale.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\Utility.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Utility.h"
 					>
 				</File>
 				<File
@@ -1424,24 +1004,564 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Ngllib\include\Ngl\Vector2.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Ngllib\src\Vector3.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Vector3.h"
 					>
 				</File>
 				<File
 					RelativePath=".\Ngllib\src\Vector4.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\Vector4.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\VertexDeclarationDesc.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\VertexStreamDesc.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Ngllib\include\Ngl\ViewportDesc.h"
+					>
+				</File>
+				<Filter
+					Name="BMP"
+					>
+					<File
+						RelativePath=".\Ngllib\src\BMP\BitMap.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\BitMap.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\BMP\BMPFile.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\BMPFile.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\DefaultBMPPixel24Bit.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\DefaultBMPPixel2Bit.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\DefaultBMPPixel32Bit.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\DefaultBMPPixel4Bit.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\DefaultBMPPixel8Bit.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\IBMPPixel.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\BMP\TextureCreatorBMP.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\BMP\TextureCreatorBMP.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="DDS"
+					>
+					<File
+						RelativePath=".\Ngllib\src\DDS\DDSFile.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DDS\DDSFile.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DDS\TextureCreatorDDS.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DDS\TextureCreatorDDS.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="DirectInput"
+					>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\DirectInput.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectInput\JoystickDeviceDI8.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\JoystickDeviceDI8.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectInput\JoystickDI8.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\JoystickDI8.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\JoystickKeyDI8.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectInput\KeyboardDeviceDI8.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\KeyboardDeviceDI8.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\KeyboardKeyDI8.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectInput\MouseDeviceDI8.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\MouseDeviceDI8.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectInput\MouseKeyDI8.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="DirectSound"
+					>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectSound\DirectSound.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectSound\DirectSoundSocket.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectSound\DirectSoundSocket.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectSound\DSSocketCreator.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectSound\DSSocketCreator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectSound\IDirectSoundResource.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectSound\SoundDeviceDS.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectSound\SoundDeviceDS.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectSound\WaveDSException.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\DirectSound\WaveResourceDS.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\DirectSound\WaveResourceDS.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Factory"
+					>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Factory\Factory.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Manager"
+					>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\AndEvaluator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\BubbleSorter.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\CombSorter.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\DefaultDestroy.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityEvaluatorMemFun.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityEvaluatorMemFun1.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityEvaluatorMemFun2.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityEvaluatorMemFun3.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityGroupManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityVisitorMemFun.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityVisitorMemFun1.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityVisitorMemFun2.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\EntityVisitorMemFun3.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\IEntityEvaluator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\IEntityPairEvaluator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\IEntityPairVisitor.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\IEntityVisitor.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\NoDestroy.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\NotEvaluator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\ObjectManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\OrEvaluator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\PairAdapterVisitor.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manager\PairManagerVisitor.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Maniplator"
+					>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manipulator\Color4Input.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manipulator\Matrix4Input.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manipulator\QuaternionInput.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manipulator\Vector2Input.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manipulator\Vector3Input.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Manipulator\Vector4Input.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Msh"
+					>
+					<File
+						RelativePath=".\Ngllib\src\Msh\AnmCreator.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Msh\AnmCreator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\Msh\MshExCreator.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Msh\MshExCreator.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\Msh\MshExFile.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Msh\MshExFile.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\Msh\SklCreator.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Msh\SklCreator.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Oct"
+					>
+					<File
+						RelativePath=".\Ngllib\src\Oct\MapMeshOct.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Oct\MapMeshOct.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="OpenGL"
+					>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\BufferGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\BufferGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\EffectCgGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\EffectCgGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\FrameWorkGLUT.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\FrameWorkGLUT.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\OpenGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\RendererGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\RendererGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\Texture1DGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\Texture1DGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\Texture2DGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\Texture2DGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\Texture3DGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\Texture3DGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\TextureGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\TextureGL.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\OpenGL\VertexDeclarationGL.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\OpenGL\VertexDeclarationGL.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Random"
+					>
+					<File
+						RelativePath=".\Ngllib\src\Random\Random.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Random\Random.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\Random\RandomSFMT.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Random\RandomSFMT.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="TinyXML"
+					>
+					<File
+						RelativePath=".\Ngllib\src\TinyXML\XMLDomParserTinyXML.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\TinyXML\XMLDomParserTinyXML.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Vox"
+					>
+					<File
+						RelativePath=".\Ngllib\src\Vox\SoundDeviceVox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\Vox\SoundDeviceVox.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="XML"
+					>
+					<File
+						RelativePath=".\Ngllib\src\XML\XMLElement.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\XML\XMLElement.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\XML\XMLFile.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\XML\XMLFile.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\XML\XMLText.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\XML\XMLText.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\src\XML\XMLUtil.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Ngllib\include\Ngl\XML\XMLUtil.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="GLee"
 			>
 			<File
-				RelativePath=".\Ngllib\inc\GLee\GLee.c"
+				RelativePath=".\Ngllib\include\GLee\GLee.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Ngllib\inc\GLee\GLee.h"
+				RelativePath=".\Ngllib\include\GLee\GLee.h"
 				>
 			</File>
 		</Filter>
@@ -1471,6 +1591,34 @@
 						Name="VCCLCompilerTool"
 					/>
 				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="TinyXML"
+			>
+			<File
+				RelativePath=".\Ngllib\include\TinyXML\tinystr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Ngllib\include\TinyXML\tinystr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Ngllib\include\TinyXML\tinyxml.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Ngllib\include\TinyXML\tinyxml.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Ngllib\include\TinyXML\tinyxmlerror.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Ngllib\include\TinyXML\tinyxmlparser.cpp"
+				>
 			</File>
 		</Filter>
 	</Files>

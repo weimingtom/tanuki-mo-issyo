@@ -31,7 +31,7 @@ GameFrame::GameFrame()
 void GameFrame::Initialize( IGameDevice& device )
 {
 	// —”‚Ìí‚ğì¬
-	Random::srand();
+	Random.srand();
 
 	device.GetGraphicDevice().LoadEffect( EFFECTID_COM_SPRITE, "Sprite" );
 
