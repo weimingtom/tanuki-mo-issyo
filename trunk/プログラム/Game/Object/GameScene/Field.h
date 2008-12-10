@@ -1,18 +1,18 @@
 /*******************************************************************************/
 /**
- * @file Block.h.
+ * @file Field.h.
  * 
- * @brief ブロッククラス定義.
+ * @brief ファイル説明.
  *
- * @date 2008/12/01.
+ * @date 2008/12/08.
  *
  * @version 1.00.
  *
- * @author Tsubasa Uragami.
+ * @author Kenji Iwata.
  */
 /*******************************************************************************/
-#ifndef _BLOCK_H_
-#define _BLOCK_H_
+#ifndef _FIELD_H_
+#define _FIELD_H_
 
 /*===== インクルード ==========================================================*/
 #include	"IGameDevice.h"
@@ -22,21 +22,12 @@
 #include	"Manager/Scene/Option/Option.h"
 class		IGameDevice;
 
-
 /**
- * @brief SPINBLOCK．
+ * @brief クラス名．
  */
-enum SPINBLOCK
+class Field : public ObjectBase
 {
-	SPINBLOCK_RIGHT = 0,
-	SPINBLOCK_LEFT,
-};
 
-/**
- * @brief Block．
- */
-class  Block : public ObjectBase
-{
 public:
 
 	/*=========================================================================*/
@@ -47,16 +38,15 @@ public:
 	 * @param[in] objectManager オブジェクトマネージャ.
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
-	 * @param[in] blockCID 軸のブロックのID.
-	 * @param[in] blockMID サブのブロックのID.
 	 */
-	Block(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, int blockCID, int blockMID);
+	Field(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
 	 *
 	 */
-	~Block();
+	~Field();
 
 	/*=========================================================================*/
 	/**
@@ -77,6 +67,7 @@ public:
 	 * @return 終了フラグ.
 	 */
 	bool IsTerminated();
+
 	/*=========================================================================*/
 	/**
 	 * @brief オブジェクトの描画処理.
@@ -90,22 +81,24 @@ public:
 	 * @param[in] frameTimer 更新タイマ.
 	 */
 	void UpdateObject(float frameTimer);
-	/*=========================================================================*/
-	/**
-	 * @brief ブロック配列の初期化.
-	 * 
-	 */
-	void InitializeMatrix();
-	/*=========================================================================*/
-	/**
-	 * @brief ブロックの回転.
-	 * 
-	 * @param[in] direction 回転方向定数.
-	 */
-	void SpinBlock(int direction);
-	
-	Vector2 GetFieldMatrixPosition();
 
+	/*=========================================================================*/
+	/**
+	 * @brief 関数説明.
+	 * 
+	 * @param[in] 引数名 引数説明.
+	 * @return 戻り値説明.
+	 */
+	int* GetFieldBlockMatrix();
+	
+	/*=========================================================================*/
+	/**
+	 * @brief 関数説明.
+	 * 
+	 * @param[in] 引数名 引数説明.
+	 * @return 戻り値説明.
+	 */
+	int* GetFieldStateMatrix();
 
 private:
 
@@ -119,22 +112,18 @@ private:
 	Option& m_option;
 	/** ゲームシーンステート */
 	GameSceneState m_gameSceneState;
-	/** ブロックの配列 */
-	int m_blockMatrix[3][3];
-	/** ブロックのID */
-	int m_blockID[2];
-	/** スピード */
-	float m_speed;
 
 	/** X位置 */
 	float m_x;
 	/** Y位置 */
 	float m_y;
-	
-	/**	目的のx座標 */
-	float m_tx;
-	/** フレーム */
-	int frame[FIELD_WIDTH][FIELD_HEIGHT];
+	/** ブロックのサイズ */
+
+	int m_fieldBlock[FIELD_WIDTH][FIELD_HEIGHT];
+	int m_fieldState[FIELD_WIDTH][FIELD_HEIGHT];
+
 };
 
 #endif
+
+/*===== EOF ===================================================================*/
