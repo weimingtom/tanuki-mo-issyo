@@ -23,6 +23,7 @@
 class		IGameDevice;
 #include	"Object/GameScene/Block.h"
 #include    "Object/GameScene/PuzzleScreen.h"
+#include	"Object/GameScene/Field.h"
 
 
 /**
@@ -98,6 +99,8 @@ private:
 
 	Block*			m_block;
 	PuzzleScreen	m_puzzleScreen;
+
+	Field			m_field;
 };
 
 #endif

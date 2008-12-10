@@ -34,20 +34,29 @@ Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, 
 {
 	m_x = 400.0f;
 	m_y = 0.0f;
-	m_size = 50.0f;
 	m_blockID[0] = blockCID;
 	m_blockID[1] = blockMID;
 	InitializeMatrix();
 	m_speed = 1.0f;
 	m_tx = m_x;
-	for(int i=0; i<16; i++){
-		for(int j=0; j<9; j++){
+	
+	for(int i=0; i<FIELD_WIDTH;i++)
+	{
+		for(int j=0;j<FIELD_HEIGHT;j++)
+		{
 			frame[i][j] = 0;
-			if(j==0||j==9||i==16){
-				frame[i][j]=1;
-			}
 		}
 	}
+	for(int i=0; i<FIELD_HEIGHT; i++)
+	{
+		frame[0][i] = 255;
+		frame[FIELD_WIDTH - 1][i] = 255;
+	}
+	for(int i=1; i<FIELD_WIDTH - 1; i++)
+	{
+		frame[i][FIELD_HEIGHT - 1] = 255;
+	}
+	
 
 	device.GetGraphicDevice().LoadTexture(TEXTUREID_TEST,"block.dds",COLORKEYFLAG_NONE);
 }
@@ -100,14 +109,14 @@ bool Block::IsTerminated()
  */
 void Block::RenderObject()
 {
-	Matrix4 rotate;
+
 	SpriteDesc sd;
 	sd.textureID = TEXTUREID_TEST;
 	for(int i=0; i<3; i++){
 		for(int j=0; j<3; j++){
-			sd.rect = Rect(m_x-(m_size*j),m_y+(m_size*i),m_x+(m_size*(j+1)),m_y+(m_size*(i+1)));
+			sd.rect = Rect(m_x-(BLOCK_SIZE*j),m_y+(BLOCK_SIZE*i),m_x+(BLOCK_SIZE*(j+1)),m_y+(BLOCK_SIZE*(i+1)));
 			if(m_blockMatrix[i][j] != 0 ){
-				sd.rect = Rect(m_x+(m_size*j)-(m_size*1.5f),m_y+(m_size*i)-(m_size*1.5f),m_x+(m_size*(j+1)-(m_size*1.5f)),m_y+(m_size*(i+1)-(m_size*1.5f)));
+				sd.rect = Rect(m_x+(BLOCK_SIZE*j)-(BLOCK_SIZE*1.5f),m_y+(BLOCK_SIZE*i)-(BLOCK_SIZE*1.5f),m_x+(BLOCK_SIZE*(j+1)-(BLOCK_SIZE*1.5f)),m_y+(BLOCK_SIZE*(i+1)-(BLOCK_SIZE*1.5f)));
 				m_device.GetGraphicDevice().Render( sd );
 			}
 		}
@@ -122,15 +131,16 @@ void Block::RenderObject()
  */
 void Block::UpdateObject(float frameTimer)
 {
-	float m_bspeed = 7.0f;
+	
+	float m_bspeed = 5.0f;
 
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_LEFT) == true) 
 	{
-		m_tx += m_size;
+		m_tx += BLOCK_SIZE;
 	}
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_RIGHT) == true) 
 	{
-		m_tx -= m_size;
+		m_tx -= BLOCK_SIZE;
 	}
 	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_UP) == true) 
 	{
@@ -164,8 +174,9 @@ void Block::UpdateObject(float frameTimer)
 			m_x = m_tx;
 		}
 	}
-	m_y += m_speed;
 
+
+	m_y += m_speed;
 }
 
 /*=============================================================================*/
@@ -221,8 +232,8 @@ Vector2 Block::GetFieldMatrixPosition()
 {
 	Vector2 tmp;
 	Vector2 fieldPosition = Vector2(300,0);
-	tmp.x = (m_tx-fieldPosition.x)/m_size;
-	tmp.y = (m_y-fieldPosition.y)/m_size;
+	tmp.x = (m_tx-fieldPosition.x)/BLOCK_SIZE;
+	tmp.y = (m_y-fieldPosition.y)/BLOCK_SIZE;
 
 	return tmp;
 }

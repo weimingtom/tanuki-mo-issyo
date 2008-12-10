@@ -1,10 +1,10 @@
 /*******************************************************************************/
 /*
- * @file Player.cpp.
+ * @file Field.cpp.
  * 
- * @brief プレーヤークラス定義.
+ * @brief ファイル説明.
  *
- * @date 2008/11/25.
+ * @date 2008/12/08.
  *
  * @version 1.00.
  *
@@ -13,7 +13,9 @@
 /*******************************************************************************/
 
 /*===== インクルード ==========================================================*/
-#include	"Object/GameScene/Player.h"
+#include "Object/GameScene/Field.h"
+
+/*===== 定数宣言 ==============================================================*/
 
 
 /*=============================================================================*/
@@ -25,13 +27,30 @@
  * @param[in] option ゲームオプション.
  * @param[in] gameSceneState ゲームシーンステート.
  */
-Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false),
-		m_puzzleScreen(device,objectManager,option,gameSceneState),
-		m_field(device,objectManager,option,gameSceneState)
+Field::Field(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
+m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
 {
-	m_gameSceneState.AddPlayer(this);
-	m_block = m_objectManager.GetObjectFactory().CreateBlock(m_gameSceneState, 1, 1);
+	for(int i=0; i<FIELD_WIDTH;i++)
+	{
+		for(int j=0;j<FIELD_HEIGHT;j++)
+		{
+			m_fieldBlock[i][j] = 0;
+		}
+	}
+	for(int i=0; i<FIELD_HEIGHT; i++)
+	{
+		m_fieldBlock[0][i] = 255;
+		m_fieldBlock[FIELD_WIDTH - 1][i] = 255;
+	}
+	for(int i=1; i<FIELD_WIDTH - 1; i++)
+	{
+		m_fieldBlock[i][FIELD_HEIGHT - 1] = 255;
+	}
+
+	m_x = 200.0f;
+	m_y = 0.0f;
+
+	device.GetGraphicDevice().LoadTexture(TEXTUREID_TEST,"block.dds",COLORKEYFLAG_NONE);
 }
 
 /*=============================================================================*/
@@ -39,9 +58,9 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option
  * @brief デストラクタ.
  *
  */
-Player::~Player()
+Field::~Field()
 {
-	delete m_block;
+
 }
 
 /*=============================================================================*/
@@ -49,10 +68,9 @@ Player::~Player()
  * @brief 初期化処理.
  * 
  */
-void Player::Initialize()
+void Field::Initialize()
 {
-	m_block->Initialize();
-	m_puzzleScreen.Initialize();
+
 }
 
 /*=============================================================================*/
@@ -60,11 +78,9 @@ void Player::Initialize()
  * @brief 終了処理.
  * 
  */
-void Player::Terminate()
+void Field::Terminate()
 {
-	m_block->Terminate();
-	m_puzzleScreen.Terminate();
-	m_isTerminated = true;
+
 }
 
 /*=============================================================================*/
@@ -73,7 +89,7 @@ void Player::Terminate()
  * 
  * @return 終了フラグ.
  */
-bool Player::IsTerminated()
+bool Field::IsTerminated()
 {
 	return m_isTerminated;
 
@@ -84,10 +100,18 @@ bool Player::IsTerminated()
  * @brief オブジェクトの描画処理.
  * 
  */
-void Player::RenderObject()
+void Field::RenderObject()
 {
-	m_block->RenderObject();
-	m_puzzleScreen.RenderObject();
+	SpriteDesc sd;
+	sd.textureID = TEXTUREID_TEST;
+	for(int x=0; x<FIELD_WIDTH; x++){
+		for(int y=0; y<FIELD_HEIGHT; y++){
+			if(m_fieldBlock[x][y] != 0 ){
+				sd.rect = Rect(m_x+(BLOCK_SIZE*x),m_y+(BLOCK_SIZE*y),m_x+(BLOCK_SIZE*(x+1)),m_y+(BLOCK_SIZE*(y+1)));
+				m_device.GetGraphicDevice().Render( sd );
+			}
+		}
+	}
 }
 
 /*=============================================================================*/
@@ -96,10 +120,18 @@ void Player::RenderObject()
  * 
  * @param[in] frameTimer 更新タイマ.
  */
-void Player::UpdateObject(float frameTimer)
+void Field::UpdateObject(float frameTimer)
 {
-	m_block->UpdateObject(frameTimer);
-	m_puzzleScreen.UpdateObject(frameTimer);
+
 }
 
+int* Field::GetFieldBlockMatrix()
+{
+	return m_fieldBlock[0];
+}
+
+int* Field::GetFieldStateMatrix()
+{
+	return m_fieldState[0];
+}
 /*===== EOF ===================================================================*/

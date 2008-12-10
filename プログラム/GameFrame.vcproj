@@ -378,6 +378,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Game\Define\GameDefine.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Game\Define\MeshID.h"
 					>
 				</File>
@@ -438,6 +442,14 @@
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\BlockManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Field.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Field.h"
 						>
 					</File>
 					<File
