@@ -2,7 +2,7 @@
 /**
  * @file FallBlock.h.
  * 
- * @brief フォールブロッククラスソース定義.
+ * @brief フォールブロッククラス定義.
  *
  * @date 2008/12/8.
  *
@@ -64,7 +64,7 @@ void FallBlock::Terminate()
  */
 bool FallBlock::IsTerminated()
 {
-	return 0;
+	return m_isTerminated;
 }
 
 /*=========================================================================*/

@@ -2,7 +2,7 @@
 /**
  * @file Avatar.h.
  * 
- * @brief アバタークラスヘッダ.
+ * @brief アバタークラスヘッダ定義.
  *
  * @date 2008/12/11.
  *
@@ -93,6 +93,11 @@ private:
 	GameSceneState& m_gameSceneState;
 	/** プレーヤ */
 	Player& m_player;
+
+	/** y座標　*/
+	float m_y;
+	/** x座標　*/
+	float m_x;
 
 };
 
