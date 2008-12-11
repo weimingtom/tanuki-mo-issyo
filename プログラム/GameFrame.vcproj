@@ -429,6 +429,14 @@
 					Name="GameScene"
 					>
 					<File
+						RelativePath=".\Game\Object\GameScene\Avatar.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Avatar.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Block.cpp"
 						>
 					</File>
@@ -442,6 +450,14 @@
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\BlockManager.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\CharacterScreen.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\CharacterScreen.h"
 						>
 					</File>
 					<File
