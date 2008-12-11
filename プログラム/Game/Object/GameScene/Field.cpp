@@ -14,6 +14,7 @@
 
 /*===== インクルード ==========================================================*/
 #include "Object/GameScene/Field.h"
+#include "Object/GameScene/Player.h"
 
 /*===== 定数宣言 ==============================================================*/
 
@@ -27,8 +28,8 @@
  * @param[in] option ゲームオプション.
  * @param[in] gameSceneState ゲームシーンステート.
  */
-Field::Field(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
-m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
+Field::Field(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState, Player &player) :
+m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
 {
 	for(int i=0; i<FIELD_WIDTH;i++)
 	{
@@ -47,8 +48,6 @@ m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneS
 		m_fieldBlock[i][FIELD_HEIGHT - 1] = 255;
 	}
 
-	m_x = 200.0f;
-	m_y = 0.0f;
 
 	device.GetGraphicDevice().LoadTexture(TEXTUREID_TEST,"block.dds",COLORKEYFLAG_NONE);
 }
@@ -70,7 +69,8 @@ Field::~Field()
  */
 void Field::Initialize()
 {
-
+	m_x = m_player.GetPosition().x;
+	m_y = m_player.GetPosition().y;
 }
 
 /*=============================================================================*/
@@ -125,13 +125,21 @@ void Field::UpdateObject(float frameTimer)
 
 }
 
-int* Field::GetFieldBlockMatrix()
+void Field::GetFieldBlockMatrix(FieldMatrix* fieldMatrix)
 {
-	return m_fieldBlock[0];
+	for(int x=0; x<FIELD_WIDTH; x++){
+		for(int y=0; y<FIELD_HEIGHT; y++){
+			fieldMatrix->matrix[x][y] = m_fieldBlock[x][y];
+		}
+	}
 }
 
-int* Field::GetFieldStateMatrix()
+void Field::GetFieldStateMatrix(FieldMatrix* fieldMatrix)
 {
-	return m_fieldState[0];
+	for(int x=0; x<FIELD_WIDTH; x++){
+		for(int y=0; y<FIELD_HEIGHT; y++){
+			fieldMatrix->matrix[x][y] = m_fieldState[x][y];
+		}
+	}
 }
 /*===== EOF ===================================================================*/

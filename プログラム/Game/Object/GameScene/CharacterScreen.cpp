@@ -18,9 +18,9 @@
 /**
  * @brief コンストラクタ.
  */ 
-CharacterScreen::CharacterScreen(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false),
-		m_avatar(device, objectManager, option, gameSceneState)
+CharacterScreen::CharacterScreen(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player &player) :
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false),
+		m_avatar(device, objectManager, option, gameSceneState, player)
 {
 
 }

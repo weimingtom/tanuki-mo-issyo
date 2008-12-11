@@ -9,6 +9,7 @@
 #include	"Object/GameScene/Block.h"
 #include	"Object/GameScene/FallBlock.h"
 #include	"Object/GameScene/Field.h"
+class		Player;
 class		IGameDevice;
 
 class BlockManager : public ObjectBase
@@ -23,7 +24,7 @@ public:
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	BlockManager(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+	BlockManager(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
@@ -68,7 +69,8 @@ private:
 	IGameDevice&	m_device;
 	ObjectManager&	m_objectManager;
 	Option&			m_option;
-	GameSceneState	m_gameSceneState;
+	GameSceneState&	m_gameSceneState;
+	Player& m_player;
 
 	Block			*m_block;
 	Field			m_field;

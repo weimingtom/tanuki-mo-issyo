@@ -19,6 +19,7 @@
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
+class		Player;
 
 
 /**
@@ -33,7 +34,7 @@ public:
 	 * @brief コンストラクタ.
 	 *
 	 */
-	Avatar(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+	Avatar(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
 
 	/*=========================================================================*/
 	/**
@@ -89,7 +90,9 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState m_gameSceneState;
+	GameSceneState& m_gameSceneState;
+	/** プレーヤ */
+	Player& m_player;
 
 };
 

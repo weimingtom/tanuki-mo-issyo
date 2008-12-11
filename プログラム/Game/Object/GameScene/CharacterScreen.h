@@ -20,6 +20,7 @@
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
 #include	"Object/GameScene/Avatar.h"
+class		Player;
 
 
 /**
@@ -38,7 +39,7 @@ public:
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	CharacterScreen(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+	CharacterScreen(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
 
 	/*=========================================================================*/
 	/**
@@ -94,7 +95,9 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState m_gameSceneState;
+	GameSceneState& m_gameSceneState;
+	/** プレーヤ */
+	Player& m_player;
 
 	Avatar	m_avatar;
 

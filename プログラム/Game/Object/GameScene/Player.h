@@ -21,10 +21,10 @@
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
 class		IGameDevice;
-#include	"Object/GameScene/Block.h"
+
 #include    "Object/GameScene/PuzzleScreen.h"
-#include	"Object/GameScene/Field.h"
 #include    "Object/GameScene/CharacterScreen.h"
+#include	"Object/GameScene/Player.h"
 
 
 /**
@@ -43,7 +43,7 @@ public:
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+	Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, float x, float y);
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
@@ -85,6 +85,8 @@ public:
 	 */
 	void UpdateObject(float frameTimer);
 
+	Vector2 GetPosition();
+
 private:
 
 	/** 終了フラグ */
@@ -102,6 +104,8 @@ private:
 	PuzzleScreen	m_puzzleScreen;
 	CharacterScreen	m_characterScreen;
 
+	float m_x;
+	float m_y;
 
 };
 

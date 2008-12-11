@@ -16,6 +16,7 @@
 #include	"Object/GameScene/Block.h"
 #include	"Define/TextureID.h"
 #include	"Define/EffectID.h"
+#include "Object/GameScene/Player.h"
 
 
 /*=============================================================================*/
@@ -29,32 +30,29 @@
  * @param[in] blockCID 軸のブロックのID.
  * @param[in] blockMID サブのブロックのID.
  */
-Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, int blockCID, int blockMID) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
+Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player &player, int blockCID, int blockMID) :
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
 {
-	m_x = 400.0f;
-	m_y = 0.0f;
 	m_blockID[0] = blockCID;
 	m_blockID[1] = blockMID;
 	InitializeMatrix();
 	m_speed = 1.0f;
-	m_tx = m_x;
 	
 	for(int i=0; i<FIELD_WIDTH;i++)
 	{
 		for(int j=0;j<FIELD_HEIGHT;j++)
 		{
-			frame[i][j] = 0;
+			frame.matrix[i][j] = 0;
 		}
 	}
 	for(int i=0; i<FIELD_HEIGHT; i++)
 	{
-		frame[0][i] = 255;
-		frame[FIELD_WIDTH - 1][i] = 255;
+		frame.matrix[0][i] = 255;
+		frame.matrix[FIELD_WIDTH - 1][i] = 255;
 	}
 	for(int i=1; i<FIELD_WIDTH - 1; i++)
 	{
-		frame[i][FIELD_HEIGHT - 1] = 255;
+		frame.matrix[i][FIELD_HEIGHT - 1] = 255;
 	}
 	
 
@@ -78,7 +76,9 @@ Block::~Block()
  */
 void Block::Initialize()
 {
-
+	m_x = m_player.GetPosition().x + (BLOCK_SIZE * FIELD_WIDTH / 2);
+	m_y = m_player.GetPosition().y;
+	m_tx = m_x;
 }
 
 /*=============================================================================*/
