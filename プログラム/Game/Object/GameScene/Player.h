@@ -86,6 +86,7 @@ public:
 	void UpdateObject(float frameTimer);
 
 	Vector2 GetPosition();
+	PuzzleScreen& GetPuzzleScreen();
 
 private:
 

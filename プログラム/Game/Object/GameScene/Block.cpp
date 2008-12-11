@@ -18,6 +18,8 @@
 #include	"Define/EffectID.h"
 #include "Object/GameScene/Player.h"
 
+#include <iostream>
+
 
 /*=============================================================================*/
 /**
@@ -79,6 +81,8 @@ void Block::Initialize()
 	m_x = m_player.GetPosition().x + (BLOCK_SIZE * FIELD_WIDTH / 2);
 	m_y = m_player.GetPosition().y;
 	m_tx = m_x;
+	m_ty = m_y;
+	m_angle = 0;
 }
 
 /*=============================================================================*/
@@ -131,33 +135,84 @@ void Block::RenderObject()
  */
 void Block::UpdateObject(float frameTimer)
 {
+	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
 	
+
+	Vector2	MatrixPosition;
+	MatrixPosition.x = (int)((m_tx - m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().x) / BLOCK_SIZE);
+	MatrixPosition.y = (int)((m_y - m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + (BLOCK_SIZE/2)) / BLOCK_SIZE);
+
 	float m_bspeed = 5.0f;
 
-	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_LEFT) == true) 
+	std::cout << m_angle<< std::endl;
+
+	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_LEFT) == true ) 
 	{
-		m_tx += BLOCK_SIZE;
+		if(!ColisionMatrix(frame,MatrixPosition.x+1,MatrixPosition.y)){
+			m_tx += BLOCK_SIZE;
+		}
 	}
-	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_RIGHT) == true) 
+	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_RIGHT) == true ) 
 	{
-		m_tx -= BLOCK_SIZE;
+		if(!ColisionMatrix(frame,MatrixPosition.x-1,MatrixPosition.y)){
+			m_tx -= BLOCK_SIZE;
+		}
 	}
 	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_UP) == true) 
 	{
-		m_y -= 1.0f;
+		m_ty -= 1.0f;
 	}
 	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_DOWN) == true) 
 	{
-		m_y += 1.0f;
+		if(!ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y+1)){
+			m_ty += 1.0f;
+		}
 	}
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_CIRCLE) == true)
 	{
 		SpinBlock(SPINBLOCK_RIGHT);
+		if(ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y))
+		{
+			switch(m_angle)
+			{
+			case 0:
+				m_ty -= BLOCK_SIZE;
+				break;
+			case 1:
+				m_tx += BLOCK_SIZE;
+				break;
+			case 3:
+				m_tx -= BLOCK_SIZE;
+				break;
+			}
+		}
 	}
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_TRIANGLE) == true)
 	{
 		SpinBlock(SPINBLOCK_LEFT);
+		if(ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y))
+		{
+			switch(m_angle)
+			{
+			case 0:
+				m_ty -= BLOCK_SIZE;
+				break;
+			case 1:
+				m_tx += BLOCK_SIZE;
+				break;
+			case 3:
+				m_tx -= BLOCK_SIZE;
+				break;
+			}
+		}
 	}
+
+	if(!ColisionMatrix(frame,MatrixPosition.x,
+		(int)((m_y - m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + (BLOCK_SIZE/2) + m_speed) / BLOCK_SIZE))) 
+	{
+		m_ty += m_speed;
+	}
+
 	if(m_x<m_tx)
 	{
 		m_x += m_bspeed;
@@ -175,8 +230,24 @@ void Block::UpdateObject(float frameTimer)
 		}
 	}
 
+	if(m_y<m_ty)
+	{
+		m_y += m_bspeed;
+		if(m_y>m_ty)
+		{
+			m_y = m_ty;
+		}
+	}
+	else if(m_y>m_ty)
+	{
+		m_y -= m_bspeed;
+		if(m_y<m_ty)
+		{
+			m_y = m_ty;
+		}
+	}
 
-	m_y += m_speed;
+
 }
 
 /*=============================================================================*/
@@ -209,8 +280,23 @@ void Block::SpinBlock(int direction)
 		for(int y=0; y<3; y++)
 		{
 			buf[y][x] = 0;
-			if(direction == SPINBLOCK_LEFT) buf[y][x] = m_blockMatrix[x][2 - y];
-			else  buf[y][x] = m_blockMatrix[2 - x][y];
+			if(direction == SPINBLOCK_LEFT)
+			{
+				m_angle --;
+				if(m_angle < 0 )
+				{
+					m_angle = 3;
+				}
+				buf[y][x] = m_blockMatrix[x][2 - y];
+			} else
+			{
+				m_angle ++;
+				if(m_angle > 3 )
+				{
+					m_angle = 0;
+				}
+				buf[y][x] = m_blockMatrix[2 - x][y];
+			}
 		}
 	}
 
@@ -236,5 +322,21 @@ Vector2 Block::GetFieldMatrixPosition()
 	tmp.y = (m_y-fieldPosition.y)/BLOCK_SIZE;
 
 	return tmp;
+}
+
+bool	Block::ColisionMatrix(FieldMatrix matrix,int x,int y)
+{
+	for(int ax=0;ax<3;ax++)
+	{
+		for(int ay=0;ay<3;ay++)
+		{
+			if((matrix.matrix[x-1+ax][y-1+ay] != 0) && (m_blockMatrix[ay][ax] != 0))
+			{
+				return true;
+			}
+		}
+	}
+
+	return	false;
 }
 /*===== EOF ===================================================================*/

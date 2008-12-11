@@ -64,6 +64,8 @@ public:
 	 */
 	void UpdateObject(float frameTimer);
 
+	Field&			GetField();
+
 private:
 	bool			m_isTerminated;
 	IGameDevice&	m_device;

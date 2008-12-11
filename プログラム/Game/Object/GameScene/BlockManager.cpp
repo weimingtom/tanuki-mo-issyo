@@ -125,4 +125,9 @@ void BlockManager::UpdateObject(float frameTimer)
 	m_field.UpdateObject(frameTimer);
 }
 
+Field& BlockManager::GetField()
+{
+	return	m_field;
+}
+
 /*===== EOF ===================================================================*/

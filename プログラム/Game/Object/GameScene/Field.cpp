@@ -142,4 +142,9 @@ void Field::GetFieldStateMatrix(FieldMatrix* fieldMatrix)
 		}
 	}
 }
+
+Vector2 Field::GetPosition()
+{
+	return Vector2(m_x,m_y);
+}
 /*===== EOF ===================================================================*/
