@@ -16,7 +16,7 @@
 #include	"Scene/GameScene.h"
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/GameScene/Player.h"
-
+#include	"Object/GameScene/FallBlock.h"
 
 /*=============================================================================*/
 /**
@@ -32,6 +32,7 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 	m_objectManager = new ObjectManager(device,option);
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(m_state));
 	m_objectManager->AddObject(new Field(device,*m_objectManager,option,m_state));
+	m_objectManager->AddObject(new FallBlock(device,*m_objectManager,option,m_state));
 }
 
 /*=============================================================================*/

@@ -445,6 +445,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\FallBlock.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\FallBlock.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Field.cpp"
 						>
 					</File>
