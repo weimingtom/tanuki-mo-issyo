@@ -97,10 +97,10 @@ private:
 	/** ゲームシーンステート */
 	GameSceneState m_gameSceneState;
 
-	Block*			m_block;
+
 	PuzzleScreen	m_puzzleScreen;
 
-	Field			m_field;
+
 };
 
 #endif

@@ -7,6 +7,8 @@
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
 #include	"Object/GameScene/Block.h"
+#include	"Object/GameScene/FallBlock.h"
+#include	"Object/GameScene/Field.h"
 class		IGameDevice;
 
 class BlockManager : public ObjectBase
@@ -67,6 +69,10 @@ private:
 	ObjectManager&	m_objectManager;
 	Option&			m_option;
 	GameSceneState	m_gameSceneState;
+
+	Block			*m_block;
+	Field			m_field;
+	FallBlock		*m_fallBlock;
 };
 
 

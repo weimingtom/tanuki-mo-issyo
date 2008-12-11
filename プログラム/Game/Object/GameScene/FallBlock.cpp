@@ -78,13 +78,9 @@ void FallBlock::RenderObject()
 	rotate.setTranslate(1.0f,0.5f,0.5f);
 	SpriteDesc sd;
 	sd.textureID = TEXTUREID_TEST;
-	for( int i = 0; i < 3; i++ ){
-		for( int j = 0; j < 3; j++ ){
-			sd.rect = Rect(m_x-(m_size*j),m_y+(m_size*i),m_x+(m_size*(j+1)),m_y+(m_size*(i+1)));
-			m_device.GetGraphicDevice().Render( sd );
-		}
-	}
-
+	
+	sd.rect = Rect(m_x,m_y,m_x+(BLOCK_SIZE),m_y+(BLOCK_SIZE));
+	m_device.GetGraphicDevice().Render( sd );
 }
 
 /*=========================================================================*/

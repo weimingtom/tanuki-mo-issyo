@@ -93,15 +93,13 @@ private:
 	GameSceneState m_gameSceneState;
 
 	/**	ブロックID */
-	int blockID[2];
+	int blockID;
 	/** 落下スピード */
 	float m_speed;
 	/** y座標　*/
 	float m_y;
 	/** x座標　*/
 	float m_x;
-	/** ブロックサイズ　*/
-	float m_size;
 
 };
 

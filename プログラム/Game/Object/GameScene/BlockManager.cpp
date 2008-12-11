@@ -26,8 +26,11 @@
  * @param[in] gameSceneState ゲームシーンステート.
  */
 BlockManager::BlockManager(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false)
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false),
+		m_field(device, objectManager, option, gameSceneState )
 {
+	m_block = new Block(device, objectManager, option, gameSceneState,1,1 );
+	m_fallBlock = new FallBlock(device, objectManager, option, gameSceneState);
 }
 
 /*=============================================================================*/
@@ -37,6 +40,12 @@ BlockManager::BlockManager(IGameDevice& device, ObjectManager& objectManager, Op
  */
 BlockManager::~BlockManager()
 {
+	if(m_block){
+		delete m_block;
+	}
+	if(m_fallBlock){
+		delete m_fallBlock;
+	}
 }
 
 /*=============================================================================*/
@@ -46,6 +55,12 @@ BlockManager::~BlockManager()
  */
 void BlockManager::Initialize()
 {
+	if(m_block){
+		m_block->Initialize();
+	}
+	if(m_fallBlock){
+		m_fallBlock->Initialize();
+	}
 }
 
 /*=============================================================================*/
@@ -56,6 +71,12 @@ void BlockManager::Initialize()
 void BlockManager::Terminate()
 {
 	m_isTerminated = true;
+	if(m_block){
+		m_block->Terminate();
+	}
+	if(m_fallBlock){
+		m_fallBlock->Terminate();
+	}
 }
 
 /*=============================================================================*/
@@ -76,6 +97,12 @@ bool BlockManager::IsTerminated()
  */
 void BlockManager::RenderObject()
 {
+	if(m_block){
+		m_block->RenderObject();
+	}
+	if(m_fallBlock){
+		m_fallBlock->RenderObject();
+	}
 }
 
 /*=============================================================================*/
@@ -86,6 +113,12 @@ void BlockManager::RenderObject()
  */
 void BlockManager::UpdateObject(float frameTimer)
 {
+	if(m_block){
+		m_block->UpdateObject(frameTimer);
+	}
+	if(m_fallBlock){
+		m_fallBlock->UpdateObject(frameTimer);
+	}
 }
 
 /*===== EOF ===================================================================*/
