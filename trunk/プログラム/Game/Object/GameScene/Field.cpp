@@ -49,7 +49,7 @@ m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneS
 	}
 
 
-	device.GetGraphicDevice().LoadTexture(TEXTUREID_TEST,"block.dds",COLORKEYFLAG_NONE);
+	device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK2,"block2.dds",COLORKEYFLAG_NONE);
 }
 
 /*=============================================================================*/
@@ -103,7 +103,7 @@ bool Field::IsTerminated()
 void Field::RenderObject()
 {
 	SpriteDesc sd;
-	sd.textureID = TEXTUREID_TEST;
+	sd.textureID = TEXTUERID_BLOCK2;
 	for(int x=0; x<FIELD_WIDTH; x++){
 		for(int y=0; y<FIELD_HEIGHT; y++){
 			if(m_fieldBlock[x][y] != 0 ){

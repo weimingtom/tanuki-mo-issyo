@@ -58,7 +58,7 @@ Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, 
 	}
 	
 
-	device.GetGraphicDevice().LoadTexture(TEXTUREID_TEST,"block.dds",COLORKEYFLAG_NONE);
+	device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK1,"block1.dds",COLORKEYFLAG_NONE);
 }
 
 /*=============================================================================*/
@@ -115,7 +115,7 @@ void Block::RenderObject()
 {
 
 	SpriteDesc sd;
-	sd.textureID = TEXTUREID_TEST;
+	sd.textureID = TEXTUERID_BLOCK1;
 	for(int i=0; i<3; i++){
 		for(int j=0; j<3; j++){
 			sd.rect = Rect(m_x-(BLOCK_SIZE*j),m_y+(BLOCK_SIZE*i),m_x+(BLOCK_SIZE*(j+1)),m_y+(BLOCK_SIZE*(i+1)));
