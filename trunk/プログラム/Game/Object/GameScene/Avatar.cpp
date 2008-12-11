@@ -2,7 +2,7 @@
 /**
  * @file Avatar.cpp.
  * 
- * @brief アバタークラスソース.
+ * @brief アバタークラス定義.
  *
  * @date 2008/12/11.
  *
@@ -12,7 +12,8 @@
  */
 /*******************************************************************************/
 
-#include	"Avatar.h"
+#include	"Object/GameScene/Avatar.h"
+#include	"Object/GameScene/Player.h"
 
 
 /*=========================================================================*/
@@ -24,6 +25,7 @@ Avatar::Avatar(IGameDevice &device, ObjectManager &objectManager, Option &option
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
 {
 
+	device.GetGraphicDevice().LoadTexture(TEXTUREID_AVATAR1, "avatar.dds", COLORKEYFLAG_NONE);
 }
 
 /*=========================================================================*/
@@ -43,7 +45,8 @@ Avatar::~Avatar()
  */
 void Avatar::Initialize()
 {
-
+	m_x = m_player.GetPosition().x + 300.0f;
+	m_y = m_player.GetPosition().y + 100.0f;
 }
 
 /*=========================================================================*/
@@ -74,7 +77,11 @@ bool Avatar::IsTerminated()
  */
 void Avatar::RenderObject()
 {
-
+	SpriteDesc sd;
+	sd.textureID = TEXTUREID_AVATAR1;
+	
+	sd.rect = Rect(m_x ,m_y ,m_x+256 ,m_y+256);
+	m_device.GetGraphicDevice().Render( sd );
 }
 
 /*=========================================================================*/
