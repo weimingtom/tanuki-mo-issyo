@@ -24,6 +24,7 @@ class		IGameDevice;
 #include	"Object/GameScene/Block.h"
 #include    "Object/GameScene/PuzzleScreen.h"
 #include	"Object/GameScene/Field.h"
+#include    "Object/GameScene/CharacterScreen.h"
 
 
 /**
@@ -99,6 +100,7 @@ private:
 
 
 	PuzzleScreen	m_puzzleScreen;
+	CharacterScreen	m_characterScreen;
 
 
 };

@@ -27,7 +27,8 @@
  */
 Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false),
-		m_puzzleScreen(device,objectManager,option,gameSceneState)
+		m_puzzleScreen(device,objectManager,option,gameSceneState),
+		m_characterScreen(device,objectManager,option,gameSceneState)
 		
 {
 	m_gameSceneState.AddPlayer(this);
@@ -41,7 +42,7 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option
  */
 Player::~Player()
 {
-
+	
 }
 
 /*=============================================================================*/
@@ -53,6 +54,7 @@ void Player::Initialize()
 {
 
 	m_puzzleScreen.Initialize();
+	m_characterScreen.Initialize();
 }
 
 /*=============================================================================*/
@@ -64,6 +66,7 @@ void Player::Terminate()
 {
 
 	m_puzzleScreen.Terminate();
+	m_characterScreen.Terminate();
 	m_isTerminated = true;
 }
 
@@ -88,6 +91,7 @@ void Player::RenderObject()
 {
 
 	m_puzzleScreen.RenderObject();
+	m_characterScreen.RenderObject();
 }
 
 /*=============================================================================*/
@@ -100,6 +104,7 @@ void Player::UpdateObject(float frameTimer)
 {
 
 	m_puzzleScreen.UpdateObject(frameTimer);
+	m_characterScreen.UpdateObject(frameTimer);
 }
 
 /*===== EOF ===================================================================*/
