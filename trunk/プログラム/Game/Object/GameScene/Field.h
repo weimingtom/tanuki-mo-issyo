@@ -20,6 +20,7 @@
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
+
 class		Player;
 class		IGameDevice;
 
@@ -100,6 +101,8 @@ public:
 	 * @return ñﬂÇËílê‡ñæ.
 	 */
 	void GetFieldStateMatrix(FieldMatrix* fieldMatrix);
+	Vector2 GetPosition();
+
 
 private:
 

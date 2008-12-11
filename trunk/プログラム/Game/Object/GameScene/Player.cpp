@@ -89,7 +89,6 @@ bool Player::IsTerminated()
  */
 void Player::RenderObject()
 {
-
 	m_puzzleScreen.RenderObject();
 	m_characterScreen.RenderObject();
 }
@@ -110,6 +109,11 @@ void Player::UpdateObject(float frameTimer)
 Vector2 Player::GetPosition()
 {
 	return Vector2(m_x,m_y);
+}
+
+PuzzleScreen& Player::GetPuzzleScreen()
+{
+	return m_puzzleScreen;
 }
 
 /*===== EOF ===================================================================*/

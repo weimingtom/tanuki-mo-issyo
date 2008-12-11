@@ -107,6 +107,8 @@ public:
 	
 	Vector2 GetFieldMatrixPosition();
 
+	bool	ColisionMatrix(FieldMatrix matrix,int x,int y);
+
 
 private:
 
@@ -137,8 +139,14 @@ private:
 	
 	/**	目的のx座標 */
 	float m_tx;
+	
+	/**	目的のy座標 */
+	float m_ty;
+	
 	/** フレーム */
 	FieldMatrix frame;
+	/** ブロックの向き */
+	int m_angle;
 };
 
 #endif

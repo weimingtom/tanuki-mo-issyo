@@ -79,4 +79,8 @@ void PuzzleScreen::UpdateObject(float frameTimer)
 	m_blockManager.UpdateObject(frameTimer);
 }
 
+BlockManager&	PuzzleScreen::GetBlockManager()
+{
+	return	m_blockManager;
+}
 /*===== EOF ===================================================================*/

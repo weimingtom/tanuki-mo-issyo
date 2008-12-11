@@ -89,6 +89,7 @@ public:
 	void UpdateObject(float frameTimer);
 	/*=========================================================================*/
 
+	BlockManager&	GetBlockManager(); 
 
 private:
 
@@ -107,6 +108,8 @@ private:
 
 	/** ブロックマネージャ */
 	BlockManager m_blockManager;
+
+
 
 };
 
