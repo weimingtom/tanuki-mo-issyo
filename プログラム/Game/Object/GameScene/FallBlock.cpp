@@ -77,7 +77,7 @@ void FallBlock::RenderObject()
 	Matrix4 rotate;
 	rotate.setTranslate(1.0f,0.5f,0.5f);
 	SpriteDesc sd;
-	sd.textureID = TEXTUREID_TEST;
+	sd.textureID = TEXTUERID_BLOCK1;
 	
 	sd.rect = Rect(m_x,m_y,m_x+(BLOCK_SIZE),m_y+(BLOCK_SIZE));
 	m_device.GetGraphicDevice().Render( sd );
