@@ -25,10 +25,10 @@
  * @param[in] option ゲームオプション.
  * @param[in] gameSceneState ゲームシーンステート.
  */
-Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false),
-		m_puzzleScreen(device,objectManager,option,gameSceneState),
-		m_characterScreen(device,objectManager,option,gameSceneState)
+Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState, float x, float y) :
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false), m_x(x), m_y(y),
+		m_puzzleScreen(device,objectManager,option,gameSceneState, *this),
+		m_characterScreen(device,objectManager,option,gameSceneState, *this)
 		
 {
 	m_gameSceneState.AddPlayer(this);
@@ -105,6 +105,11 @@ void Player::UpdateObject(float frameTimer)
 
 	m_puzzleScreen.UpdateObject(frameTimer);
 	m_characterScreen.UpdateObject(frameTimer);
+}
+
+Vector2 Player::GetPosition()
+{
+	return Vector2(m_x,m_y);
 }
 
 /*===== EOF ===================================================================*/

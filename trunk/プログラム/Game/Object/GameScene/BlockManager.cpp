@@ -25,12 +25,12 @@
  * @param[in] option ゲームオプション.
  * @param[in] gameSceneState ゲームシーンステート.
  */
-BlockManager::BlockManager(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false),
-		m_field(device, objectManager, option, gameSceneState )
+BlockManager::BlockManager(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState, Player& player) :
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false),
+		m_field(device, objectManager, option, gameSceneState, player)
 {
-	m_block = new Block(device, objectManager, option, gameSceneState,1,1 );
-	m_fallBlock = new FallBlock(device, objectManager, option, gameSceneState);
+	m_block = new Block(device, objectManager, option, gameSceneState, player,1,1 );
+	m_fallBlock = new FallBlock(device, objectManager, option, gameSceneState, player);
 }
 
 /*=============================================================================*/
@@ -61,6 +61,7 @@ void BlockManager::Initialize()
 	if(m_fallBlock){
 		m_fallBlock->Initialize();
 	}
+	m_field.Initialize();
 }
 
 /*=============================================================================*/
@@ -77,6 +78,7 @@ void BlockManager::Terminate()
 	if(m_fallBlock){
 		m_fallBlock->Terminate();
 	}
+	m_field.Terminate();
 }
 
 /*=============================================================================*/
@@ -103,6 +105,7 @@ void BlockManager::RenderObject()
 	if(m_fallBlock){
 		m_fallBlock->RenderObject();
 	}
+	m_field.RenderObject();
 }
 
 /*=============================================================================*/
@@ -119,6 +122,7 @@ void BlockManager::UpdateObject(float frameTimer)
 	if(m_fallBlock){
 		m_fallBlock->UpdateObject(frameTimer);
 	}
+	m_field.UpdateObject(frameTimer);
 }
 
 /*===== EOF ===================================================================*/

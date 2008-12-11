@@ -19,6 +19,11 @@
 #define FIELD_WIDTH 9
 #define FIELD_HEIGHT 16
 
+typedef struct
+{
+	int matrix[FIELD_WIDTH][FIELD_HEIGHT];
+}FieldMatrix;
+
 
 #endif
 

@@ -20,6 +20,7 @@
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
+class		Player;
 class		IGameDevice;
 
 
@@ -50,7 +51,7 @@ public:
 	 * @param[in] blockCID 軸のブロックのID.
 	 * @param[in] blockMID サブのブロックのID.
 	 */
-	Block(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, int blockCID, int blockMID);
+	Block(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player, int blockCID, int blockMID);
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
@@ -118,7 +119,10 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState m_gameSceneState;
+	GameSceneState& m_gameSceneState;
+	/** プレーヤ */
+	Player& m_player;
+
 	/** ブロックの配列 */
 	int m_blockMatrix[3][3];
 	/** ブロックのID */
@@ -134,7 +138,7 @@ private:
 	/**	目的のx座標 */
 	float m_tx;
 	/** フレーム */
-	int frame[FIELD_WIDTH][FIELD_HEIGHT];
+	FieldMatrix frame;
 };
 
 #endif

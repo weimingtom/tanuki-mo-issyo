@@ -20,6 +20,7 @@
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
+class		Player;
 class		IGameDevice;
 
 /**
@@ -39,7 +40,7 @@ public:
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	Field(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+	Field(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
 
 	/*=========================================================================*/
 	/**
@@ -89,7 +90,7 @@ public:
 	 * @param[in] 引数名 引数説明.
 	 * @return 戻り値説明.
 	 */
-	int* GetFieldBlockMatrix();
+	void GetFieldBlockMatrix(FieldMatrix* fieldMatrix);
 	
 	/*=========================================================================*/
 	/**
@@ -98,7 +99,7 @@ public:
 	 * @param[in] 引数名 引数説明.
 	 * @return 戻り値説明.
 	 */
-	int* GetFieldStateMatrix();
+	void GetFieldStateMatrix(FieldMatrix* fieldMatrix);
 
 private:
 
@@ -111,7 +112,9 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState m_gameSceneState;
+	GameSceneState& m_gameSceneState;
+	/** プレーヤ */
+	Player& m_player;
 
 	/** X位置 */
 	float m_x;

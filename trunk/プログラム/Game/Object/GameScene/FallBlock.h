@@ -19,8 +19,8 @@
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
-#include	"Object/GameScene/Block.h"
 #include	"Object/ObjectBase.h"
+class		Player;
 
 /**
  * @brief ObjectBase．
@@ -34,7 +34,7 @@ public:
 	 * @brief コンストラクタ
 	 *
 	 */
-	FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState);
+	FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
 
 	/*=========================================================================*/
 	/**
@@ -90,7 +90,9 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState m_gameSceneState;
+	GameSceneState& m_gameSceneState;
+	/** プレーヤ */
+	Player& m_player;
 
 	/**	ブロックID */
 	int blockID;

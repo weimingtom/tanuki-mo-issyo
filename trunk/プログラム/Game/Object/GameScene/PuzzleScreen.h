@@ -21,8 +21,8 @@
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
 #include	"Object/GameScene/BlockManager.h"
-
 #include "Object/ObjectBase.h"
+class		Player;
 
 class PuzzleScreen : public ObjectBase
 {
@@ -33,7 +33,7 @@ public:
 	 *
 	 */
 	PuzzleScreen(IGameDevice& device, ObjectManager& objectManager, 
-				 Option& option, GameSceneState& gameSceneState);
+				 Option& option, GameSceneState& gameSceneState , Player& player);
 	/*=========================================================================*/
 
 	/*=========================================================================*/
@@ -101,7 +101,10 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState m_gameSceneState;
+	GameSceneState& m_gameSceneState;
+	/** プレーヤ */
+	Player& m_player;
+
 	/** ブロックマネージャ */
 	BlockManager m_blockManager;
 
