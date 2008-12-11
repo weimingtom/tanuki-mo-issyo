@@ -5,8 +5,8 @@
 sampler2D g_BaseMap = sampler_state{
 	minFilter = LinearMipMapLinear;
 	magFilter = Linear;
-	WrapS = Clamp;
-	WrapT = Clamp;
+	WrapS = ClampToEdge;
+	WrapT = ClampToEdge;
 };
 
 // ビュープロジェクション変換行列
@@ -14,6 +14,10 @@ float4x4 g_ModelViewProjectionMatrix;
 
 // ポリゴンのカラー
 float4 g_Color;
+
+// テクスチャ座標
+float4 g_TextureRect;
+
 
 // 入力頂点構造体
 struct VS_INPUT {
@@ -34,9 +38,16 @@ VS_OUTPUT vs_main(
 	uniform float4x4 g_ModelViewProjectionMatrix
 ) {
 	VS_OUTPUT  output;
-    // 入力頂点をそのまま出力
+
+    // 入力頂点を出力
     output.position = mul( input.position, g_ModelViewProjectionMatrix );
-    output.texcoord = input.texcoord;
+    
+	// テクスチャ座標を求める
+	float2 texcoord;
+	texcoord.x = clamp( input.texcoord.x, g_TextureRect.x, g_TextureRect.z );
+	texcoord.y = clamp( input.texcoord.y, g_TextureRect.y, g_TextureRect.w );
+	output.texcoord = texcoord;
+
     return output;
 }
 
@@ -46,8 +57,12 @@ float4 ps_main( VS_OUTPUT input ) : COLOR0 {
 	// テクスチャのカラーを取得
 	float4 baseColor = tex2D( g_BaseMap, input.texcoord );
 
+	float4 color = baseColor * g_Color;
+
+	color.a = baseColor.a;
+
 	// カラーを出力
-	return baseColor;
+	return color;
 }
 
 // テクニック( アルファブレンド )
@@ -60,7 +75,7 @@ technique Quad
 	  ZWriteEnable		= true;
 	  BlendEnable		= true;
 	  DepthTestEnable	= true;
-      DepthMask			= false;
+      DepthMask			= true;
 	  CullFaceEnable	= false;
       AlphaBlendEnable  = true;
 	  AlphaTestEnable	= true;
@@ -82,7 +97,7 @@ technique QuadAdd
 	  ZWriteEnable		= true;
 	  BlendEnable		= true;
 	  DepthTestEnable	= true;
-	  DepthMask			= false;
+	  DepthMask			= true;
 	  CullFaceEnable	= false;
 	  AlphaBlendEnable  = true;
 	  AlphaTestEnable	= true;

@@ -1,5 +1,5 @@
 
-// スプライト用シェーダ
+// 2Dスプライト用シェーダ
 
 // テクスチャの設定
 sampler2D g_BaseMap = sampler_state{
@@ -15,6 +15,8 @@ float4x4 g_ModelViewProjectionMatrix;
 // スプライトの色
 float4 g_Color;
 
+// テクスチャ座標
+float4 g_TextureRect;
 
 // 入力頂点構造体
 struct VS_INPUT
@@ -37,10 +39,17 @@ VS_OUTPUT vs_main(
 	uniform float4x4 g_ModelViewProjectionMatrix
 ) {
 	VS_OUTPUT  output;
-    // 入力頂点をそのまま出力
+    
+	// 入力頂点を座標変換して出力
     output.position = mul( input.position, g_ModelViewProjectionMatrix );
-    output.texcoord = input.texcoord;
-    return output;
+	
+	// テクスチャ座標を求める
+	float2 texcoord;
+	texcoord.x = clamp( input.texcoord.x, g_TextureRect.x, g_TextureRect.z );
+	texcoord.y = clamp( input.texcoord.y, g_TextureRect.y, g_TextureRect.w );
+	output.texcoord = texcoord;
+	
+	return output;
 }
 
 // ピクセルシェーダー
@@ -71,14 +80,14 @@ technique Sprite
    // パス0
    pass Pass0
    {
-	  ZEnable = false;			// zバッファ			: 無効
-	  ZWriteEnable = false;		// zバッファ書き込み	: 無効
-	  BlendEnable = true;
-	  DepthTestEnable = true;	// デプステスト			: 有効
-	  DepthMask	= false;
-	  CullFaceEnable = false;	// 面カリング			: 無効
-	  AlphaBlendEnable = true;
-	  AlphaTestEnable = true;	// アルファテスト		: 有効
+	  ZEnable			= false;	// zバッファ			: 無効
+	  ZWriteEnable		= true;		// zバッファ書き込み	: 有効
+	  BlendEnable		= true;		// ブレンド				: 有効
+	  DepthTestEnable	= true;		// デプステスト			: 有効
+	  DepthMask			= true;		// デプスマスク			: 有効
+	  CullFaceEnable	= false;	// 面カリング			: 無効	
+	  AlphaBlendEnable	= true;		// アルファブレンド		: 有効
+	  AlphaTestEnable	= true;		// アルファテスト		: 有効
 	  
 	  // ブレンド関数をアルファブレンドに設定
 	  BlendFunc = int2( SrcAlpha, OneMinusSrcAlpha );
@@ -91,5 +100,35 @@ technique Sprite
       FragmentProgram = compile arbfp1 ps_main( g_Color, g_BaseMap );
    }
 }
+
+
+
+// テクニック( 背景フルスクリーンクアッド用 )
+technique SpriteBackFullScreen
+{
+   // パス0
+   pass Pass0
+   {
+	  ZEnable			= false;	// zバッファ			: 無効
+	  ZWriteEnable		= false;	// zバッファ書き込み	: 有効
+	  BlendEnable		= true;		// ブレンド				: 有効
+	  DepthTestEnable	= false;	// デプステスト			: 有効
+	  DepthMask			= true;		// デプスマスク			: 有効
+	  CullFaceEnable	= false;	// 面カリング			: 無効	
+	  AlphaBlendEnable	= true;		// アルファブレンド		: 有効
+	  AlphaTestEnable	= true;		// アルファテスト		: 有効
+	  
+	  // ブレンド関数をアルファブレンドに設定
+	  BlendFunc = int2( SrcAlpha, OneMinusSrcAlpha );
+	  BlendEquation = FuncAdd;
+	  
+	  // 頂点シェーダ
+      VertexProgram   = compile arbvp1 vs_main( g_ModelViewProjectionMatrix ); 
+
+	  // ピクセルシェーダ
+      FragmentProgram = compile arbfp1 ps_main( g_Color, g_BaseMap );
+   }
+}
+
 
 // EOF

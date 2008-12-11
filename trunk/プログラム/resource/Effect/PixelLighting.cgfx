@@ -102,7 +102,6 @@ struct PS_INPUT
 	float3 light		:	TEXCOORD2;	// ライト方向のベクトル
 	float3 view			:	TEXCOORD3;	// 視点方向のベクトル
 	float3 halfAngle	:	TEXCOORD4;	// 2等分ベクトル
-	float4 color		:	COLOR0;		// カラー
 };
 
 
@@ -208,6 +207,151 @@ float4 ps_main_nm(
 }
 
 
+
+// 入力頂点構造体( 頂点カラーあり )
+struct VS_INPUT_VC
+{
+	float4 position	:	POSITION;	// 頂点座標
+	float3 normal	:	NORMAL;		// 法線ベクトル
+	float2 texcoord :	TEXCOORD0;	// テクスチャ座
+	float4 color	:	COLOR;		// 頂点カラー
+};
+
+
+// 出力頂点構造体
+struct VS_OUTPUT_VC
+{
+	float4 position		:	POSITION;	// 頂点座標
+	float2 texcoord		:	TEXCOORD0;	// テクスチャ座標
+	float3 normal		:	TEXCOORD1;	// 法線ベクトル
+	float3 light		:	TEXCOORD2;	// ライト方向のベクトル
+	float3 view			:	TEXCOORD3;	// 視点方向のベクトル
+	float3 halfAngle	:	TEXCOORD4;	// 2等分ベクトル
+	float4 color		:	COLOR;		// 頂点カラー
+};
+
+
+// 頂点シェーダー( 頂点カラー計算あり )
+VS_OUTPUT_VC vs_main_vc(
+	VS_INPUT_VC input,
+	uniform float4x4	g_ModelViewProjectionMatrix,
+	uniform float4x4	g_ModelViewMatrix,
+	uniform float4x4	g_NormalMatrix,
+	uniform float3		g_LightPositionEye						
+)
+{
+	VS_OUTPUT_VC output;
+	
+	// 視点座標系の頂点の位置を求める
+	float3 PosEye = mul( input.position, g_ModelViewMatrix );
+	
+	// ライト方向のベクトルを求める
+	float3 L = g_LightPositionEye - PosEye;
+	
+	// 視点方向のベクトルを求める
+	float3 V = normalize( -PosEye );
+	
+	// 2等分ベクトルを求める
+	float3 H = normalize( L + V );
+	
+	// 視点座標系の法線ベクトルを求める
+	output.normal = mul( input.normal, (float3x3)g_NormalMatrix );
+	
+	// ライト方向のベクトルを出力
+	output.light = L;
+	
+	// 視点方向のベクトルを出力
+	output.view = V;
+	
+	// 2等分ベクトルを出力
+	output.halfAngle = H;
+	
+	// テクスチャ座標を設定
+	output.texcoord = input.texcoord;
+	
+	// 入出力頂点の座標変換
+	output.position = mul( input.position, g_ModelViewProjectionMatrix );
+	
+	// 頂点カラーを出力
+	output.color = input.color;
+	
+	return output;
+}
+
+
+// 入力ピクセル構造体( 頂点カラーあり )
+struct PS_INPUT_VC
+{
+	float2 texcoord		:	TEXCOORD0;	// テクスチャ座標
+	float3 normal		:	TEXCOORD1;	// 法線ベクトル
+	float3 light		:	TEXCOORD2;	// ライト方向のベクトル
+	float3 view			:	TEXCOORD3;	// 視点方向のベクトル
+	float3 halfAngle	:	TEXCOORD4;	// 2等分ベクトル
+	float4 color		:	COLOR0;		// カラー
+};
+
+
+
+// ピクセルシェーダー( 頂点カラー計算あり マテリアル計算なし )
+float4 ps_main_vcnm(
+	PS_INPUT_VC input,
+	uniform float4		g_AmbientLightColor,
+	uniform	float4		g_DiffuseLightColor,
+	uniform float4		g_SpecularLightColor,
+	uniform float		g_Transparency,
+	uniform sampler2D	g_BaseMap
+) : COLOR
+{
+	// 各ベクトルを正規化する
+	float3 N = normalize( input.normal );
+	float3 L = normalize( input.light );
+	float3 V = normalize( input.view );
+	float3 H = normalize( input.halfAngle );
+
+	// 反射度
+	float shininess = 350.0f;
+
+	// 放射光カラー
+	float4 emissive = float4( 0.0f, 0.0f, 0.0f, 1.0f );
+
+	// マテリアルの鏡面反射光
+	float4 matSpecular = float4( 0.0f, 0.0f, 0.0f, 1.0f );
+	
+	// 拡散反射光を求める
+	float diffuse = max( dot( N, L ), 0.2f );
+	
+	// 鏡面反射光を求める
+	float specular = pow( max( dot( H, N ), 0.2f ), shininess );
+	
+	// テクスチャマップからピクセルカラーを取得する
+	float4 baseColor = tex2D( g_BaseMap, input.texcoord );
+	
+	// 頂点カラーをブレンド
+	baseColor *= input.color;
+	
+	// 出力カラーを求める
+	float4 totalAmbient		= g_AmbientLightColor *	baseColor;
+	float4 totalDiffuse		= g_DiffuseLightColor *	diffuse	* baseColor;
+	float4 totalSpecular	= matSpecular * g_SpecularLightColor * specular;
+	
+	// 最終的なカラーを計算する
+	float4 color = totalAmbient + totalDiffuse + totalSpecular + emissive;
+					
+	// 出力カラーを0.0～1.0の範囲に収める
+	color = saturate( color );
+
+	// テクスチャのアルファを反映
+	if( baseColor.a <= 0.2f ){
+		color.a = 0.0f;
+	}
+	
+	// 入力カラーとテクスチャマップの色を乗算する
+	return color;
+}
+
+
+
+
 // マテリアル計算ありテクニック
 technique PixelLighting
 {
@@ -273,6 +417,41 @@ technique PixelLightingNm
 		
 		// ピクセルシェーダ
 		FragmentProgram = compile fp40 ps_main_nm(
+							g_AmbientLightColor,
+							g_DiffuseLightColor,
+							g_SpecularLightColor,
+							g_Transparency,
+							g_BaseMap
+							);
+	}
+}
+
+// 頂点カラーあり,マテリアル計算なしテクニック
+technique PixelLightingVcNm
+{
+	// パスの指定
+	pass Pass_0
+	{
+		ZEnable = true;				// zバッファ			: 有効
+		ZWriteEnable = true;		// zバッファ書き込み	: 有効
+		CullFaceEnable = true;		// 面カリング			: 有効
+		AlphaBlendEnable = true;	// アルファブレンド		: 有効
+		AlphaTestEnable = true;		// アルファテスト		: 有効
+
+		// ブレンド関数をアルファブレンドに設定
+		BlendEquation = FuncAdd;
+		BlendFunc = int2( SrcAlpha, OneMinusSrcAlpha );
+
+		// 頂点シェーダ
+		VertexProgram	= compile vp40 vs_main_vc(
+							g_ModelViewProjectionMatrix,
+							g_ModelViewMatrix,
+							g_NormalMatrix,
+							g_LightPositionEye
+							);
+		
+		// ピクセルシェーダ
+		FragmentProgram = compile fp40 ps_main_vcnm(
 							g_AmbientLightColor,
 							g_DiffuseLightColor,
 							g_SpecularLightColor,
