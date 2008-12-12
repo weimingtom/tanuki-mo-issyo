@@ -48,8 +48,6 @@ m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneS
 		m_fieldBlock[i][FIELD_HEIGHT - 1] = 255;
 	}
 
-
-	device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK2,"block2.dds",COLORKEYFLAG_NONE);
 }
 
 /*=============================================================================*/
@@ -80,7 +78,7 @@ void Field::Initialize()
  */
 void Field::Terminate()
 {
-
+	m_isTerminated = true;
 }
 
 /*=============================================================================*/
@@ -102,16 +100,25 @@ bool Field::IsTerminated()
  */
 void Field::RenderObject()
 {
+	
 	SpriteDesc sd;
-	sd.textureID = TEXTUERID_BLOCK2;
 	for(int x=0; x<FIELD_WIDTH; x++){
 		for(int y=0; y<FIELD_HEIGHT; y++){
 			if(m_fieldBlock[x][y] != 0 ){
 				sd.rect = Rect(m_x+(BLOCK_SIZE*x),m_y+(BLOCK_SIZE*y),m_x+(BLOCK_SIZE*(x+1)),m_y+(BLOCK_SIZE*(y+1)));
+				if(m_fieldBlock[x][y] != 255)
+				{
+					sd.textureID = m_fieldBlock[x][y];
+				} else
+				{
+					//continue;
+					sd.textureID = TEXTUERID_SBLOCK4;
+				}
 				m_device.GetGraphicDevice().Render( sd );
 			}
 		}
 	}
+	
 }
 
 /*=============================================================================*/
@@ -122,6 +129,11 @@ void Field::RenderObject()
  */
 void Field::UpdateObject(float frameTimer)
 {
+
+	if(m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0)
+	{
+		m_player.GetPuzzleScreen().GetBlockManager().CreateBlock();
+	}
 
 }
 
@@ -146,5 +158,10 @@ void Field::GetFieldStateMatrix(FieldMatrix* fieldMatrix)
 Vector2 Field::GetPosition()
 {
 	return Vector2(m_x,m_y);
+}
+
+void Field::SetBlock(int x, int y, int id)
+{
+	m_fieldBlock[x][y] = id;
 }
 /*===== EOF ===================================================================*/

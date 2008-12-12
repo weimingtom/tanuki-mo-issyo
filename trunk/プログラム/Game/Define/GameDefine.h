@@ -24,6 +24,12 @@ typedef struct
 	int matrix[FIELD_WIDTH][FIELD_HEIGHT];
 }FieldMatrix;
 
+typedef struct
+{
+	int x;
+	int y;
+}IntPoint;
+
 
 #endif
 

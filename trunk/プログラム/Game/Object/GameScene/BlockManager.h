@@ -1,6 +1,7 @@
 #ifndef _BLOCKMANAGER_H_
 #define _BLOCKMANAGER_H_
 
+#include	<vector>
 #include	"IGameDevice.h"
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/ObjectBase.h"
@@ -66,6 +67,12 @@ public:
 
 	Field&			GetField();
 
+	void CreateBlock();
+
+	void AddFallBlock(FallBlock* fallBlock);
+
+	int GetFallBlockNum();
+
 private:
 	bool			m_isTerminated;
 	IGameDevice&	m_device;
@@ -76,7 +83,7 @@ private:
 
 	Block			*m_block;
 	Field			m_field;
-	FallBlock		*m_fallBlock;
+	std::vector<FallBlock*> m_fallBlock;
 };
 
 

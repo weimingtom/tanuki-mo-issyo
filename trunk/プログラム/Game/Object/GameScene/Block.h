@@ -105,7 +105,7 @@ public:
 	 */
 	void SpinBlock(int direction);
 	
-	Vector2 GetFieldMatrixPosition();
+	IntPoint GetFieldMatrixPosition(float x, float y);
 
 	bool	ColisionMatrix(FieldMatrix matrix,int x,int y);
 
@@ -147,6 +147,9 @@ private:
 	FieldMatrix frame;
 	/** ブロックの向き */
 	int m_angle;
+
+	/** 生存タイマ */
+	int m_timer;
 };
 
 #endif
