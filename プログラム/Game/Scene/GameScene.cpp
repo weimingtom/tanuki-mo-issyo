@@ -31,8 +31,6 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 {
 	m_objectManager = new ObjectManager(device,option);
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(m_state));
-	//m_objectManager->AddObject(new Field(device,*m_objectManager,option,m_state));
-	//m_objectManager->AddObject(new FallBlock(device,*m_objectManager,option,m_state));
 }
 
 /*=============================================================================*/
@@ -52,6 +50,18 @@ GameScene::~GameScene()
  */
 void GameScene::Initialize()
 {
+
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_AVATAR1, "avatar1.dds", COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_AVATAR2, "avatar2.dds", COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK1,"block1.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK2,"block2.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK3,"block3.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK1,"sblock1.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK2,"sblock2.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK3,"sblock3.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK4,"sblock4.dds",COLORKEYFLAG_NONE);
+
+
 	m_objectManager->Initialize();
 }
 

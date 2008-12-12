@@ -103,6 +103,8 @@ public:
 	void GetFieldStateMatrix(FieldMatrix* fieldMatrix);
 	Vector2 GetPosition();
 
+	void SetBlock(int x, int y, int id);
+
 
 private:
 

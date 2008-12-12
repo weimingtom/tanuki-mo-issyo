@@ -34,7 +34,7 @@ public:
 	 * @brief コンストラクタ
 	 *
 	 */
-	FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
+	FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player, float x, float y,int blockID);
 
 	/*=========================================================================*/
 	/**
@@ -80,6 +80,10 @@ public:
 	 */
 	void UpdateObject(float frameTimer);
 
+	IntPoint GetFieldMatrixPosition(float x, float y);
+	
+	bool ColisionMatrix(FieldMatrix matrix, int x, int y);
+
 private:
 	/** 終了フラグ */
 	bool m_isTerminated;
@@ -95,7 +99,7 @@ private:
 	Player& m_player;
 
 	/**	ブロックID */
-	int blockID;
+	int m_blockID;
 	/** 落下スピード */
 	float m_speed;
 	/** y座標　*/

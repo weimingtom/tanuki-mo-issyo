@@ -29,8 +29,9 @@ BlockManager::BlockManager(IGameDevice& device, ObjectManager& objectManager, Op
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false),
 		m_field(device, objectManager, option, gameSceneState, player)
 {
-	m_block = new Block(device, objectManager, option, gameSceneState, player,1,1 );
-	m_fallBlock = new FallBlock(device, objectManager, option, gameSceneState, player);
+	CreateBlock();
+	//m_block = new Block(device, objectManager, option, gameSceneState, player,TEXTUERID_SBLOCK1,TEXTUERID_SBLOCK2 );
+	//m_fallBlock = new FallBlock(device, objectManager, option, gameSceneState, player, 300.0f, 10.0f,TEXTUERID_SBLOCK3);
 }
 
 /*=============================================================================*/
@@ -43,8 +44,10 @@ BlockManager::~BlockManager()
 	if(m_block){
 		delete m_block;
 	}
-	if(m_fallBlock){
-		delete m_fallBlock;
+	for(std::vector<FallBlock*>::iterator i = m_fallBlock.begin(); i!=m_fallBlock.end();)
+	{
+		delete (*i);
+		i = m_fallBlock.erase(i);
 	}
 }
 
@@ -58,8 +61,9 @@ void BlockManager::Initialize()
 	if(m_block){
 		m_block->Initialize();
 	}
-	if(m_fallBlock){
-		m_fallBlock->Initialize();
+	for(std::vector<FallBlock*>::iterator i = m_fallBlock.begin(); i!=m_fallBlock.end();i++)
+	{
+		(*i)->Initialize();
 	}
 	m_field.Initialize();
 }
@@ -75,8 +79,9 @@ void BlockManager::Terminate()
 	if(m_block){
 		m_block->Terminate();
 	}
-	if(m_fallBlock){
-		m_fallBlock->Terminate();
+	for(std::vector<FallBlock*>::iterator i = m_fallBlock.begin(); i!=m_fallBlock.end();i++)
+	{
+		(*i)->Terminate();
 	}
 	m_field.Terminate();
 }
@@ -102,8 +107,9 @@ void BlockManager::RenderObject()
 	if(m_block){
 		m_block->RenderObject();
 	}
-	if(m_fallBlock){
-		m_fallBlock->RenderObject();
+	for(std::vector<FallBlock*>::iterator i = m_fallBlock.begin(); i!=m_fallBlock.end();i++)
+	{
+		(*i)->RenderObject();
 	}
 	m_field.RenderObject();
 }
@@ -117,10 +123,29 @@ void BlockManager::RenderObject()
 void BlockManager::UpdateObject(float frameTimer)
 {
 	if(m_block){
-		m_block->UpdateObject(frameTimer);
+		if(!m_block->IsTerminated())
+		{
+			m_block->UpdateObject(frameTimer);
+		} else
+		{
+			delete m_block;
+			m_block = NULL;
+		}
 	}
-	if(m_fallBlock){
-		m_fallBlock->UpdateObject(frameTimer);
+
+	for(unsigned int i=0; i< m_fallBlock.size(); i++)
+	{
+		std::vector<FallBlock*>::iterator j = m_fallBlock.begin() += i;
+
+		if(!(*j)->IsTerminated())
+		{
+			(*j)->UpdateObject(frameTimer);
+		} else
+		{
+			delete (*j);
+			m_fallBlock.erase(j);
+			i--;
+		}
 	}
 	m_field.UpdateObject(frameTimer);
 }
@@ -128,6 +153,31 @@ void BlockManager::UpdateObject(float frameTimer)
 Field& BlockManager::GetField()
 {
 	return	m_field;
+}
+
+void BlockManager::CreateBlock()
+{
+	int cid,mid;
+	cid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_SBLOCK4);
+	mid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_SBLOCK4);
+	m_block = new Block(m_device, m_objectManager, m_option, m_gameSceneState, m_player,cid, mid );
+	m_block->Initialize();
+}
+
+void BlockManager::AddFallBlock(FallBlock *fallBlock)
+{
+	m_fallBlock.push_back(fallBlock);
+	fallBlock->Initialize();
+}
+
+int BlockManager::GetFallBlockNum()
+{
+	int t = 0;
+	if(m_block)
+	{
+		t = 1;
+	}
+	return m_fallBlock.size() + t;
 }
 
 /*===== EOF ===================================================================*/

@@ -18,8 +18,6 @@
 #include	"Define/EffectID.h"
 #include "Object/GameScene/Player.h"
 
-#include <iostream>
-
 
 /*=============================================================================*/
 /**
@@ -39,26 +37,7 @@ Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, 
 	m_blockID[1] = blockMID;
 	InitializeMatrix();
 	m_speed = 1.0f;
-	
-	for(int i=0; i<FIELD_WIDTH;i++)
-	{
-		for(int j=0;j<FIELD_HEIGHT;j++)
-		{
-			frame.matrix[i][j] = 0;
-		}
-	}
-	for(int i=0; i<FIELD_HEIGHT; i++)
-	{
-		frame.matrix[0][i] = 255;
-		frame.matrix[FIELD_WIDTH - 1][i] = 255;
-	}
-	for(int i=1; i<FIELD_WIDTH - 1; i++)
-	{
-		frame.matrix[i][FIELD_HEIGHT - 1] = 255;
-	}
-	
-
-	device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK1,"block1.dds",COLORKEYFLAG_NONE);
+	m_timer = 60;
 }
 
 /*=============================================================================*/
@@ -92,6 +71,13 @@ void Block::Initialize()
  */
 void Block::Terminate()
 {
+	for(int i=0; i<3; i++){
+		for(int j=0; j<3; j++){
+			if(m_blockMatrix[i][j] != 0 ){
+				m_player.GetPuzzleScreen().GetBlockManager().AddFallBlock(new FallBlock(m_device,m_objectManager,m_option,m_gameSceneState,m_player,m_tx+(BLOCK_SIZE*(j-1)),m_ty+(BLOCK_SIZE*(i-1)),m_blockMatrix[i][j]));
+			}
+		}
+	}
 	m_isTerminated = true;
 }
 
@@ -115,12 +101,11 @@ void Block::RenderObject()
 {
 
 	SpriteDesc sd;
-	sd.textureID = TEXTUERID_BLOCK1;
 	for(int i=0; i<3; i++){
 		for(int j=0; j<3; j++){
-			sd.rect = Rect(m_x-(BLOCK_SIZE*j),m_y+(BLOCK_SIZE*i),m_x+(BLOCK_SIZE*(j+1)),m_y+(BLOCK_SIZE*(i+1)));
 			if(m_blockMatrix[i][j] != 0 ){
 				sd.rect = Rect(m_x+(BLOCK_SIZE*j)-(BLOCK_SIZE*1.5f),m_y+(BLOCK_SIZE*i)-(BLOCK_SIZE*1.5f),m_x+(BLOCK_SIZE*(j+1)-(BLOCK_SIZE*1.5f)),m_y+(BLOCK_SIZE*(i+1)-(BLOCK_SIZE*1.5f)));
+				sd.textureID = m_blockMatrix[i][j];
 				m_device.GetGraphicDevice().Render( sd );
 			}
 		}
@@ -138,13 +123,11 @@ void Block::UpdateObject(float frameTimer)
 	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
 	
 
-	Vector2	MatrixPosition;
-	MatrixPosition.x = (int)((m_tx - m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().x) / BLOCK_SIZE);
-	MatrixPosition.y = (int)((m_y - m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + (BLOCK_SIZE/2)) / BLOCK_SIZE);
+	IntPoint MatrixPosition;
+	MatrixPosition.x = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x;
+	MatrixPosition.y = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y;
 
 	float m_bspeed = 5.0f;
-
-	std::cout << m_angle<< std::endl;
 
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_LEFT) == true ) 
 	{
@@ -160,14 +143,28 @@ void Block::UpdateObject(float frameTimer)
 	}
 	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_UP) == true) 
 	{
-		m_ty -= 1.0f;
+		m_ty = m_player.GetPosition().y;
 	}
 	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_DOWN) == true) 
 	{
 		if(!ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y+1)){
 			m_ty += 1.0f;
+		} else
+		{
+			m_timer = 0;
 		}
 	}
+
+	if(!ColisionMatrix(frame,MatrixPosition.x,GetFieldMatrixPosition(m_tx, m_ty + m_speed + (BLOCK_SIZE/2)).y)) 
+	{
+		m_ty += m_speed;
+	} else
+	{
+		m_timer --;
+		if(m_timer < 0) Terminate();
+		m_ty = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((GetFieldMatrixPosition(m_tx, m_ty + m_speed + (BLOCK_SIZE/2)).y)*BLOCK_SIZE) - (BLOCK_SIZE/2) -0.01f;
+	}
+
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_CIRCLE) == true)
 	{
 		SpinBlock(SPINBLOCK_RIGHT);
@@ -177,12 +174,27 @@ void Block::UpdateObject(float frameTimer)
 			{
 			case 0:
 				m_ty -= BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_ty += BLOCK_SIZE;
+					SpinBlock(SPINBLOCK_LEFT);
+				}
 				break;
 			case 1:
 				m_tx += BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_tx -= BLOCK_SIZE;
+					SpinBlock(SPINBLOCK_LEFT);
+				}
 				break;
 			case 3:
 				m_tx -= BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_tx += BLOCK_SIZE;
+					SpinBlock(SPINBLOCK_LEFT);
+				}
 				break;
 			}
 		}
@@ -196,22 +208,32 @@ void Block::UpdateObject(float frameTimer)
 			{
 			case 0:
 				m_ty -= BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_ty += BLOCK_SIZE;
+					SpinBlock(SPINBLOCK_RIGHT);
+				}
 				break;
 			case 1:
 				m_tx += BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_tx -= BLOCK_SIZE;
+					SpinBlock(SPINBLOCK_RIGHT);
+				}
 				break;
 			case 3:
 				m_tx -= BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_tx += BLOCK_SIZE;
+					SpinBlock(SPINBLOCK_RIGHT);
+				}
 				break;
 			}
 		}
 	}
 
-	if(!ColisionMatrix(frame,MatrixPosition.x,
-		(int)((m_y - m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + (BLOCK_SIZE/2) + m_speed) / BLOCK_SIZE))) 
-	{
-		m_ty += m_speed;
-	}
 
 	if(m_x<m_tx)
 	{
@@ -314,12 +336,12 @@ void Block::SpinBlock(int direction)
  * @brief フィールド上のブロックの現在位置のインデックスを取得する.
  * 
  */
-Vector2 Block::GetFieldMatrixPosition()
+IntPoint Block::GetFieldMatrixPosition(float x, float y)
 {
-	Vector2 tmp;
-	Vector2 fieldPosition = Vector2(300,0);
-	tmp.x = (m_tx-fieldPosition.x)/BLOCK_SIZE;
-	tmp.y = (m_y-fieldPosition.y)/BLOCK_SIZE;
+	IntPoint tmp;
+	Vector2 fieldPosition = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition();
+	tmp.x = (int)((x-fieldPosition.x) / BLOCK_SIZE);
+	tmp.y = (int)((y-fieldPosition.y) / BLOCK_SIZE);
 
 	return tmp;
 }

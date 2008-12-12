@@ -13,18 +13,17 @@
 /*******************************************************************************/
 
 #include "FallBlock.h"
+#include "Object/GameScene/Player.h"
 
 
 /*=========================================================================*/
 /**
 * @brief コンストラクタ
 */
-FallBlock::FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
+FallBlock::FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player, float x, float y, int blockID) :
+m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false), m_x(x), m_y(y), m_blockID(blockID)
 {
-	m_x		= 400.0f;
-	m_y		= 0.0f; 
-	m_speed	= 1.0f;
+	m_speed	= 2.0f;
 }
 /*=========================================================================*/
 /**
@@ -53,7 +52,9 @@ void FallBlock::Initialize()
  */
 void FallBlock::Terminate()
 {
-
+	IntPoint pos = GetFieldMatrixPosition(m_x, m_y);
+	m_player.GetPuzzleScreen().GetBlockManager().GetField().SetBlock(pos.x, pos.y, m_blockID);
+	m_isTerminated = true;
 }
 
 /*=========================================================================*/
@@ -74,12 +75,10 @@ bool FallBlock::IsTerminated()
  */
 void FallBlock::RenderObject()
 {
-	Matrix4 rotate;
-	rotate.setTranslate(1.0f,0.5f,0.5f);
 	SpriteDesc sd;
-	sd.textureID = TEXTUERID_BLOCK1;
+	sd.textureID = m_blockID;
 	
-	sd.rect = Rect(m_x,m_y,m_x+(BLOCK_SIZE),m_y+(BLOCK_SIZE));
+	sd.rect = Rect(m_x - (BLOCK_SIZE/2),m_y - (BLOCK_SIZE/2),m_x+(BLOCK_SIZE/2),m_y+(BLOCK_SIZE/2));
 	m_device.GetGraphicDevice().Render( sd );
 }
 
@@ -91,6 +90,35 @@ void FallBlock::RenderObject()
  */
 void FallBlock::UpdateObject(float frameTimer)
 {
+	FieldMatrix frame;
+	IntPoint pos = GetFieldMatrixPosition(m_x, m_y + m_speed + (BLOCK_SIZE/2));
+	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
+	if(!ColisionMatrix(frame,pos.x,pos.y)) 
+	{
+		m_y += m_speed;
+	} else
+	{
+		m_y = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((pos.y)*BLOCK_SIZE) - (BLOCK_SIZE/2);
+		Terminate();
+	}
+}
 
-	m_y += m_speed;
+IntPoint FallBlock::GetFieldMatrixPosition(float x, float y)
+{
+	IntPoint tmp;
+	Vector2 fieldPosition = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition();
+	tmp.x = (int)((x-fieldPosition.x) / BLOCK_SIZE);
+	tmp.y = (int)((y-fieldPosition.y) / BLOCK_SIZE);
+
+	return tmp;
+}
+
+bool FallBlock::ColisionMatrix(FieldMatrix matrix, int x, int y)
+{
+	if(matrix.matrix[x][y] != 0)
+	{
+		return true;
+	}
+
+	return	false;
 }

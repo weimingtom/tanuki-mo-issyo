@@ -25,7 +25,6 @@ Avatar::Avatar(IGameDevice &device, ObjectManager &objectManager, Option &option
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
 {
 
-	device.GetGraphicDevice().LoadTexture(TEXTUREID_AVATAR1, "avatar.dds", COLORKEYFLAG_NONE);
 }
 
 /*=========================================================================*/
