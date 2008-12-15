@@ -29,10 +29,11 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false), m_x(x), m_y(y),
 		m_puzzleScreen(device,objectManager,option,gameSceneState, *this),
 		m_characterScreen(device,objectManager,option,gameSceneState, *this),
-		m_statusScreen(device,objectManager,option,gameSceneState, *this)
+		m_AI(NULL)
 		
 {
 	m_gameSceneState.AddPlayer(this);
+	SetAI(new PlayerAI(m_device,*this));
 	
 }
 
@@ -43,7 +44,10 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option
  */
 Player::~Player()
 {
-	
+	if(m_AI!=NULL)
+	{
+		delete m_AI;
+	}
 }
 
 /*=============================================================================*/
@@ -120,6 +124,16 @@ Vector2 Player::GetPosition()
 PuzzleScreen& Player::GetPuzzleScreen()
 {
 	return m_puzzleScreen;
+}
+
+AIBase& Player::GetAI()
+{
+	return *m_AI;
+}
+
+void Player::SetAI(AIBase* ai)
+{
+	m_AI = ai;
 }
 
 /*===== EOF ===================================================================*/
