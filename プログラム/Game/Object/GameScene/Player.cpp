@@ -28,7 +28,8 @@
 Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState, float x, float y) :
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false), m_x(x), m_y(y),
 		m_puzzleScreen(device,objectManager,option,gameSceneState, *this),
-		m_characterScreen(device,objectManager,option,gameSceneState, *this)
+		m_characterScreen(device,objectManager,option,gameSceneState, *this),
+		m_statusScreen(device,objectManager,option,gameSceneState, *this)
 		
 {
 	m_gameSceneState.AddPlayer(this);
@@ -55,6 +56,7 @@ void Player::Initialize()
 
 	m_puzzleScreen.Initialize();
 	m_characterScreen.Initialize();
+	m_statusScreen.Initialize();
 }
 
 /*=============================================================================*/
@@ -67,6 +69,7 @@ void Player::Terminate()
 
 	m_puzzleScreen.Terminate();
 	m_characterScreen.Terminate();
+	m_statusScreen.Terminate();
 	m_isTerminated = true;
 }
 
@@ -91,6 +94,7 @@ void Player::RenderObject()
 {
 	m_puzzleScreen.RenderObject();
 	m_characterScreen.RenderObject();
+	m_statusScreen.RenderObject();
 }
 
 /*=============================================================================*/
@@ -104,6 +108,8 @@ void Player::UpdateObject(float frameTimer)
 
 	m_puzzleScreen.UpdateObject(frameTimer);
 	m_characterScreen.UpdateObject(frameTimer);
+	m_statusScreen.UpdateObject(frameTimer);
+
 }
 
 Vector2 Player::GetPosition()

@@ -17,7 +17,7 @@
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/GameScene/Player.h"
 #include	"Object/GameScene/FallBlock.h"
-
+	
 /*=============================================================================*/
 /**
  * @brief コンストラクタ.
@@ -60,6 +60,7 @@ void GameScene::Initialize()
 	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK2,"sblock2.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK3,"sblock3.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK4,"sblock4.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_POWER,"power.dds",COLORKEYFLAG_NONE);
 
 
 	m_objectManager->Initialize();
