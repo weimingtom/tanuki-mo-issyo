@@ -109,6 +109,8 @@ public:
 
 	bool	ColisionMatrix(FieldMatrix matrix,int x,int y);
 
+	void	m_SpinBlock (int direction);
+
 
 private:
 
