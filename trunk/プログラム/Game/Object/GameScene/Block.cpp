@@ -129,23 +129,23 @@ void Block::UpdateObject(float frameTimer)
 
 	float m_bspeed = 5.0f;
 
-	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_LEFT) == true ) 
+	if(m_player.GetAI().GetKeyTrigger(GAMEKEY_LEFT) == true ) 
 	{
 		if(!ColisionMatrix(frame,MatrixPosition.x+1,MatrixPosition.y)){
 			m_tx += BLOCK_SIZE;
 		}
 	}
-	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_RIGHT) == true ) 
+	if(m_player.GetAI().GetKeyTrigger(GAMEKEY_RIGHT) == true ) 
 	{
 		if(!ColisionMatrix(frame,MatrixPosition.x-1,MatrixPosition.y)){
 			m_tx -= BLOCK_SIZE;
 		}
 	}
-	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_UP) == true) 
+	if(m_player.GetAI().GetKeyDown(GAMEKEY_UP) == true) 
 	{
 		m_ty = m_player.GetPosition().y;
 	}
-	if(m_device.GetInputDevice().GetKeyDown(GAMEKEY_DOWN) == true) 
+	if(m_player.GetAI().GetKeyDown(GAMEKEY_DOWN) == true) 
 	{
 		if(!ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y+1)){
 			m_ty += 1.0f;
@@ -167,71 +167,12 @@ void Block::UpdateObject(float frameTimer)
 
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_CIRCLE) == true)
 	{
+	
 		SpinBlock(SPINBLOCK_RIGHT);
-		if(ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y))
-		{
-			switch(m_angle)
-			{
-			case 0:
-				m_ty -= BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
-				{
-					m_ty += BLOCK_SIZE;
-					SpinBlock(SPINBLOCK_LEFT);
-				}
-				break;
-			case 1:
-				m_tx += BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
-				{
-					m_tx -= BLOCK_SIZE;
-					SpinBlock(SPINBLOCK_LEFT);
-				}
-				break;
-			case 3:
-				m_tx -= BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
-				{
-					m_tx += BLOCK_SIZE;
-					SpinBlock(SPINBLOCK_LEFT);
-				}
-				break;
-			}
-		}
 	}
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_TRIANGLE) == true)
 	{
 		SpinBlock(SPINBLOCK_LEFT);
-		if(ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y))
-		{
-			switch(m_angle)
-			{
-			case 0:
-				m_ty -= BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
-				{
-					m_ty += BLOCK_SIZE;
-					SpinBlock(SPINBLOCK_RIGHT);
-				}
-				break;
-			case 1:
-				m_tx += BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
-				{
-					m_tx -= BLOCK_SIZE;
-					SpinBlock(SPINBLOCK_RIGHT);
-				}
-				break;
-			case 3:
-				m_tx -= BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
-				{
-					m_tx += BLOCK_SIZE;
-					SpinBlock(SPINBLOCK_RIGHT);
-				}
-				break;
-			}
-		}
 	}
 
 
@@ -329,6 +270,41 @@ void Block::SpinBlock(int direction)
 			m_blockMatrix[y][x] = buf[y][x];
 		}
 	}
+	
+	IntPoint MatrixPosition;
+	MatrixPosition.x = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x;
+	MatrixPosition.y = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y;
+
+	if(ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y))
+	{
+			switch(m_angle)
+			{
+			case 0:
+				m_ty -= BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_ty += BLOCK_SIZE;
+					SpinBlock(direction);
+				}
+				break;
+			case 1:
+				m_tx += BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_tx -= BLOCK_SIZE;
+					SpinBlock(direction);
+				}
+				break;
+			case 3:
+				m_tx -= BLOCK_SIZE;
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				{
+					m_tx += BLOCK_SIZE;
+					SpinBlock(direction);
+				}
+				break;
+			}
+	}
 }
 
 /*=============================================================================*/
@@ -361,4 +337,5 @@ bool	Block::ColisionMatrix(FieldMatrix matrix,int x,int y)
 
 	return	false;
 }
+
 /*===== EOF ===================================================================*/
