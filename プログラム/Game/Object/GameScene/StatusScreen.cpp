@@ -1,19 +1,21 @@
 /*******************************************************************************/
-/*
+/**
  * @file StatusScreen.cpp.
  * 
- * @brief ステーターススクリーンソースファイル.
+ * @brief ステータススクリーンクラスソース定義.
  *
  * @date 2008/12/15.
  *
  * @version 1.00.
  *
- * @author Ryouma Kawasue.
+ * @author Ryosuke Ogawa.
  */
 /*******************************************************************************/
 
+
 /*===== インクルード ==========================================================*/
 #include	"StatusScreen.h"
+
 
 /*=============================================================================*/
 /**
@@ -25,8 +27,12 @@
  * @param[in] gameSceneState ゲームシーンステート.
  */
 StatusScreen::StatusScreen(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player &player) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
+	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false),
+		m_skillPoint(device,objectManager,option,gameSceneState, m_player),
+		m_hitPoint(device,objectManager,option,gameSceneState, m_player),
+		m_score(device,objectManager,option,gameSceneState, m_player)
 {
+
 }
 
 /*=============================================================================*/
@@ -36,6 +42,7 @@ StatusScreen::StatusScreen(IGameDevice &device, ObjectManager &objectManager, Op
  */
 StatusScreen::~StatusScreen()
 {
+
 }
 
 /*=============================================================================*/
@@ -45,7 +52,9 @@ StatusScreen::~StatusScreen()
  */
 void StatusScreen::Initialize()
 {
-
+	m_skillPoint.Initialize();
+	m_hitPoint.Initialize();
+	m_score.Initialize();
 }
 
 /*=============================================================================*/
@@ -55,8 +64,12 @@ void StatusScreen::Initialize()
  */
 void StatusScreen::Terminate()
 {
+	m_skillPoint.Terminate();
+	m_hitPoint.Terminate();
+	m_score.Terminate();
 	m_isTerminated = true;
 }
+
 
 /*=============================================================================*/
 /**
@@ -76,14 +89,9 @@ bool StatusScreen::IsTerminated()
  */
 void StatusScreen::RenderObject()
 {
-	float m_x = 400.0f;
-	float m_y = 300.0f;
-
-	SpriteDesc sd;
-	sd.textureID = TEXTUERID_POWER;
-
-	sd.rect = Rect(m_x, m_y, m_x+256, m_y+256 );
-	m_device.GetGraphicDevice().Render( sd );
+	m_skillPoint.RenderObject();
+	m_hitPoint.RenderObject();
+	m_score.RenderObject();
 }
 
 /*=============================================================================*/
@@ -94,7 +102,10 @@ void StatusScreen::RenderObject()
  */
 void StatusScreen::UpdateObject(float frameTimer)
 {
-
+	m_skillPoint.UpdateObject(frameTimer);
+	m_hitPoint.UpdateObject(frameTimer);
+	m_score.UpdateObject(frameTimer);
 }
+
 
 /*===== EOF ===================================================================*/

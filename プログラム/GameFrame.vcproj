@@ -477,6 +477,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\HitPoint.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\HitPoint.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Player.cpp"
 						>
 					</File>
@@ -490,6 +498,22 @@
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\PuzzleScreen.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Score.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Score.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\SkillPoint.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\SkillPoint.h"
 						>
 					</File>
 					<File
