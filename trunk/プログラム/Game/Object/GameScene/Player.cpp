@@ -29,6 +29,7 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false), m_x(x), m_y(y),
 		m_puzzleScreen(device,objectManager,option,gameSceneState, *this),
 		m_characterScreen(device,objectManager,option,gameSceneState, *this),
+		m_statusScreen(device,objectManager,option,gameSceneState, *this),
 		m_AI(NULL)
 		
 {
