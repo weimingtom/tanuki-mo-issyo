@@ -24,8 +24,8 @@ class		IGameDevice;
 
 #include    "Object/GameScene/PuzzleScreen.h"
 #include    "Object/GameScene/CharacterScreen.h"
+#include	"Object/GameScene/StatusScreen.h"
 #include	"Object/GameScene/Player.h"
-
 
 /**
  * @brief PlayerÅD
@@ -104,6 +104,7 @@ private:
 
 	PuzzleScreen	m_puzzleScreen;
 	CharacterScreen	m_characterScreen;
+	StatusScreen	m_statusScreen;
 
 	float m_x;
 	float m_y;
