@@ -26,8 +26,8 @@ bool StatusScreen::IsTerminated()
 
 void StatusScreen::RenderObject()
 {
-	float m_x = 300.0f;
-	float m_y = 356.0f;
+	float m_x = 400.0f;
+	float m_y = 300.0f;
 
 	SpriteDesc sd;
 	sd.textureID = TEXTUERID_POWER;
