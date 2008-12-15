@@ -26,6 +26,8 @@ class		IGameDevice;
 #include    "Object/GameScene/CharacterScreen.h"
 #include	"Object/GameScene/StatusScreen.h"
 #include	"Object/GameScene/Player.h"
+#include	"Object/GameScene/AIBase.h"
+#include	"Object/GameScene/PlayerAI.h"
 
 /**
  * @brief Player．
@@ -88,6 +90,9 @@ public:
 	Vector2 GetPosition();
 	PuzzleScreen& GetPuzzleScreen();
 
+	AIBase& GetAI();
+	void SetAI(AIBase* ai);
+
 private:
 
 	/** 終了フラグ */
@@ -104,6 +109,7 @@ private:
 
 	PuzzleScreen	m_puzzleScreen;
 	CharacterScreen	m_characterScreen;
+	AIBase*			m_AI;
 	StatusScreen	m_statusScreen;
 
 	float m_x;
