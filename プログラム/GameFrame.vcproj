@@ -429,6 +429,10 @@
 					Name="GameScene"
 					>
 					<File
+						RelativePath=".\Game\Object\GameScene\AIBase.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Avatar.cpp"
 						>
 					</File>
@@ -490,6 +494,14 @@
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\Player.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\PlayerAI.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\PlayerAI.h"
 						>
 					</File>
 					<File
