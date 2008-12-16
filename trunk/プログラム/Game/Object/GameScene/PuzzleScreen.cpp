@@ -43,6 +43,9 @@ void PuzzleScreen::Initialize()
 /**
  * @brief 終了しているかどうか.
  *
+ * @return 終了フラグ.
+ *
+ *
  */
 bool PuzzleScreen::IsTerminated()
 {
@@ -79,6 +82,12 @@ void PuzzleScreen::UpdateObject(float frameTimer)
 	m_blockManager.UpdateObject(frameTimer);
 }
 
+/*=============================================================================*/
+/**
+ * @brief ブロックマネージャの取得.
+ * 
+ * @return ブロックマネージャ.
+ */
 BlockManager&	PuzzleScreen::GetBlockManager()
 {
 	return	m_blockManager;

@@ -78,7 +78,7 @@ void FallBlock::RenderObject()
 	SpriteDesc sd;
 	sd.textureID = m_blockID;
 	
-	sd.rect = Rect(m_x - (BLOCK_SIZE/2),m_y - (BLOCK_SIZE/2),m_x+(BLOCK_SIZE/2),m_y+(BLOCK_SIZE/2));
+	sd.rect = Rect(m_x,m_y,m_x+(BLOCK_SIZE),m_y+(BLOCK_SIZE));
 	m_device.GetGraphicDevice().Render( sd );
 }
 
@@ -91,18 +91,27 @@ void FallBlock::RenderObject()
 void FallBlock::UpdateObject(float frameTimer)
 {
 	FieldMatrix frame;
-	IntPoint pos = GetFieldMatrixPosition(m_x, m_y + m_speed + (BLOCK_SIZE/2));
+	IntPoint pos = GetFieldMatrixPosition(m_x, m_y + m_speed + (BLOCK_SIZE));
 	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
 	if(!ColisionMatrix(frame,pos.x,pos.y)) 
 	{
 		m_y += m_speed;
 	} else
 	{
-		m_y = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((pos.y)*BLOCK_SIZE) - (BLOCK_SIZE/2);
+		m_y = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((pos.y)*BLOCK_SIZE) - (BLOCK_SIZE);
 		Terminate();
 	}
 }
 
+/*=============================================================================*/
+/**
+ * @brief フィールドから配列へ
+ * 
+ * @param[in] x 横の位置.
+ * @param[in] y 縦の位置.
+ *
+ * @return 配列の番号.
+ */
 IntPoint FallBlock::GetFieldMatrixPosition(float x, float y)
 {
 	IntPoint tmp;
@@ -113,6 +122,14 @@ IntPoint FallBlock::GetFieldMatrixPosition(float x, float y)
 	return tmp;
 }
 
+/*=============================================================================*/
+/**
+ * @brief ブロックの下にブロックがあるか
+ * 
+ * @param[in] matrix 配列.
+ * @param[in] x 横の位置.
+ * @param[in] y 縦の位置.
+ */
 bool FallBlock::ColisionMatrix(FieldMatrix matrix, int x, int y)
 {
 	if(matrix.matrix[x][y] != 0)
