@@ -117,11 +117,23 @@ void Player::UpdateObject(float frameTimer)
 
 }
 
+/*=============================================================================*/
+/**
+ * @brief 位置を取得する
+ * 
+ * @return 位置.
+ */
 Vector2 Player::GetPosition()
 {
 	return Vector2(m_x,m_y);
 }
 
+/*=============================================================================*/
+/**
+ * @brief パズルスクリーンの取得.
+ * 
+ * @return パズルスクリーン.
+ */
 PuzzleScreen& Player::GetPuzzleScreen()
 {
 	return m_puzzleScreen;

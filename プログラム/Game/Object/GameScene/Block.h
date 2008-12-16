@@ -105,6 +105,12 @@ public:
 	 */
 	void SpinBlock(int direction);
 	
+	/*=========================================================================*/
+	/**
+	 * @brief フィールド上のブロックの現在位置のインデックスを取得する.
+	 * 
+	 * @return 配列上のインデックス.
+	 */
 	IntPoint GetFieldMatrixPosition(float x, float y);
 
 	bool	ColisionMatrix(FieldMatrix matrix,int x,int y);

@@ -137,6 +137,12 @@ void Field::UpdateObject(float frameTimer)
 
 }
 
+/*=============================================================================*/
+/**
+ * @brief フィールドのブロックの配列を返す.
+ * 
+ * @param[in] fieldmatrix フィールドの状態.
+ */
 void Field::GetFieldBlockMatrix(FieldMatrix* fieldMatrix)
 {
 	for(int x=0; x<FIELD_WIDTH; x++){
@@ -146,6 +152,12 @@ void Field::GetFieldBlockMatrix(FieldMatrix* fieldMatrix)
 	}
 }
 
+/*=============================================================================*/
+/**
+ * @brief フィールドのもっているステートを返す.
+ * 
+ * @param[in] fieldmatrix フィールドの状態.
+ */
 void Field::GetFieldStateMatrix(FieldMatrix* fieldMatrix)
 {
 	for(int x=0; x<FIELD_WIDTH; x++){
@@ -155,11 +167,25 @@ void Field::GetFieldStateMatrix(FieldMatrix* fieldMatrix)
 	}
 }
 
+/*=============================================================================*/
+/**
+ * @brief フィールドのポジションを返す.
+ * 
+ *@return 座標.
+ */
 Vector2 Field::GetPosition()
 {
 	return Vector2(m_x,m_y);
 }
 
+/*=============================================================================*/
+/**
+ * @brief ブロックを置く.
+ * 
+ * @param[in] x 横の位置.
+ * @param[in] y 縦の位置.
+ * @param[in] id ブロックのＩＤ.
+ */
 void Field::SetBlock(int x, int y, int id)
 {
 	m_fieldBlock[x][y] = id;

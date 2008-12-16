@@ -150,11 +150,23 @@ void BlockManager::UpdateObject(float frameTimer)
 	m_field.UpdateObject(frameTimer);
 }
 
+/*=============================================================================*/
+/**
+ * @brief フィールドを取得する.
+ * 
+ * @return フィ－ルド.
+ */
 Field& BlockManager::GetField()
 {
 	return	m_field;
 }
 
+/*=============================================================================*/
+/**
+ * @brief ブロックを生成する.
+ * 
+ * 
+ */
 void BlockManager::CreateBlock()
 {
 	int cid,mid;
@@ -164,12 +176,24 @@ void BlockManager::CreateBlock()
 	m_block->Initialize();
 }
 
+/*=============================================================================*/
+/**
+ * @brief フォールブロックをリストに追加する.
+ * 
+ * @param[in] fallBlock フォールブロック.
+ */
 void BlockManager::AddFallBlock(FallBlock *fallBlock)
 {
 	m_fallBlock.push_back(fallBlock);
 	fallBlock->Initialize();
 }
 
+/*=============================================================================*/
+/**
+ * @brief 管理しているブロックを返す.
+ * 
+ * @return 管理しているブロック.
+ */
 int BlockManager::GetFallBlockNum()
 {
 	int t = 0;
