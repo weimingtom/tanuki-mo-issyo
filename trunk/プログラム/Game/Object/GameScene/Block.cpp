@@ -152,7 +152,7 @@ void Block::UpdateObject(float frameTimer)
 	}
 	if(m_player.GetAI().GetKeyDown(GAMEKEY_DOWN) == true) 
 	{
-		if(!ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y+1)){
+		if(!ColisionMatrix(frame,MatrixPosition.x,GetFieldMatrixPosition(m_tx, m_ty + m_speed + (BLOCK_SIZE/2)).y)){
 			m_ty += 1.0f;
 		} else
 		{
@@ -342,6 +342,14 @@ bool	Block::ColisionMatrix(FieldMatrix matrix,int x,int y)
 	{
 		for(int ay=0;ay<3;ay++)
 		{
+			if(FIELD_WIDTH < (x + ax))
+			{
+				return true;
+			}
+			if(FIELD_HEIGHT < (y + ax))
+			{
+				return true;
+			}
 			if((matrix.matrix[x-1+ax][y-1+ay] != 0) && (m_blockMatrix[ay][ax] != 0))
 			{
 				return true;
