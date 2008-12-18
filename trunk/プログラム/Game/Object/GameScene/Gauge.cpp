@@ -1,39 +1,37 @@
 /*******************************************************************************/
 /**
- * @file HitPoint.cpp.
+ * @file Gauge.cpp.
  * 
- * @brief ヒットポイントクラスソース定義.
+ * @brief ゲージクラスソース定義.
  *
- * @date 2008/12/15.
+ * @date 2008/12/18.
  *
  * @version 1.00.
  *
- * @author Ryosuke Ogawa.
+ * @author Ryouma Kawasue.
  */
 /*******************************************************************************/
 
-#include	"HitPoint.h"
-#include	"Player.h"
+#include "Gauge.h"
+#include "Player.h"
 
 /*=========================================================================*/
 /**
  * @brief コンストラクタ.
  * 
  */
-HitPoint::HitPoint(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player& player) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
+Gauge::Gauge(IGameDevice &device,int tex1, int tex2, Vector2 position, Vector2 size, float max, float point) :
+	m_device(device)
 {
 
 }
-
 /*=========================================================================*/
 /**
  * @brief デストラクタ.
  *
  */
-HitPoint::~HitPoint()
+Gauge::~Gauge()
 {
-
 }
 
 /*=========================================================================*/
@@ -41,10 +39,10 @@ HitPoint::~HitPoint()
  * @brief 初期化処理.
  * 
  */
-void HitPoint::Initialize()
+void Gauge::Initialize()
 {
-	m_x = m_player.GetPosition().x + 305.0f;
-	m_y = m_player.GetPosition().y + 360.0f;
+
+
 }
 
 /*=========================================================================*/
@@ -52,7 +50,7 @@ void HitPoint::Initialize()
  * @brief 終了処理.
  * 
  */
-void HitPoint::Terminate()
+void Gauge::Terminate()
 {
 	m_isTerminated = true;
 }
@@ -63,7 +61,7 @@ void HitPoint::Terminate()
  * 
  * @return 終了フラグ.
  */
-bool HitPoint::IsTerminated()
+bool Gauge::IsTerminated()
 {
 	return m_isTerminated;
 }
@@ -73,13 +71,10 @@ bool HitPoint::IsTerminated()
  * @brief オブジェクトの描画処理.
  * 
  */
-void HitPoint::RenderObject()
+void Gauge::RenderObject()
 {
-	SpriteDesc sd;
-	sd.textureID = TEXTUREID_AVATAR1;
-	
-	sd.rect = Rect(m_x ,m_y ,m_x+BLOCK_SIZE ,m_y+BLOCK_SIZE);
-	m_device.GetGraphicDevice().Render( sd );
+
+
 }
 
 /*=========================================================================*/
@@ -88,10 +83,30 @@ void HitPoint::RenderObject()
  * 
  * @param[in] frameTimer 更新タイマ.
  */
-void HitPoint::UpdateObject(float frameTimer)
+void Gauge::UpdateObject(float frameTimer)
 {
-
 }
 
+void Gauge::SetTexture(int tex1, int tex2 )
+{
+	m_texture1 = tex1;
+	m_texture2 = tex2;
+}
 
+void Gauge::SetMax(float max)
+{
+	m_max = max;
+}
+void Gauge::SetPoint(float point)
+{
+	m_point = point;
+}
+void Gauge::SetPosition(Vector2 position)
+{
+	m_position = position;
+}
+
+void Gauge::SetSize(Vector2 size)
+{
+}
 /*===== EOF ===================================================================*/

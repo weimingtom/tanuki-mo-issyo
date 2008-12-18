@@ -1,53 +1,41 @@
 /*******************************************************************************/
 /**
- * @file StattusScreen.h.
+ * @file PlayerTime.h.
  * 
- * @brief ステータススクリーンヘッダファイル.
+ * @brief プレイヤータイムクラスヘッダ定義.
  *
- * @date 2008/12/15.
+ * @date 2008/12/18.
  *
  * @version 1.00.
  *
- * @author Ryoma Kawasue.
+ * @author Ryouma Kawasue.
  */
 /*******************************************************************************/
+#ifndef _PLAYERTIME_H_
+#define _PLAYERTIME_H_
 
-#ifndef _STATUS_SCREEN_H_
-#define _STATUS_SCREEN_H_
-
-/*===== インクルード ==========================================================*/
 #include	"IGameDevice.h"
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
-class		Player;
-#include	"Object/GameScene/SkillPoint.h"
-#include	"Object/GameScene/HitPoint.h"
-#include	"Object/GameScene/Score.h"
-#include    "Object/GameScene/PlayerTime.h"
 
-
-class StatusScreen : public ObjectBase
+class PlayerTime : public ObjectBase
 {
 public:
 	/*=========================================================================*/
 	/**
 	 * @brief コンストラクタ.
-	 * 
-	 * @param[in] device ゲームデバイス.
-	 * @param[in] objectManager オブジェクトマネージャ.
-	 * @param[in] option ゲームオプション.
-	 * @param[in] gameSceneState ゲームシーンステート.
+	 *
 	 */
-	StatusScreen(IGameDevice &device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
+	PlayerTime(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
 
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
 	 *
 	 */
-	~StatusScreen();
+	~PlayerTime();
 
 	/*=========================================================================*/
 	/**
@@ -59,6 +47,7 @@ public:
 	/*=========================================================================*/
 	/**
 	 * @brief 終了処理.
+	 * 
 	 */
 	void Terminate();
 
@@ -83,9 +72,9 @@ public:
 	 * 
 	 * @param[in] frameTimer 更新タイマ.
 	 */
-	void UpdateObject( float frameTimer );
+	void UpdateObject(float frameTimer);
 
-private:
+	private:
 	/** 終了フラグ */
 	bool m_isTerminated;
 	/** ゲームデバイス */
@@ -99,17 +88,13 @@ private:
 	/** プレーヤ */
 	Player& m_player;
 
-	/** スキルポイント */
-	SkillPoint	m_skillPoint;
-	/** ヒットポイント */
-	HitPoint	m_hitPoint;
-	/** スコア */
-	Score		m_score;
-	/** プレイヤータイム */
-	PlayerTime	m_playerTime;
-
+	/** y座標　*/
+	float m_y;
+	/** x座標　*/
+	float m_x;
 };
 
 #endif
 
 /*===== EOF ===================================================================*/
+
