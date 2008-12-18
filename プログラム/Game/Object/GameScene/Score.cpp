@@ -43,8 +43,8 @@ Score::~Score()
  */
 void Score::Initialize()
 {
-	m_x = m_player.GetPosition().x + 200.0f;
-	m_y = m_player.GetPosition().y + 160.0f;
+	m_x = m_player.GetPosition().x + 305.0f;
+	m_y = m_player.GetPosition().y + 390.0f;
 }
 
 /*=========================================================================*/

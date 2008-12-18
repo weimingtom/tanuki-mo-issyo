@@ -43,8 +43,8 @@ SkillPoint::~SkillPoint()
  */
 void SkillPoint::Initialize()
 {
-	m_x = m_player.GetPosition().x + 200.0f;
-	m_y = m_player.GetPosition().y + 130.0f;
+	m_x = m_player.GetPosition().x + 305.0f;
+	m_y = m_player.GetPosition().y + 420.0f;
 }
 
 /*=========================================================================*/

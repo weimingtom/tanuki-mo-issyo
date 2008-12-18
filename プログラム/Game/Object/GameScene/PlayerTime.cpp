@@ -1,39 +1,36 @@
 /*******************************************************************************/
 /**
- * @file HitPoint.cpp.
+ * @file PlayerTime.cpp.
  * 
- * @brief ヒットポイントクラスソース定義.
+ * @brief プレイヤータイムクラスソース定義.
  *
- * @date 2008/12/15.
+ * @date 2008/12/18.
  *
  * @version 1.00.
  *
- * @author Ryosuke Ogawa.
+ * @author Ryouma Kawasue.
  */
 /*******************************************************************************/
 
-#include	"HitPoint.h"
-#include	"Player.h"
+#include "PlayerTime.h"
+#include "Player.h"
 
 /*=========================================================================*/
 /**
  * @brief コンストラクタ.
  * 
  */
-HitPoint::HitPoint(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player& player) :
+PlayerTime::PlayerTime(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player &player) :
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
 {
-
 }
-
 /*=========================================================================*/
 /**
  * @brief デストラクタ.
  *
  */
-HitPoint::~HitPoint()
+PlayerTime::~PlayerTime()
 {
-
 }
 
 /*=========================================================================*/
@@ -41,10 +38,11 @@ HitPoint::~HitPoint()
  * @brief 初期化処理.
  * 
  */
-void HitPoint::Initialize()
+void PlayerTime::Initialize()
 {
 	m_x = m_player.GetPosition().x + 305.0f;
-	m_y = m_player.GetPosition().y + 360.0f;
+	m_y = m_player.GetPosition().y + 450.0f;
+
 }
 
 /*=========================================================================*/
@@ -52,7 +50,7 @@ void HitPoint::Initialize()
  * @brief 終了処理.
  * 
  */
-void HitPoint::Terminate()
+void PlayerTime::Terminate()
 {
 	m_isTerminated = true;
 }
@@ -63,7 +61,7 @@ void HitPoint::Terminate()
  * 
  * @return 終了フラグ.
  */
-bool HitPoint::IsTerminated()
+bool PlayerTime::IsTerminated()
 {
 	return m_isTerminated;
 }
@@ -73,13 +71,14 @@ bool HitPoint::IsTerminated()
  * @brief オブジェクトの描画処理.
  * 
  */
-void HitPoint::RenderObject()
+void PlayerTime::RenderObject()
 {
 	SpriteDesc sd;
 	sd.textureID = TEXTUREID_AVATAR1;
-	
-	sd.rect = Rect(m_x ,m_y ,m_x+BLOCK_SIZE ,m_y+BLOCK_SIZE);
+
+	sd.rect = Rect( m_x, m_y, m_x + BLOCK_SIZE, m_y + BLOCK_SIZE );
 	m_device.GetGraphicDevice().Render( sd );
+
 }
 
 /*=========================================================================*/
@@ -88,10 +87,8 @@ void HitPoint::RenderObject()
  * 
  * @param[in] frameTimer 更新タイマ.
  */
-void HitPoint::UpdateObject(float frameTimer)
+void PlayerTime::UpdateObject(float frameTimer)
 {
-
 }
-
 
 /*===== EOF ===================================================================*/
