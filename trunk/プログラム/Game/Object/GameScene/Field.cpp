@@ -15,6 +15,7 @@
 /*===== インクルード ==========================================================*/
 #include "Object/GameScene/Field.h"
 #include "Object/GameScene/Player.h"
+#include "Define/GameDefine.h"
 
 /*===== 定数宣言 ==============================================================*/
 
@@ -132,6 +133,8 @@ void Field::UpdateObject(float frameTimer)
 
 	if(m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0)
 	{
+		CheckBlock();
+
 		m_player.GetPuzzleScreen().GetBlockManager().CreateBlock();
 	}
 
@@ -195,4 +198,76 @@ void Field::SetBlock(int x, int y, int id)
 	}
 	m_fieldBlock[x][y] = id;
 }
+
+/*=============================================================================*/
+/**
+ * @brief ブロックのチェック1.
+ * 
+ * @return 無し
+ */
+void Field::CheckBlock( void )
+{
+	CheckMatrix checkMatrix;
+
+	for( int i = 0; i < FIELD_WIDTH; i++ ){
+			for( int j = 0 ; j < FIELD_HEIGHT; j++  ){
+				if( m_fieldBlock[i][j] != 0 ){
+					int id;
+					int	num = 0;
+					id = m_fieldBlock[i][j];
+					num = BlockCount( i, j, id, num , checkMatrix);
+
+			}
+		}
+	}
+}
+
+/*=============================================================================*/
+/**
+ * @brief ブロックのチェック2.
+ * 
+ * @return 無し
+ */
+int Field::BlockCount(int x ,int y ,int id , int num, CheckMatrix & checkMatrix)
+{
+
+	if( m_fieldBlock[x][y+1] == id ){
+		num++;
+		checkMatrix.checkedmatrix[x][y+1] = true;
+		num = BlockCount(x, y+1, id, num, checkMatrix);
+		if( num >= 4 ){
+			checkMatrix.deleteflagmatrix[x][y+1] = true;
+		}
+	}
+
+	if( m_fieldBlock[x][y-1] == id ){
+		num++;
+		checkMatrix.checkedmatrix[x][y-1] = true;
+		num = BlockCount(x, y-1, id, num, checkMatrix);
+		if( num >= 4 ){
+			checkMatrix.deleteflagmatrix[x][y-1] = true;
+		}
+	}
+
+	if( m_fieldBlock[x+1][y] == id ){
+		num++;
+		checkMatrix.checkedmatrix[x+1][y] = true;
+		num = BlockCount(x+1, y, id, num, checkMatrix);
+		if( num >= 4 ){
+			checkMatrix.deleteflagmatrix[x+1][y] = true;
+		}
+	}
+
+	if( m_fieldBlock[x-1][y] == id ){
+		num++;
+		checkMatrix.checkedmatrix[x-1][y] = true;
+		num = BlockCount(x-1, y, id, num, checkMatrix);
+		if( num >= 4 ){
+			checkMatrix.deleteflagmatrix[x-1][y] = true;
+		}
+	}
+
+	return num;
+}
+
 /*===== EOF ===================================================================*/

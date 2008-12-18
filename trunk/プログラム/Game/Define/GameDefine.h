@@ -26,6 +26,12 @@ typedef struct
 
 typedef struct
 {
+	bool checkedmatrix[FIELD_WIDTH][FIELD_HEIGHT];
+	bool deleteflagmatrix[FIELD_WIDTH][FIELD_HEIGHT];
+}CheckMatrix;
+
+typedef struct
+{
 	int x;
 	int y;
 }IntPoint;

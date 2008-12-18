@@ -21,6 +21,8 @@
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
 
+#include	"Define/GameDefine.h"
+
 class		Player;
 class		IGameDevice;
 
@@ -104,6 +106,24 @@ public:
 	Vector2 GetPosition();
 
 	void SetBlock(int x, int y, int id);
+
+	/*=========================================================================*/
+	/**
+	 * @brief ŠÖ”à–¾.
+	 * 
+	 * @param[in] ˆø”–¼ ˆø”à–¾.
+	 * @return –ß‚è’là–¾.
+	 */
+	void CheckBlock( void );
+
+	/*=========================================================================*/
+	/**
+	 * @brief ŠÖ”à–¾.
+	 * 
+	 * @param[in] ˆø”–¼ ˆø”à–¾.
+	 * @return –ß‚è’là–¾.
+	 */
+	int BlockCount( int x, int y, int id, int num, CheckMatrix & checkMatrix);
 
 
 private:
