@@ -188,6 +188,11 @@ Vector2 Field::GetPosition()
  */
 void Field::SetBlock(int x, int y, int id)
 {
+	if((FIELD_WIDTH <= x) || (FIELD_HEIGHT <= y) ||
+		(x < 0) || (y < 0 ))
+	{
+		return;
+	}
 	m_fieldBlock[x][y] = id;
 }
 /*===== EOF ===================================================================*/

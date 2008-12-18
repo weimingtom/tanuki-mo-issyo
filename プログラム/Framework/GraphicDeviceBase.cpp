@@ -25,6 +25,8 @@
 #include	<Ngl/Utility.h>
 #include	<cassert>
 
+#include	<Ngl/OpenGL/Texture2DGL.h>
+
 /**
  * @brief コンストラクタ<br>
  * 
@@ -269,6 +271,7 @@ void GraphicDeviceBase::Render( const QuadDesc& desc )
  */
 void GraphicDeviceBase::Render( const SpriteDesc& desc )
 {
+	/*
 	// エフェクトを取得
 	Ngl::IEffect* ef = effectManager_[ desc.effectID ]->getEffect();
 
@@ -324,6 +327,8 @@ void GraphicDeviceBase::Render( const SpriteDesc& desc )
 	if( desc.textureID != 0 ){
 		// テクスチャを取得
 		Ngl::ITexture* tex = textureManager_[ desc.textureID ];
+		Ngl::OpenGL::Texture2DGL* t = static_cast< Ngl::OpenGL::Texture2DGL* >( tex );
+		t->texture();
 
 		// ユーザー指定のテクスチャ座標を設定
 		if( desc.srcRect != Rect( 0.0f, 0.0f, 0.0f, 0.0f ) ){
@@ -361,6 +366,53 @@ void GraphicDeviceBase::Render( const SpriteDesc& desc )
 
 	// ポリゴンを描画
 	quad_.draw( renderer_, ef );
+	*/
+
+	Vector2 m_size;
+	m_size.x = desc.rect.right - desc.rect.left;
+	m_size.y = desc.rect.bottom - desc.rect.top;
+	Rect srcRect = Rect(0.0f, 0.0f, 1.0f, 1.0f);
+
+	if(desc.textureID != 0)
+	{
+		Ngl::ITexture* tex = textureManager_[ desc.textureID ];
+		Ngl::OpenGL::Texture2DGL* t = static_cast< Ngl::OpenGL::Texture2DGL* >( tex );
+		glBindTexture(GL_TEXTURE_2D, t->texture());
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+		glEnable(GL_TEXTURE_2D);
+
+		if(desc.srcRect.left != 0) srcRect.left = desc.srcRect.left / t->desc().width;
+		if(desc.srcRect.top != 0) srcRect.top = desc.srcRect.top / t->desc().height;
+		if(desc.srcRect.right != 0) srcRect.right = desc.srcRect.right / t->desc().width;
+		if(desc.srcRect.bottom != 0) srcRect.bottom = desc.srcRect.bottom / t->desc().height;
+	}
+	
+	glPushMatrix();
+
+	glTranslatef(desc.rect.left, desc.rect.top, 0.0f);
+	glRotatef(desc.angle, 0.0f, 0.0f, 1.0f);
+
+	glBegin(GL_QUADS);
+		glColor4f(desc.color.r, desc.color.g, desc.color.b, desc.color.a);
+
+		glTexCoord2f( srcRect.left, srcRect.top);
+		glVertex3f( 0.0f, 0.0f, 0.0f);
+
+		glTexCoord2f( srcRect.left, srcRect.bottom);
+		glVertex3f( 0.0f, m_size.y, 0.0f);
+
+		glTexCoord2f( srcRect.right, srcRect.bottom);
+		glVertex3f( m_size.x, m_size.y, 0.0f);
+
+		glTexCoord2f( srcRect.right, srcRect.top);
+		glVertex3f( m_size.x, 0.0f, 0.0f);
+
+	glEnd();
+
+	glPopMatrix();
 }
 
 

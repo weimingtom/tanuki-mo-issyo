@@ -13,6 +13,7 @@
 /******************************************************************************/
 #include	"GameFrame.h"
 #include	"Define/SceneID.h"
+#include	<GL/glut.h>
 
 /**
  * コンストラクタ
@@ -34,6 +35,11 @@ void GameFrame::Initialize( IGameDevice& device )
 	Random.srand();
 
 	device.GetGraphicDevice().LoadEffect( EFFECTID_COM_SPRITE, "Sprite" );
+
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+	glLoadIdentity();
+	glOrtho(0.0, WINDOW_WIDTH, WINDOW_HEIGHT, 0.0, -1.0, 1.0);
 
 	m_sceneManager = new SceneManager(device,SCENE_ID_GAME);
 	m_sceneManager->Initialize();
@@ -74,12 +80,14 @@ void GameFrame::Update( IGameDevice& device, float frameTimer )
  */
 void GameFrame::Draw( IGameDevice& device )
 {
+	/*
 	device.GetGraphicDevice().Perspective( 50.0f, 800.0f/600.0f, 0.1f, 100.0f );
 	device.GetGraphicDevice().LookAt(
 		Vector3( 0.0f, 30.0f, 30.0f ),
 		Vector3( 0.0f, 0.0f, 0.0f ),
 		Vector3( 0.0f, 1.0f, 0.0f )
 		);
+		*/
 	
 	device.GetGraphicDevice().Clear( Color4( 0.0f, 0.0f, 0.0f, 1.0f ) );
 
