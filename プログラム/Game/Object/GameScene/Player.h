@@ -28,6 +28,7 @@ class		IGameDevice;
 #include	"Object/GameScene/Player.h"
 #include	"Object/GameScene/AIBase.h"
 #include	"Object/GameScene/PlayerAI.h"
+#include	"Object/GameScene/PlayerParameter.h"
 
 /**
  * @brief Player．
@@ -45,7 +46,11 @@ public:
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, float x, float y);
+	Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, float x, float y,
+			int hp, int skillPoint[], int playerTime,int characterID, int score, int playerID,int playerLV, int playerAttack,
+			int playerDefence,int playerType);
+	
+
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
@@ -105,7 +110,8 @@ private:
 	Option& m_option;
 	/** ゲームシーンステート */
 	GameSceneState m_gameSceneState;
-
+	/** プレイヤーパラメータ */
+	PlayerParameter m_playerParameter;
 
 	PuzzleScreen	m_puzzleScreen;
 	CharacterScreen	m_characterScreen;

@@ -25,11 +25,15 @@
  * @param[in] option ゲームオプション.
  * @param[in] gameSceneState ゲームシーンステート.
  */
-Player::Player(IGameDevice& device, ObjectManager& objectManager, Option &option, GameSceneState& gameSceneState, float x, float y) :
-	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false), m_x(x), m_y(y),
+Player::Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, float x, float y,
+			int hp, int skillPoint[], int playerTime,int characterID, int score, int playerID,int playerLV, int playerAttack,
+			int playerDefence,int playerType) :
+		m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_isTerminated(false), m_x(x), m_y(y),
 		m_puzzleScreen(device,objectManager,option,gameSceneState, *this),
 		m_characterScreen(device,objectManager,option,gameSceneState, *this),
 		m_statusScreen(device,objectManager,option,gameSceneState, *this),
+		m_playerParameter(hp,skillPoint,playerTime,characterID,score,playerID,
+						  playerLV,playerAttack,playerDefence, playerType),
 		m_AI(NULL)
 		
 {
