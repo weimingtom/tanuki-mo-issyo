@@ -56,7 +56,9 @@ ObjectFactory::~ObjectFactory()
 Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState)
 {
 	Player* object;
-	object = new Player(m_device, m_objectManager, m_option, gameSceneState, 100.0f,20.0f);
+	int skill[4] = {0,1,2,3};
+	object = new Player(m_device, m_objectManager, m_option, gameSceneState, 100.0f,20.0f,
+		1,skill,3,4,5,6,7,8,9,0);
 	//m_objectManager.AddObject(object);
 	return object;
 }

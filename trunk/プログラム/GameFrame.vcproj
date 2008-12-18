@@ -505,6 +505,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\PlayerParameter.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\PlayerParameter.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\PuzzleScreen.cpp"
 						>
 					</File>
