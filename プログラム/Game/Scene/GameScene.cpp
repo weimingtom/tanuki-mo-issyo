@@ -34,6 +34,7 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 	int skill[4] = {1,2,3,4};
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
 		m_state,100.0f, 50.0f, 500, skill, 30, TEXTUREID_AVATAR2, 12000, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
+	
 }
 
 /*=============================================================================*/
@@ -67,9 +68,11 @@ void GameScene::Initialize()
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SKILL,"skill.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SCORE,"score.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_POWER,"power.dds",COLORKEYFLAG_NONE);
-
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_GAUGE_FRONT,"gauge.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_GAUGE_BACK,"gaugeback.dds",COLORKEYFLAG_NONE);
 
 	m_objectManager->Initialize();
+
 }
 
 /*=============================================================================*/

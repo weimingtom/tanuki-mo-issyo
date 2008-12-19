@@ -25,28 +25,28 @@ public:
 	 * @brief コンストラクタ.
 	 *
 	 */
-	Gauge(IGameDevice& device, int tex1, int tex2, Vector2 position, Vector2 size, float max, float point);
+	Gauge(IGameDevice& device, int tex1, int tex2, Vector2 position, Vector2 size, float max, float point, Rect texRec1,Rect texRec2);
 
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
 	 *
 	 */
-	~Gauge();
+	virtual ~Gauge();
 
 	/*=========================================================================*/
 	/**
 	 * @brief 初期化処理.
 	 * 
 	 */
-	void Initialize();
+	virtual void Initialize();
 
 	/*=========================================================================*/
 	/**
 	 * @brief 終了処理.
 	 * 
 	 */
-	void Terminate();
+	virtual void Terminate();
 
 	/*=========================================================================*/
 	/**
@@ -54,14 +54,14 @@ public:
 	 * 
 	 * @return 終了フラグ.
 	 */
-	bool IsTerminated();
+	virtual bool IsTerminated();
 
 	/*=========================================================================*/
 	/**
 	 * @brief オブジェクトの描画処理.
 	 * 
 	 */
-	void RenderObject();
+	virtual void RenderObject();
 
 	/*=========================================================================*/
 	/**
@@ -69,7 +69,7 @@ public:
 	 * 
 	 * @param[in] frameTimer 更新タイマ.
 	 */
-	void UpdateObject(float frameTimer);
+	virtual void UpdateObject(float frameTimer);
 
 	void SetTexture(int tex1, int tex2 );
 
@@ -80,6 +80,8 @@ public:
 	void SetPosition(Vector2 position);
 
 	void SetSize(Vector2 size);
+
+	void SetRect(Rect texRec1,Rect texRec2);
 
 
 	private:
@@ -103,6 +105,9 @@ public:
 
 	int m_texture1;
 	int m_texture2;
+
+	Rect m_textureRec1;
+	Rect m_textureRec2;
 };
 
 #endif
