@@ -33,7 +33,7 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 	m_objectManager = new ObjectManager(device,option);
 	int skill[4] = {1,2,3,4};
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
-		m_state,100.0f, 50.0f, 500, skill, 30, TEXTUREID_AVATAR2, 12000, 0, 5, 15, 20, TEXTUERID_SBLOCK1));
+		m_state,100.0f, 50.0f, 500, skill, 30, TEXTUREID_AVATAR2, 12000, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
 }
 
 /*=============================================================================*/
@@ -56,14 +56,17 @@ void GameScene::Initialize()
 
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_AVATAR1, "avatar1.dds", COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_AVATAR2, "avatar2.dds", COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK1,"block1.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK2,"block2.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_BLOCK3,"block3.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK1,"sblock1.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK2,"sblock2.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK3,"sblock3.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_SBLOCK4,"sblock4.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUERID_POWER,"power.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_BLOCK1,"block1.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_BLOCK2,"block2.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_BLOCK3,"block3.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SBLOCK1,"sblock1.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SBLOCK2,"sblock2.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SBLOCK3,"sblock3.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SBLOCK4,"sblock4.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_HP,"hp.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SKILL,"skill.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SCORE,"score.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_POWER,"power.dds",COLORKEYFLAG_NONE);
 
 
 	m_objectManager->Initialize();

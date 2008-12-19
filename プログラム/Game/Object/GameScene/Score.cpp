@@ -43,8 +43,8 @@ Score::~Score()
  */
 void Score::Initialize()
 {
-	m_x = m_player.GetPosition().x + 305.0f;
-	m_y = m_player.GetPosition().y + 390.0f;
+	m_x = m_player.GetPosition().x + 300.0f;
+	m_y = m_player.GetPosition().y + 370.0f;
 }
 
 /*=========================================================================*/
@@ -76,9 +76,9 @@ bool Score::IsTerminated()
 void Score::RenderObject()
 {
 	SpriteDesc sd;
-	sd.textureID = TEXTUREID_AVATAR1;
+	sd.textureID = TEXTUREID_SCORE;
 	
-	sd.rect = Rect(m_x ,m_y ,m_x+BLOCK_SIZE ,m_y+BLOCK_SIZE);
+	sd.rect = Rect(m_x ,m_y ,m_x+100 ,m_y+20);
 	m_device.GetGraphicDevice().Render( sd );
 }
 
