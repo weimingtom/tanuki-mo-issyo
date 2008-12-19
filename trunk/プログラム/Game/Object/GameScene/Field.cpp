@@ -114,7 +114,7 @@ void Field::RenderObject()
 				} else
 				{
 					//continue;
-					sd.textureID = TEXTUERID_SBLOCK4;
+					sd.textureID = TEXTUREID_SBLOCK4;
 				}
 				m_device.GetGraphicDevice().Render( sd );
 			}

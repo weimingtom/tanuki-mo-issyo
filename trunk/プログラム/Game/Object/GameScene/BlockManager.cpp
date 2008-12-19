@@ -174,8 +174,8 @@ void BlockManager::CreateBlock()
 	m_block = new Block(m_device, m_objectManager, m_option, m_gameSceneState, m_player,
 						m_player.GetPlayerParameter().GetNextCBlock(), m_player.GetPlayerParameter().GetNextMBlock() );
 
-	cid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_SBLOCK4);
-	mid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_SBLOCK4);
+	cid = Random.randi(TEXTUREID_BLOCK1,TEXTUREID_SBLOCK4);
+	mid = Random.randi(TEXTUREID_BLOCK1,TEXTUREID_SBLOCK4);
 	m_player.GetPlayerParameter().SetNextBlock(cid, mid);
 	m_block->Initialize();
 }

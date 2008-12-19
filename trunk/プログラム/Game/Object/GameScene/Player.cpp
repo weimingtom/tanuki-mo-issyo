@@ -34,7 +34,7 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option& option
 		m_statusScreen(device,objectManager,option,gameSceneState, *this),
 		m_playerParameter(hp,skillPoint,playerTime,characterID,score,playerID,
 						  playerLV,playerAttack,playerDefence, playerType,
-						  TEXTUERID_BLOCK1, TEXTUERID_BLOCK2),
+						  TEXTUREID_BLOCK1, TEXTUREID_BLOCK2),
 		m_AI(NULL)
 		
 {

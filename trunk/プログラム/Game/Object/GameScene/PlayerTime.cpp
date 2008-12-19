@@ -40,8 +40,8 @@ PlayerTime::~PlayerTime()
  */
 void PlayerTime::Initialize()
 {
-	m_x = m_player.GetPosition().x + 305.0f;
-	m_y = m_player.GetPosition().y + 450.0f;
+	m_x = m_player.GetPosition().x + 300.0f;
+	m_y = m_player.GetPosition().y + 50.0f;
 
 }
 

@@ -43,8 +43,8 @@ HitPoint::~HitPoint()
  */
 void HitPoint::Initialize()
 {
-	m_x = m_player.GetPosition().x + 305.0f;
-	m_y = m_player.GetPosition().y + 360.0f;
+	m_x = m_player.GetPosition().x + 300.0f;
+	m_y = m_player.GetPosition().y + 420.0f;
 }
 
 /*=========================================================================*/
@@ -76,9 +76,9 @@ bool HitPoint::IsTerminated()
 void HitPoint::RenderObject()
 {
 	SpriteDesc sd;
-	sd.textureID = TEXTUREID_AVATAR1;
+	sd.textureID = TEXTUREID_HP;
 	
-	sd.rect = Rect(m_x ,m_y ,m_x+BLOCK_SIZE ,m_y+BLOCK_SIZE);
+	sd.rect = Rect(m_x ,m_y ,m_x+100 ,m_y+20);
 	m_device.GetGraphicDevice().Render( sd );
 }
 
