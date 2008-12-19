@@ -20,7 +20,6 @@
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
-
 #include	"Define/GameDefine.h"
 
 class		Player;
@@ -123,7 +122,9 @@ public:
 	 * @param[in] ˆø”–¼ ˆø”à–¾.
 	 * @return –ß‚è’là–¾.
 	 */
-	int BlockCount( int x, int y, int id, int num, CheckMatrix & checkMatrix);
+	void BlockCount( int x, int y, int id, int &num, CheckMatrix & checkMatrix);
+	void BlockDelete( int x, int y);
+	void ChangeToFallBlock();
 
 
 private:

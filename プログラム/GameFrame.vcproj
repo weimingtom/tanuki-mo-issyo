@@ -513,6 +513,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\PlayerTime.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\PlayerTime.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\PuzzleScreen.cpp"
 						>
 					</File>

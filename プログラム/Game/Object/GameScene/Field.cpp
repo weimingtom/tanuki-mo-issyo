@@ -16,6 +16,7 @@
 #include "Object/GameScene/Field.h"
 #include "Object/GameScene/Player.h"
 #include "Define/GameDefine.h"
+#include <iostream>
 
 /*===== íËêîêÈåæ ==============================================================*/
 
@@ -135,7 +136,11 @@ void Field::UpdateObject(float frameTimer)
 	{
 		CheckBlock();
 
-		m_player.GetPuzzleScreen().GetBlockManager().CreateBlock();
+		ChangeToFallBlock();
+		if(m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0)
+		{
+			m_player.GetPuzzleScreen().GetBlockManager().CreateBlock();
+		}
 	}
 
 }
@@ -208,15 +213,24 @@ void Field::SetBlock(int x, int y, int id)
 void Field::CheckBlock( void )
 {
 	CheckMatrix checkMatrix;
+	for(int x=0; x< FIELD_WIDTH; x++)
+	{
+		for(int y=0; y<FIELD_HEIGHT; y++)
+		{
+			checkMatrix.checkedmatrix[x][y] = false;
+		}
+	}
 
 	for( int i = 0; i < FIELD_WIDTH; i++ ){
 			for( int j = 0 ; j < FIELD_HEIGHT; j++  ){
-				if( m_fieldBlock[i][j] != 0 ){
-					int id;
+				if( (m_fieldBlock[i][j] != 0) && (m_fieldBlock[i][j] != 255) ){
 					int	num = 0;
-					id = m_fieldBlock[i][j];
-					num = BlockCount( i, j, id, num , checkMatrix);
-
+						BlockCount( i, j, m_fieldBlock[i][j], num , checkMatrix);
+					if(num >= 4)
+					{
+						BlockDelete(i, j);
+					std::cout << "num:" << num << std::endl;
+					}
 			}
 		}
 	}
@@ -228,46 +242,78 @@ void Field::CheckBlock( void )
  * 
  * @return ñ≥Çµ
  */
-int Field::BlockCount(int x ,int y ,int id , int num, CheckMatrix & checkMatrix)
+void Field::BlockCount(int x ,int y ,int id , int &num, CheckMatrix & checkMatrix)
 {
+	if(checkMatrix.checkedmatrix[x][y])
+	{
+		return;
+	}
+	int buf = m_fieldBlock[x][y];
+	m_fieldBlock[x][y] = 0;
+	checkMatrix.checkedmatrix[x][y] = true;
+	num++;
 
-	if( m_fieldBlock[x][y+1] == id ){
-		num++;
-		checkMatrix.checkedmatrix[x][y+1] = true;
-		num = BlockCount(x, y+1, id, num, checkMatrix);
-		if( num >= 4 ){
-			checkMatrix.deleteflagmatrix[x][y+1] = true;
-		}
+	if(m_fieldBlock[x][y+1] == id ){
+		BlockCount(x, y+1, id, num, checkMatrix);
 	}
 
-	if( m_fieldBlock[x][y-1] == id ){
-		num++;
-		checkMatrix.checkedmatrix[x][y-1] = true;
-		num = BlockCount(x, y-1, id, num, checkMatrix);
-		if( num >= 4 ){
-			checkMatrix.deleteflagmatrix[x][y-1] = true;
-		}
+	if(m_fieldBlock[x][y-1] == id ){
+		BlockCount(x, y-1, id, num, checkMatrix);
 	}
 
-	if( m_fieldBlock[x+1][y] == id ){
-		num++;
-		checkMatrix.checkedmatrix[x+1][y] = true;
-		num = BlockCount(x+1, y, id, num, checkMatrix);
-		if( num >= 4 ){
-			checkMatrix.deleteflagmatrix[x+1][y] = true;
-		}
+	if(m_fieldBlock[x+1][y] == id ){
+		BlockCount(x+1, y, id, num, checkMatrix);
 	}
 
-	if( m_fieldBlock[x-1][y] == id ){
-		num++;
-		checkMatrix.checkedmatrix[x-1][y] = true;
-		num = BlockCount(x-1, y, id, num, checkMatrix);
-		if( num >= 4 ){
-			checkMatrix.deleteflagmatrix[x-1][y] = true;
-		}
+	if(m_fieldBlock[x-1][y] == id ){
+		BlockCount(x-1, y, id, num, checkMatrix);
 	}
 
-	return num;
+	m_fieldBlock[x][y] = buf;
+}
+
+void Field::BlockDelete(int x ,int y)
+{
+	int id = m_fieldBlock[x][y];
+	m_fieldBlock[x][y] = 0;
+
+	if(m_fieldBlock[x][y+1] == id ){
+		BlockDelete(x, y+1);
+	}
+
+	if(m_fieldBlock[x][y-1] == id ){
+		BlockDelete(x, y-1);
+	}
+
+	if(m_fieldBlock[x+1][y] == id ){
+		BlockDelete(x+1, y);
+	}
+
+	if(m_fieldBlock[x-1][y] == id ){
+		BlockDelete(x-1, y);
+	}
+}
+
+void Field::ChangeToFallBlock()
+{
+	for(int x=0; x<FIELD_WIDTH; x++)
+	{
+		bool isFloat = false;
+		for(int y=FIELD_HEIGHT-1; y>=0; y--)
+		{
+			if(m_fieldBlock[x][y] == 0)
+			{
+				isFloat = true;
+			}
+			if((isFloat) && (m_fieldBlock[x][y] != 0))
+			{
+				m_player.GetPuzzleScreen().GetBlockManager().AddFallBlock(new FallBlock(
+					m_device,m_objectManager,m_option,m_gameSceneState,m_player,
+					m_x + (BLOCK_SIZE * x) ,m_y + (BLOCK_SIZE * y),m_fieldBlock[x][y]));
+				m_fieldBlock[x][y] = 0;
+			}
+		}
+	}
 }
 
 /*===== EOF ===================================================================*/
