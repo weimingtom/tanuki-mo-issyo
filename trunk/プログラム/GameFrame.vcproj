@@ -481,6 +481,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\Gauge.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Gauge.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\HitPoint.cpp"
 						>
 					</File>

@@ -53,12 +53,13 @@ ObjectFactory::~ObjectFactory()
  * @return 生成したオブジェクトのポインタ.
  */
 
-Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState)
+Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState, float x, float y, int hp, int skillpoint[],
+		int playerTime, int characterID, int score, int playerID, int playerLV, int playerAttack,
+		int playerDefence, int playerType)
 {
 	Player* object;
-	int skill[4] = {0,1,2,3};
-	object = new Player(m_device, m_objectManager, m_option, gameSceneState, 100.0f,20.0f,
-		1,skill,3,4,5,6,7,8,9,0);
+	object = new Player(m_device, m_objectManager, m_option, gameSceneState, x, y,
+		hp,skillpoint,playerTime,characterID,score,playerID,playerLV,playerAttack,playerDefence,playerType);
 	//m_objectManager.AddObject(object);
 	return object;
 }

@@ -97,6 +97,7 @@ public:
 
 	AIBase& GetAI();
 	void SetAI(AIBase* ai);
+	PlayerParameter& GetPlayerParameter();
 
 private:
 

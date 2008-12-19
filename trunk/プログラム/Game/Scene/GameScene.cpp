@@ -17,6 +17,7 @@
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/GameScene/Player.h"
 #include	"Object/GameScene/FallBlock.h"
+#include	"Define/GameDefine.h"
 	
 /*=============================================================================*/
 /**
@@ -30,7 +31,9 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 	m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option), m_isTerminated(false), m_state()
 {
 	m_objectManager = new ObjectManager(device,option);
-	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(m_state));
+	int skill[4] = {1,2,3,4};
+	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
+		m_state,100.0f, 50.0f, 500, skill, 30, TEXTUREID_AVATAR2, 12000, 0, 5, 15, 20, TEXTUERID_SBLOCK1));
 }
 
 /*=============================================================================*/

@@ -57,7 +57,10 @@ public:
 	 * @return 生成したオブジェクトのポインタ.
 	 */
 
-	Player* CreatePlayer(GameSceneState& gameSceneState);
+	Player* CreatePlayer(GameSceneState& gameSceneState, float x, float y, int hp, int skillpoint[],
+		int playerTime, int characterID, int score, int playerID, int playerLV, int playerAttack,
+		int playerDefence, int playerType);
+
 	Block* CreateBlock(GameSceneState& gameSceneState,Player& player, int blockCID, int blockMID);
 
 private:

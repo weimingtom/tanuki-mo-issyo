@@ -31,7 +31,7 @@ public:
 	PlayerParameter(int hp, int skillPoint[], int playerTime,
 					int characterID, int score, int playerID,
 					int playerLV, int playerAttack, int playerDefence,
-					int playerType);
+					int playerType, int cblock, int mblock);
 
 	/*=========================================================================*/
 	/**
@@ -70,6 +70,9 @@ public:
 	int GetPlayerType();
 	void SetPlayerType(int playerType);
 
+	int GetNextCBlock();
+	int GetNextMBlock();
+	void SetNextBlock(int cblock, int mblock);
 
 private:
 
@@ -93,8 +96,10 @@ private:
 	int m_playerDefence;
 	/** プレイヤー属性 */
 	int m_playerType;
-	
-	
+	/** 次のブロックの軸ID */
+	int m_nextCBlock;
+	/** 次のブロックのサブID */
+	int m_nextMBlock;
 
 };
 

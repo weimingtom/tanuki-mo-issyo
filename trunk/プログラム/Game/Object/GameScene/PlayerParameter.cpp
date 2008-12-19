@@ -23,7 +23,7 @@
 PlayerParameter::PlayerParameter(int hp, int skillPoint[], int playerTime,
 					int characterID, int score, int playerID,
 					int playerLV, int playerAttack, int playerDefence,
-					int playerType)
+					int playerType, int cblock, int mblock)
 {
 	m_hp = hp;
 	m_skillPoint[4] = skillPoint[4];
@@ -35,6 +35,8 @@ PlayerParameter::PlayerParameter(int hp, int skillPoint[], int playerTime,
 	m_playerAttack = playerAttack;
 	m_playerDefence = playerDefence;
 	m_playerType = playerType; 
+	m_nextCBlock = cblock;
+	m_nextMBlock = mblock;
 
 }
 
@@ -148,8 +150,20 @@ void PlayerParameter::SetPlayerType(int playerType)
 	m_playerType = playerType;
 }
 
+int PlayerParameter::GetNextCBlock()
+{
+	return m_nextCBlock;
+}
 
+int PlayerParameter::GetNextMBlock()
+{
+	return m_nextMBlock;
+}
 
-
+void PlayerParameter::SetNextBlock(int cblock, int mblock)
+{
+	m_nextCBlock = cblock;
+	m_nextMBlock = mblock;
+}
 
 /*===== EOF ===================================================================*/
