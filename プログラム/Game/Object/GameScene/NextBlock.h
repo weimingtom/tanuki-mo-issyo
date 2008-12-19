@@ -1,33 +1,28 @@
 /*******************************************************************************/
 /**
- * @file CharacterScreen.h.
+ * @file NextBlock.h.
  * 
- * @brief キャラクタースクリーンヘッダ.
+ * @brief ネクストブロッククラスヘッダ定義.
  *
- * @date 2008/12/11.
+ * @date 2008/12/19.
  *
  * @version 1.00.
  *
  * @author Ryosuke Ogawa.
  */
 /*******************************************************************************/
-#ifndef _CHARACTER_SCREEN_H_
-#define _CHARACTER_SCREEN_H_
+#ifndef _NEXTBLOCK_H_
+#define _NEXTBLOCK_H_
 
+/*===== インクルード ==========================================================*/
 #include	"IGameDevice.h"
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
-#include	"Object/GameScene/Avatar.h"
-#include	"Object/GameScene/NextBlock.h"
-class		Player;
 
 
-/**
- * @brief CharacterScreen．
- */
-class CharacterScreen : public ObjectBase
+class NextBlock : public ObjectBase
 {
 public:
 
@@ -40,14 +35,15 @@ public:
 	 * @param[in] option ゲームオプション.
 	 * @param[in] gameSceneState ゲームシーンステート.
 	 */
-	CharacterScreen(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
+	NextBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
+	
 
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
 	 *
 	 */
-	~CharacterScreen();
+	~NextBlock();
 
 	/*=========================================================================*/
 	/**
@@ -86,7 +82,9 @@ public:
 	 */
 	void UpdateObject(float frameTimer);
 
+
 private:
+
 	/** 終了フラグ */
 	bool m_isTerminated;
 	/** ゲームデバイス */
@@ -96,15 +94,16 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState& m_gameSceneState;
+	GameSceneState m_gameSceneState;
 	/** プレーヤ */
-	Player&		m_player;
+	Player& m_player;
 
-	Avatar		m_avatar;
-	NextBlock	m_nextBlock;
+	/** y座標　*/
+	float m_y;
+	/** x座標　*/
+	float m_x;
 
 };
 
 #endif
 
-/*===== EOF ===================================================================*/

@@ -497,6 +497,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\NextBlock.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\NextBlock.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Player.cpp"
 						>
 					</File>
