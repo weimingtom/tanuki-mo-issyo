@@ -170,8 +170,8 @@ Field& BlockManager::GetField()
 void BlockManager::CreateBlock()
 {
 	int cid,mid;
-	cid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_SBLOCK4);
-	mid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_SBLOCK4);
+	cid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_BLOCK3);
+	mid = Random.randi(TEXTUERID_BLOCK1,TEXTUERID_BLOCK3);
 	m_block = new Block(m_device, m_objectManager, m_option, m_gameSceneState, m_player,cid, mid );
 	m_block->Initialize();
 }
