@@ -33,7 +33,8 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option& option
 		m_characterScreen(device,objectManager,option,gameSceneState, *this),
 		m_statusScreen(device,objectManager,option,gameSceneState, *this),
 		m_playerParameter(hp,skillPoint,playerTime,characterID,score,playerID,
-						  playerLV,playerAttack,playerDefence, playerType),
+						  playerLV,playerAttack,playerDefence, playerType,
+						  TEXTUERID_BLOCK1, TEXTUERID_BLOCK2),
 		m_AI(NULL)
 		
 {
@@ -151,6 +152,11 @@ AIBase& Player::GetAI()
 void Player::SetAI(AIBase* ai)
 {
 	m_AI = ai;
+}
+
+PlayerParameter& Player::GetPlayerParameter()
+{
+	return m_playerParameter;
 }
 
 /*===== EOF ===================================================================*/

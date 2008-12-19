@@ -77,7 +77,7 @@ bool Avatar::IsTerminated()
 void Avatar::RenderObject()
 {
 	SpriteDesc sd;
-	sd.textureID = TEXTUREID_AVATAR1;
+	sd.textureID = m_player.GetPlayerParameter().GetCharacterID();
 	
 	sd.rect = Rect(m_x ,m_y ,m_x+256 ,m_y+256);
 	m_device.GetGraphicDevice().Render( sd );
