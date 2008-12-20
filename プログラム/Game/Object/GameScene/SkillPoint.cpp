@@ -43,7 +43,7 @@ SkillPoint::~SkillPoint()
  */
 void SkillPoint::Initialize()
 {
-	m_x = m_player.GetPosition().x + 20.0f;
+	m_x = m_player.GetPosition().x;
 	m_y = m_player.GetPosition().y + 500.0f;
 }
 
@@ -75,11 +75,16 @@ bool SkillPoint::IsTerminated()
  */
 void SkillPoint::RenderObject()
 {
-	SpriteDesc sd;
-	sd.textureID = TEXTUREID_SKILL;
+	SpriteDesc sd[4];
+	sd[0].textureID = TEXTUREID_SKILL;
+	sd[1].textureID = TEXTUREID_SKILL;
+	sd[2].textureID = TEXTUREID_SKILL;
+	sd[3].textureID = TEXTUREID_SKILL;
 	
-	sd.rect = Rect(m_x ,m_y ,m_x+BLOCK_SIZE ,m_y+BLOCK_SIZE);
-	m_device.GetGraphicDevice().Render( sd );
+	for( int i = 0; i < 4; i++ ){
+		sd[i].rect = Rect(m_x +i*70 ,m_y ,m_x+BLOCK_SIZE +i*70 ,m_y+BLOCK_SIZE);
+		m_device.GetGraphicDevice().Render( sd[i] );
+	}
 }
 
 /*=========================================================================*/
