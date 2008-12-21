@@ -1,58 +1,44 @@
 /*******************************************************************************/
 /**
- * @file StattusScreen.h.
+ * @file Skill.h.
  * 
- * @brief ステータススクリーンヘッダファイル.
+ * @brief スキルクラスヘッダ定義.
  *
- * @date 2008/12/15.
+ * @date 2008/12/21.
  *
  * @version 1.00.
  *
- * @author Ryoma Kawasue.
+ * @author Ryosuke Ogawa.
  */
 /*******************************************************************************/
 
-#ifndef _STATUS_SCREEN_H_
-#define _STATUS_SCREEN_H_
+#ifndef _SKILL_H_
+#define _SKILL_H_
 
-/*===== インクルード ==========================================================*/
 #include	"IGameDevice.h"
 #include	"Manager/Object/ObjectManager.h"
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
-class		Player;
-#include	"Object/GameScene/SkillPoint.h"
-#include	"Object/GameScene/HitPoint.h"
-#include	"Object/GameScene/Score.h"
-#include    "Object/GameScene/PlayerTime.h"
-#include	"Object/GameScene/NextBlock.h"
-#include	"Object/GameScene/CharacterType.h"
-#include	"Object/GameScene/Skill.h"
-#include    "Object/GameScene/Attack.h"
-#include    "Object/GameScene/Defence.h"
 
 
-class StatusScreen : public ObjectBase
+class Skill : public ObjectBase
 {
 public:
+
 	/*=========================================================================*/
 	/**
 	 * @brief コンストラクタ.
-	 * 
-	 * @param[in] device ゲームデバイス.
-	 * @param[in] objectManager オブジェクトマネージャ.
-	 * @param[in] option ゲームオプション.
-	 * @param[in] gameSceneState ゲームシーンステート.
+	 *
 	 */
-	StatusScreen(IGameDevice &device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
+	Skill(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
 
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
 	 *
 	 */
-	~StatusScreen();
+	~Skill();
 
 	/*=========================================================================*/
 	/**
@@ -64,6 +50,7 @@ public:
 	/*=========================================================================*/
 	/**
 	 * @brief 終了処理.
+	 * 
 	 */
 	void Terminate();
 
@@ -88,7 +75,7 @@ public:
 	 * 
 	 * @param[in] frameTimer 更新タイマ.
 	 */
-	void UpdateObject( float frameTimer );
+	void UpdateObject(float frameTimer);
 
 private:
 	/** 終了フラグ */
@@ -104,24 +91,10 @@ private:
 	/** プレーヤ */
 	Player& m_player;
 
-	/** スキルポイント */
-	SkillPoint	m_skillPoint;
-	/** ヒットポイント */
-	HitPoint	m_hitPoint;
-	/** スコア */
-	Score		m_score;
-	/** プレイヤータイム */
-	PlayerTime	m_playerTime;
-	/** ネクストブロック */
-	NextBlock	m_nextBlock;
-	/** キャラクタタイプ */
-	CharacterType	m_characterType;
-	/** スキル */
-	Skill		m_skill;
-	/** 攻撃力 */
-	Attack		m_attack;
-	/** 防御壁 */
-	Defence		m_defence;
+	/** y座標　*/
+	float m_y;
+	/** x座標　*/
+	float m_x;
 
 };
 
