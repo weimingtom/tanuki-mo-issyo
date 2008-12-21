@@ -32,7 +32,9 @@ StatusScreen::StatusScreen(IGameDevice &device, ObjectManager &objectManager, Op
 		m_hitPoint(device,objectManager,option,gameSceneState, m_player),
 		m_score(device,objectManager,option,gameSceneState, m_player),
 		m_playerTime(device,objectManager,option,gameSceneState, m_player),
-		m_nextBlock(device, objectManager, option, gameSceneState, m_player)
+		m_nextBlock(device, objectManager, option, gameSceneState, m_player),
+		m_attack(device, objectManager, option, gameSceneState, m_player),
+		m_defence(device, objectManager, option, gameSceneState, m_player)
 {
 
 }
@@ -59,6 +61,8 @@ void StatusScreen::Initialize()
 	m_score.Initialize();
 	m_playerTime.Initialize();
 	m_nextBlock.Initialize();
+	m_attack.Initialize();
+	m_defence.Initialize();
 }
 
 /*=============================================================================*/
@@ -73,6 +77,8 @@ void StatusScreen::Terminate()
 	m_score.Terminate();
 	m_playerTime.Terminate();
 	m_nextBlock.Terminate();
+	m_attack.Terminate();
+	m_defence.Terminate();
 	m_isTerminated = true;
 }
 
@@ -100,6 +106,8 @@ void StatusScreen::RenderObject()
 	m_score.RenderObject();
 	m_playerTime.RenderObject();
 	m_nextBlock.RenderObject();
+	m_attack.RenderObject();
+	m_defence.RenderObject();
 }
 
 /*=============================================================================*/
@@ -115,6 +123,8 @@ void StatusScreen::UpdateObject(float frameTimer)
 	m_score.UpdateObject(frameTimer);
 	m_playerTime.UpdateObject(frameTimer);
 	m_nextBlock.UpdateObject(frameTimer);
+	m_attack.UpdateObject(frameTimer);
+	m_defence.UpdateObject(frameTimer);
 }
 
 
