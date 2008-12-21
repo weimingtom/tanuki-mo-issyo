@@ -26,6 +26,7 @@ class		Player;
 #include	"Object/GameScene/HitPoint.h"
 #include	"Object/GameScene/Score.h"
 #include    "Object/GameScene/PlayerTime.h"
+#include	"Object/GameScene/NextBlock.h"
 
 
 class StatusScreen : public ObjectBase
@@ -107,6 +108,9 @@ private:
 	Score		m_score;
 	/** プレイヤータイム */
 	PlayerTime	m_playerTime;
+
+	/** ネクストブロック */
+	NextBlock	m_nextBlock;
 
 };
 

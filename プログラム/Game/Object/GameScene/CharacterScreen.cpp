@@ -20,8 +20,7 @@
  */ 
 CharacterScreen::CharacterScreen(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player &player) :
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false),
-		m_avatar(device, objectManager, option, gameSceneState, player),
-		m_nextBlock(device, objectManager, option, gameSceneState, player)
+		m_avatar(device, objectManager, option, gameSceneState, player)
 {
 
 }
@@ -44,7 +43,6 @@ CharacterScreen::~CharacterScreen()
 void CharacterScreen::Initialize()
 {
 	m_avatar.Initialize();
-	m_nextBlock.Initialize();
 }
 
 /*=========================================================================*/
@@ -55,7 +53,6 @@ void CharacterScreen::Initialize()
 void CharacterScreen::Terminate()
 {
 	m_avatar.Terminate();
-	m_nextBlock.Terminate();
 	m_isTerminated = true;
 }
 
@@ -79,7 +76,6 @@ bool CharacterScreen::IsTerminated()
 void CharacterScreen::RenderObject()
 {
 	m_avatar.RenderObject();
-	m_nextBlock.RenderObject();
 }
 
 /*=========================================================================*/
@@ -91,7 +87,6 @@ void CharacterScreen::RenderObject()
 void CharacterScreen::UpdateObject(float frameTimer)
 {
 	m_avatar.UpdateObject(frameTimer);
-	m_nextBlock.UpdateObject(frameTimer);
 }
 
 
