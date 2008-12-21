@@ -433,6 +433,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\Attack.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Attck.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Avatar.cpp"
 						>
 					</File>
@@ -462,6 +470,14 @@
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\CharacterScreen.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Defence.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Defence.h"
 						>
 					</File>
 					<File
