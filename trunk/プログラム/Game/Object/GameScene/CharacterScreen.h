@@ -20,7 +20,6 @@
 #include	"Scene/GameSceneState.h"
 #include	"Manager/Scene/Option/Option.h"
 #include	"Object/GameScene/Avatar.h"
-#include	"Object/GameScene/NextBlock.h"
 class		Player;
 
 
@@ -101,7 +100,6 @@ private:
 	Player&		m_player;
 
 	Avatar		m_avatar;
-	NextBlock	m_nextBlock;
 
 };
 
