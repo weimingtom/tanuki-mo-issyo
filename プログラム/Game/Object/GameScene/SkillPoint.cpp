@@ -43,8 +43,17 @@ SkillPoint::~SkillPoint()
  */
 void SkillPoint::Initialize()
 {
-	m_x = m_player.GetPosition().x;
-	m_y = m_player.GetPosition().y + 500.0f;
+	switch( m_player.GetPlayerParameter().GetPlayerID())
+	{
+	case(0):
+		m_x = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().x + 30.0f;
+		m_y = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + 500.0f;
+		break;
+	case(1):
+		m_x = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().x + 30.0f;
+		m_y = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + 500.0f;
+		break;
+	}
 }
 
 /*=========================================================================*/
@@ -81,8 +90,9 @@ void SkillPoint::RenderObject()
 	sd[2].textureID = TEXTUREID_SKILL;
 	sd[3].textureID = TEXTUREID_SKILL;
 	
-	for( int i = 0; i < 4; i++ ){
-		sd[i].rect = Rect(m_x +i*70 ,m_y ,m_x+BLOCK_SIZE +i*70 ,m_y+BLOCK_SIZE);
+	for( int i = 0; i < 4; i++ )
+	{
+		sd[i].rect = Rect(m_x + i*60 ,m_y ,m_x+BLOCK_SIZE + i*60 ,m_y+BLOCK_SIZE);
 		m_device.GetGraphicDevice().Render( sd[i] );
 	}
 }

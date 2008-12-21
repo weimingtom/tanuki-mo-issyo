@@ -44,8 +44,18 @@ Avatar::~Avatar()
  */
 void Avatar::Initialize()
 {
-	m_x = m_player.GetPosition().x + 300.0f;
-	m_y = m_player.GetPosition().y + 100.0f;
+	switch( m_player.GetPlayerParameter().GetPlayerID())
+	{
+	case(0):
+		m_x = m_player.GetPosition().x + 300.0f;
+		m_y = m_player.GetPosition().y + 300.0f;
+		break;
+	case(1):
+		m_x = m_player.GetPosition().x + 20.0f;
+		m_y = m_player.GetPosition().y + 300.0f;
+		break;
+	}
+
 }
 
 /*=========================================================================*/
@@ -79,7 +89,7 @@ void Avatar::RenderObject()
 	SpriteDesc sd;
 	sd.textureID = m_player.GetPlayerParameter().GetCharacterID();
 	
-	sd.rect = Rect(m_x ,m_y ,m_x+256 ,m_y+256);
+	sd.rect = Rect(m_x ,m_y ,m_x+100 ,m_y+200);
 	m_device.GetGraphicDevice().Render( sd );
 }
 
