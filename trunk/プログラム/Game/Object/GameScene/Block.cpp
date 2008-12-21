@@ -57,8 +57,8 @@ Block::~Block()
  */
 void Block::Initialize()
 {
-	m_x = m_player.GetPosition().x + (BLOCK_SIZE * (int)(FIELD_WIDTH / 2));
-	m_y = m_player.GetPosition().y;
+	m_x = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().x + (BLOCK_SIZE * (int)(FIELD_WIDTH / 2));
+	m_y = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y;
 	m_tx = m_x;
 	m_ty = m_y;
 	m_angle = 0;

@@ -34,8 +34,8 @@
 ----------*/
 typedef Ngl::SoundPlayType	SoundPlayType;
 
-static const int WINDOW_WIDTH	= 800;	/**< ウィンドウ幅	*/
-static const int WINDOW_HEIGHT	= 600;	/**< ウィンドウ高さ */
+static const int WINDOW_WIDTH	= 1024;	/**< ウィンドウ幅	*/
+static const int WINDOW_HEIGHT	= 640;	/**< ウィンドウ高さ */
 static const SoundPlayType PLAYTYPE_DEFAULT	= Ngl::SOUNDPLAYTYPE_NORMAL;
 static const SoundPlayType PLAYTYPE_WAIT	= Ngl::SOUNDPLAYTYPE_WAIT;
 static const SoundPlayType PLAYTYPE_LOOP	= Ngl::SOUNDPLAYTYPE_LOOP;

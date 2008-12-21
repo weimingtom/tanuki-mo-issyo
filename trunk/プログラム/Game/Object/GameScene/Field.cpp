@@ -69,8 +69,17 @@ Field::~Field()
  */
 void Field::Initialize()
 {
-	m_x = m_player.GetPosition().x;
-	m_y = m_player.GetPosition().y;
+	switch( m_player.GetPlayerParameter().GetPlayerID())
+	{
+	case(0):
+		m_x = m_player.GetPosition().x + 0.0f;
+		m_y = m_player.GetPosition().y + 0.0f;
+		break;
+	case(1):
+		m_x = m_player.GetPosition().x + 150.0f;
+		m_y = m_player.GetPosition().y + 0.0f;
+		break;
+	}
 }
 
 /*=============================================================================*/
@@ -120,7 +129,6 @@ void Field::RenderObject()
 			}
 		}
 	}
-	
 }
 
 /*=============================================================================*/

@@ -43,8 +43,17 @@ Score::~Score()
  */
 void Score::Initialize()
 {
-	m_x = m_player.GetPosition().x + 300.0f;
-	m_y = m_player.GetPosition().y + 370.0f;
+	switch( m_player.GetPlayerParameter().GetPlayerID())
+	{
+	case(0):
+		m_x = m_player.GetPosition().x + 300.0f;
+		m_y = m_player.GetPosition().y + 0.0f;
+		break;
+	case(1):
+		m_x = m_player.GetPosition().x + 20.0f;
+		m_y = m_player.GetPosition().y + 0.0f;
+		break;
+	}
 }
 
 /*=========================================================================*/

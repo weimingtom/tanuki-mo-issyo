@@ -43,8 +43,17 @@ HitPoint::~HitPoint()
  */
 void HitPoint::Initialize()
 {
-	m_x = m_player.GetPosition().x + 300.0f;
-	m_y = m_player.GetPosition().y + 420.0f;
+	switch( m_player.GetPlayerParameter().GetPlayerID())
+	{
+	case(0):
+		m_x = m_player.GetPosition().x + 300.0f;
+		m_y = m_player.GetPosition().y + 100.0f;
+		break;
+	case(1):
+		m_x = m_player.GetPosition().x + 20.0f;
+		m_y = m_player.GetPosition().y + 100.0f;
+		break;
+	}
 }
 
 /*=========================================================================*/
