@@ -25,6 +25,7 @@
 #include	<Ngl/IMesh.h>
 #include	<Ngl/IMapMesh.h>
 #include	<map>
+#include	<windows.h>
 
 
 /**
@@ -151,6 +152,10 @@ public:
 	 * @return Ç»Çµ.
 	 */
 	virtual void Render( const TextDesc& desc );
+
+	HFONT CreateFontHandler(unsigned int FontCode, unsigned int FontPoint, const char* pFontName);
+	bool CreateStringBitmapFont(HFONT hFont,const char* pString, BYTE** ppBitmap, PSIZEL pBitmapSize);
+	void CreateBitmapBits(HDC hDC, HBITMAP hBmp, BYTE** ppBits,DWORD* pBitsSize);
 	
 	
 	/**
@@ -161,7 +166,6 @@ public:
 	 * @return Ç»Çµ.
 	 */
 	virtual void LoadMesh( unsigned int id, std::string filename );
-	
 	
 	/**
 	 * @brief ÉÅÉbÉVÉÖÇï`âÊ<br>
