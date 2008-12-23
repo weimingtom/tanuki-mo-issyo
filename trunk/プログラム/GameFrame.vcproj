@@ -394,6 +394,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Game\Define\TextDesc.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Game\Define\TextureID.h"
 					>
 				</File>

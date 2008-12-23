@@ -14,28 +14,24 @@
 #ifndef _GAUGEDESC_H_
 #define _GAUGEDESC_H_
 
-#include	"Define.h"
-#include	<Ngl/Vector2.h>
-#include	<Ngl/Rect.h>
-
 /*--------------
    構造体定義
 ----------------*/
 typedef struct{
 	/** 最大横幅 */
-	float Max;
+	float max;
 	/** ゲージの位置 */
-	float Point;
+	float point;
 	/** サイズ */
-	Vector2 Size;
+	Vector2 size;
 
-	Vector2 Position;
+	Vector2 position;
 
-	int Texture1;
-	int Texture2;
+	int texture1;
+	int texture2;
 
-	Rect TextureRec1;
-	Rect TextureRec2;
+	Rect textureRec1;
+	Rect textureRec2;
 }GaugeDesc;
 
 

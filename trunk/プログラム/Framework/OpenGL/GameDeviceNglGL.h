@@ -20,6 +20,8 @@
 #include	"SoundDeviceDS.h"
 #include	"InputDeviceImpl.h"
 #include	"IGameDevice.h"
+#include	"Define/GaugeDesc.h"
+#include	"Define/TextDesc.h"
 
 /**
  * @brief NGLライブラリOpenGLゲームデバイス実装クラス.
