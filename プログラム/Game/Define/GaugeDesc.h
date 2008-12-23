@@ -20,7 +20,8 @@
 /*--------------
    構造体定義
 ----------------*/
-typedef struct{
+struct GaugeDesc
+{
 	/** 最大横幅 */
 	float max;
 	/** ゲージの位置 */
@@ -35,7 +36,7 @@ typedef struct{
 
 	Rect textureRec1;
 	Rect textureRec2;
-}GaugeDesc;
+};
 
 
 #endif

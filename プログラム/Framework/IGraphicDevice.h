@@ -137,6 +137,21 @@ public:
 	 * @return なし.
 	 */virtual void Render( const SpriteDesc& desc ) = 0;
 	
+	/**
+	 * @brief ゲージを描画<br>
+	 * 
+	 * @param[in] desc ゲージ記述子.
+	 * @return なし.
+	 */
+	virtual void Render( const GaugeDesc& desc ) = 0;
+
+	/**
+	 * @brief テキストを描画<br>
+	 * 
+	 * @param[in] desc テキスト記述子.
+	 * @return なし.
+	 */
+	virtual void Render( const TextDesc& desc ) = 0;
 	
 	/**
 	 * @brief メッシュを読み込む<br>

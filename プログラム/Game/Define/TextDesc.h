@@ -25,14 +25,14 @@
 #define FONT_CODE_UNDERLINE	(1 << 2)
 #define FONT_CODE_STRIKEOUT	(1 << 3)
 
-typedef struct
+struct TextDesc
 {
 	unsigned int code;
 	unsigned int size;
 	std::string font;
 	std::string string;
 	
-}TextDesc;
+};
 
 #endif
 
