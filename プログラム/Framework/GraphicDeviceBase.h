@@ -15,6 +15,7 @@
 #define _GRAPHICDEVICEBASE_H_
 
 #include	"EffectParameter.h"
+
 #include	"IGraphicDevice.h"
 #include	<Ngl/PolygonQuad.h>
 #include	<Ngl/AnimationController.h>
@@ -24,6 +25,7 @@
 #include	<Ngl/IMesh.h>
 #include	<Ngl/IMapMesh.h>
 #include	<map>
+
 
 /**
  * @brief グラフィックデバイス基底クラス
@@ -133,6 +135,14 @@ public:
 	 * @return なし.
 	 */
 	virtual void Render( const SpriteDesc& desc );
+
+	/**
+	 * @brief ゲージを描画<br>
+	 * 
+	 * @param[in] desc ゲージ記述子.
+	 * @return なし.
+	 */
+	virtual void Render( const GaugeDesc& desc );
 	
 	
 	/**
