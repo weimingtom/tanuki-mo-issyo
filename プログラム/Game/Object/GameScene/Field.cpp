@@ -130,13 +130,6 @@ void Field::RenderObject()
 		}
 	}
 
-	TextDesc td;
-	td.position = Vector2(10.0f, 0.0f);
-	td.code = FONT_CODE_NORMAL;
-	td.font = "Mistral";
-	td.size = 30;
-	td.string = "asdasdasadsads";
-	m_device.GetGraphicDevice().Render( td );
 }
 
 /*=============================================================================*/
