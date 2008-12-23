@@ -59,7 +59,7 @@ public:
 
 	Player* CreatePlayer(GameSceneState& gameSceneState, float x, float y, int hp, int skillpoint[],
 		int playerTime, int characterID, int score, int playerID, int playerLV, int playerAttack,
-		int playerDefence, int playerType);
+		int playerDefence, int playerType,int maxHp);
 
 	Block* CreateBlock(GameSceneState& gameSceneState,Player& player, int blockCID, int blockMID);
 

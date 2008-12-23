@@ -23,7 +23,7 @@
 PlayerParameter::PlayerParameter(int hp, int skillPoint[], int playerTime,
 					int characterID, int score, int playerID,
 					int playerLV, int playerAttack, int playerDefence,
-					int playerType, int cblock, int mblock)
+					int playerType, int cblock, int mblock,int maxHp)
 {
 	m_hp = hp;
 	m_skillPoint[4] = skillPoint[4];
@@ -37,6 +37,7 @@ PlayerParameter::PlayerParameter(int hp, int skillPoint[], int playerTime,
 	m_playerType = playerType; 
 	m_nextCBlock = cblock;
 	m_nextMBlock = mblock;
+	m_maxHp = maxHp;
 
 }
 
@@ -166,4 +167,13 @@ void PlayerParameter::SetNextBlock(int cblock, int mblock)
 	m_nextMBlock = mblock;
 }
 
+int PlayerParameter::GetMaxHp()
+{
+	return m_maxHp;
+}
+
+void PlayerParameter::SetMaxHp(int maxHp)
+{
+	m_maxHp = maxHp;
+}
 /*===== EOF ===================================================================*/
