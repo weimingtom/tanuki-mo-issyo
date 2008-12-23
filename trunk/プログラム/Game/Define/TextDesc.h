@@ -31,7 +31,7 @@ struct TextDesc
 	unsigned int size;
 	std::string font;
 	std::string string;
-	
+	Vector2 position;
 };
 
 #endif

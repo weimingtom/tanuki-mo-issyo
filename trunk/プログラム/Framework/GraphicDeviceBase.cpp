@@ -460,105 +460,224 @@ void GraphicDeviceBase::Render(const GaugeDesc &desc_)
  */
 void GraphicDeviceBase::Render(const TextDesc &desc)
 {
-	
-	HFONT hFont = CreateFont(desc.size, 0, 0, 0,
-		(( desc.code & FONT_CODE_BOLD) != 0) ? FONT_CODE_BOLD : FONT_CODE_NORMAL,
-		(( desc.code & FONT_CODE_ITALIC) != 0) ? true : false,
-		(( desc.code & FONT_CODE_UNDERLINE) != 0) ? true : false,
-		(( desc.code & FONT_CODE_STRIKEOUT) != 0) ? true : false,
+	HFONT			hFont;
+	BYTE*			pBitmap;
+	SIZEL			BitmapSize;
+
+	/* 各種レンダリングモードの退避 */
+	glPushAttrib( GL_ENABLE_BIT );
+	glPushMatrix();
+
+	/* テクスチャを無効にする */
+	glDisable( GL_TEXTURE_2D );
+	glDisable( GL_TEXTURE_1D );
+
+	/* フォントを作成する */
+	hFont = CreateFontHandler( desc.code, desc.size, desc.font.c_str() );
+
+	/* ビットマップフォントの作成 */
+	if ( CreateStringBitmapFont( 
+			hFont, desc.string.c_str(), &pBitmap, &BitmapSize ) == true )
+	{
+		glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
+
+		/* ビットマップフォントを描画する */
+		glRasterPos2f(desc.position.x, desc.position.y + BitmapSize.cy );
+		glBitmap( BitmapSize.cx, BitmapSize.cy, 0.0f, 0.0f, 0.0f, 0.0f, pBitmap );
+
+		/* ビットマップフォントの解放 */
+		free( pBitmap );
+	}
+
+	/* フォントを消滅させる */
+	DeleteObject( hFont );
+
+	/* レンダリングモードの復帰 */
+	glPopMatrix();
+	glPopAttrib();
+}
+
+HFONT GraphicDeviceBase::CreateFontHandler(unsigned int FontCode, unsigned int FontPoint, const char* pFontName)
+{
+	HFONT		hFont;
+	DWORD		Bold;
+	bool		bItalic;
+	bool		bUline;
+	bool		bSout;
+	HDC			hDC;
+
+	/* フォントの属性を設定する */
+	Bold    = ( ( FontCode & FONT_CODE_BOLD      ) != 0 ) ? FONT_CODE_BOLD: FONT_CODE_NORMAL;
+	bItalic = ( ( FontCode & FONT_CODE_ITALIC    ) != 0 ) ? true: false;
+	bUline  = ( ( FontCode & FONT_CODE_UNDERLINE ) != 0 ) ? true: false;
+	bSout   = ( ( FontCode & FONT_CODE_STRIKEOUT ) != 0 ) ? true: false;
+
+	/* デバイスコンテキストの取得 */
+	hDC = wglGetCurrentDC();
+
+	/* フォントを作成する */
+	hFont = CreateFont
+	(
+		FontPoint, 0, 0, 0,
+		Bold, bItalic, bUline, bSout,
 		SHIFTJIS_CHARSET,
 		OUT_STROKE_PRECIS,
 		CLIP_CHARACTER_PRECIS,
-		DEFAULT_CHARSET,
+		DEFAULT_QUALITY,
 		DEFAULT_PITCH,
-		desc.font.c_str());
+		pFontName
+	);
 
-	BYTE* pBitmap;
-	PSIZEL BitmapSize;
-
-	//-------
-
-	if( lstrlen(desc.string.c_str()) == 0)
-	{
-		return ;
-	}
-
-	HDC hDC = wglGetCurrentDC();
-
-	HFONT hFontOld = (HFONT)SelectObject( hDC, hFont );
-	GetTextExtentPoint32( hDC, desc.string.c_str(), lstrlen( desc.string.c_str() ), BitmapSize);
-
-	BITMAP bmp;
-	memset( &bmp, 0, sizeof(BITMAP));
-	bmp.bmWidth			= BitmapSize->cx;
-	bmp.bmHeight		= BitmapSize->cy;
-	bmp.bmWidthBytes	= (( BitmapSize->cx + 7 ) / 8 + 1 ) & (~1);
-	bmp.bmPlanes		= 1;
-	bmp.bmBitsPixel		= 1;
-	bmp.bmBits			= calloc(bmp.bmWidthBytes * BitmapSize->cx, sizeof(BYTE));
-	
-	HBITMAP hbmp = CreateBitmapIndirect( &bmp );
-
-	free( bmp.bmBits );
-
-	if( hbmp == 0)
-	{
-		SelectObject( hDC, hFontOld );
-		return;
-	}
-
-	HDC hMemDC;
-	if( (hMemDC = CreateCompatibleDC( hDC ) ) == 0 )
-	{
-		SelectObject( hDC, hFontOld );
-		DeleteObject( hbmp );
-		return;
-	}
-
-	HBITMAP hPrevBmp = (HBITMAP)SelectObject( hMemDC, hbmp );
-	SetBkColor( hMemDC,RGB(0, 0, 0));
-	SetBkMode( hMemDC, OPAQUE );
-	SetTextColor( hMemDC, RGB(255, 255, 255));
-	HFONT hPrevFont = (HFONT)SelectObject( hMemDC, hFont);
-	TextOut( hMemDC, 0, 0, desc.string.c_str(), lstrlen(desc.string.c_str()) );
-	
-	BITMAP bi;
-	GetObject( hbmp, sizeof(bi), &bi);
-//
-	BITMAPINFO* binf;
-	BITMAP bi2;
-	DWORD bitSize;
-	GetObject( hbmp, sizeof(BITMAP),&bi2);
-	bitSize = bi2.bmHeight * ((( bi2.bmWidth + 31 ) & (~31)) / 8 );
-	pBitmap = (BYTE*)calloc( bitSize, sizeof(BYTE));
-	binf->bmiHeader.biSize			= sizeof(binf->bmiHeader);
-	binf->bmiHeader.biWidth			= bi2.bmWidth;
-	binf->bmiHeader.biHeight		= bi2.bmHeight;
-	binf->bmiHeader.biPlanes		= 1;
-	binf->bmiHeader.biBitCount		= 1;
-	binf->bmiHeader.biCompression	= BI_RGB;
-	binf->bmiHeader.biSizeImage		= bitSize;
-	binf->bmiHeader.biXPelsPerMeter	= 1;
-	binf->bmiHeader.biYPelsPerMeter	= 1;
-	binf->bmiHeader.biClrUsed		= 0;
-	binf->bmiHeader.biClrImportant	= 0;
-
-	GetDIBits( hDC, hbmp, 0, bi2.bmHeight, pBitmap, binf, DIB_RGB_COLORS );
-
-	BitmapSize->cx = (( bi.bmWidth + 31 ) & (~31));
-	BitmapSize->cy = bi.bmHeight;
-
-	SelectObject( hMemDC, hPrevFont );
-	SelectObject( hMemDC, hPrevBmp );
-
-	DeleteDC( hMemDC );
-	SelectObject( hDC, hFontOld );
-	DeleteObject( hbmp );
-
-	
-
+	return	hFont;
 }
 
+bool GraphicDeviceBase::CreateStringBitmapFont(HFONT hFont,const char* pString, BYTE** ppBitmap, PSIZEL pBitmapSize)
+{
+
+	HDC				hDC;
+	BITMAP			bmp;
+	HBITMAP			hbmp;
+	HFONT			hFontOld;
+	HBITMAP			hPrevBmp;
+	HFONT			hPrevFont;
+	HDC				hMemDC;
+	DWORD			BitsSize;
+	BITMAP			bi;
+	int				len;
+
+	/* 文字列の長さを求める */
+	if ( ( len = lstrlen( pString ) ) == 0 )
+	{
+		return	false;
+	}
+
+	/* デバイスコンテキストを取得 */
+	hDC = wglGetCurrentDC();
+
+
+	/* 現在のデバイスコンテキストのフォントハンドラを取得 */
+	hFontOld = (HFONT)SelectObject( hDC, hFont );
+
+	/* ビットマップ文字列のサイズを取得する */
+	GetTextExtentPoint32( hDC, pString, len, pBitmapSize );
+
+	/* ビットマップを作成する */
+	memset( &bmp, 0, sizeof( BITMAP ) );
+	bmp.bmWidth      = pBitmapSize->cx;
+	bmp.bmHeight     = pBitmapSize->cy;
+	bmp.bmWidthBytes = ( ( pBitmapSize->cx + 7 ) / 8 + 1 ) & (~1);
+	bmp.bmPlanes     = 1;
+	bmp.bmBitsPixel  = 1;
+	bmp.bmBits       = calloc( bmp.bmWidthBytes * pBitmapSize->cy, sizeof(BYTE) );
+	hbmp = CreateBitmapIndirect( &bmp );
+
+	/* ビットマップイメージを解放する */
+	free( bmp.bmBits );
+
+	/* ビットマップが作成できたか？ */
+	if ( hbmp == 0 )
+	{
+		/* フォントハンドラを復帰する */
+		SelectObject( hDC, hFontOld );
+
+		return	false;
+	}
+
+	/* メモリデバイスコンテキストを作成する */
+	if ( ( hMemDC = CreateCompatibleDC( hDC ) ) == 0 )
+	{
+		/* フォントハンドラを復帰する */
+		SelectObject( hDC, hFontOld );
+
+		/* ビットマップを解放する */
+		DeleteObject( hbmp );
+
+		return	false;
+	}
+
+	/* 現在のメモリデバイスコンテストのビットマップハンドラを取得 */
+	hPrevBmp = (HBITMAP)SelectObject( hMemDC, hbmp );
+
+	/* 文字列の背景色を黒に設定 */
+	SetBkColor( hMemDC, RGB( 0, 0, 0 ) );
+
+	/* 背景色で塗りつぶす */
+	SetBkMode( hMemDC, OPAQUE );
+
+	/* 文字列のカラーの設定 */
+	SetTextColor( hMemDC, RGB( 255, 255, 255 ) );
+
+	/* 現在のメモリデバイスコンテストのフォントハンドラを取得 */
+	hPrevFont = (HFONT)SelectObject( hMemDC, hFont );
+
+	/* テキストを描画する */
+	TextOut( hMemDC, 0, 0, pString, len );
+
+	/* ビットマップの取得 */
+	GetObject( hbmp, sizeof(bi), &bi );
+
+	/* ビットマップイメージの作成 */
+	CreateBitmapBits( hMemDC, hbmp, ppBitmap, &BitsSize );
+
+	/* ビットマップイメージのサイズを計算する */
+	pBitmapSize->cx = ( ( bi.bmWidth + 31 )& ( ~31 ) );
+	pBitmapSize->cy = bi.bmHeight;
+
+	/* メモリデバイスコンテストのフォントハンドラを復帰 */
+	SelectObject( hMemDC, hPrevFont );
+
+	/* メモリデバイスコンテストのビットマップハンドラを復帰 */
+	SelectObject( hMemDC, hPrevBmp );
+
+	/* メモリデバイステキストを削除 */
+	DeleteDC( hMemDC );
+
+	/* フォントハンドラを復帰する */
+	SelectObject( hDC, hFontOld );
+
+	/* ビットマップを削除する */
+	DeleteObject( hbmp );
+
+	return	true;
+}
+
+void GraphicDeviceBase::CreateBitmapBits(HDC hDC, HBITMAP hBmp, BYTE** ppBits,DWORD* pBitsSize)
+{
+	BITMAP			bi;
+	struct
+	{
+		BITMAPINFOHEADER bih;
+		RGBQUAD col[2];
+	} bic;
+	BITMAPINFO* 	binf;
+
+	/* ビットマップ情報の作成 */
+	binf = (BITMAPINFO *)&bic;
+
+	/* ビットマップを取得する */
+	GetObject( hBmp, sizeof(bi), &bi );
+
+	/* ビットマップイメージのサイズを計算する */
+	*pBitsSize = bi.bmHeight * ( ( ( bi.bmWidth + 31 ) & (~31)) / 8 );
+
+	/* ビットマップのイメージを生成する */
+	*ppBits = (BYTE*)calloc( *pBitsSize, sizeof(BYTE) );
+
+	binf->bmiHeader.biSize          = sizeof( binf->bmiHeader );
+	binf->bmiHeader.biWidth         = bi.bmWidth;
+	binf->bmiHeader.biHeight        = bi.bmHeight;
+	binf->bmiHeader.biPlanes        = 1;
+	binf->bmiHeader.biBitCount      = 1;
+	binf->bmiHeader.biCompression   = BI_RGB;
+	binf->bmiHeader.biSizeImage     = *pBitsSize;
+	binf->bmiHeader.biXPelsPerMeter = 1;
+	binf->bmiHeader.biYPelsPerMeter = 1;
+	binf->bmiHeader.biClrUsed       = 0;
+	binf->bmiHeader.biClrImportant  = 0;
+
+	/* ビットマップイメージの取得 */
+	GetDIBits( hDC, hBmp, 0, bi.bmHeight, *ppBits, binf, DIB_RGB_COLORS );
+}
 	
 /**
  * @brief メッシュを読み込む<br>
