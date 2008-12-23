@@ -35,7 +35,8 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option& option
 		m_playerParameter(hp,skillPoint,playerTime,characterID,score,playerID,
 						  playerLV,playerAttack,playerDefence, playerType,
 						  TEXTUREID_BLOCK1, TEXTUREID_BLOCK2),
-		m_AI(NULL)
+		m_AI(NULL),
+		m_playerAction(device,objectManager,option,gameSceneState,*this)
 		
 {
 	m_gameSceneState.AddPlayer(this);
@@ -159,4 +160,8 @@ PlayerParameter& Player::GetPlayerParameter()
 	return m_playerParameter;
 }
 
+PlayerAction& Player::GetPlayerAction()
+{
+	return m_playerAction;
+}
 /*===== EOF ===================================================================*/
