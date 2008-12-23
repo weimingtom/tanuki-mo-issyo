@@ -23,6 +23,7 @@
 HitPoint::HitPoint(IGameDevice &device, ObjectManager &objectManager, Option &option, GameSceneState &gameSceneState, Player& player) :
 	m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false)
 {
+	m_player.GetPlayerParameter().GetHp();
 
 }
 
@@ -84,11 +85,34 @@ bool HitPoint::IsTerminated()
  */
 void HitPoint::RenderObject()
 {
-	SpriteDesc sd;
-	sd.textureID = TEXTUREID_HP;
-	
-	sd.rect = Rect(m_x ,m_y ,m_x+100 ,m_y+20);
-	m_device.GetGraphicDevice().Render( sd );
+	GaugeDesc gd1;
+	gd1.size = Vector2(100.0f, 20.0f);
+	gd1.position = Vector2(m_x, m_y);
+	gd1.textureRec1 = Rect(0,0,100,20);
+	gd1.textureRec2 = Rect(0,0,100,20);
+	gd1.max = m_player.GetPlayerParameter().GetMaxHp();
+	gd1.point = m_player.GetPlayerParameter().GetHp();
+	gd1.texture1 = TEXTUREID_MAXHP;
+	gd1.texture2 = TEXTUREID_HP;
+	m_device.GetGraphicDevice().Render( gd1 );
+
+	SpriteDesc box;
+	box.textureID = TEXTUREID_HPBOX;
+	box.rect = Rect(m_x - 20.0f ,m_y - 5.0f ,m_x+110.0f ,m_y+25.0f);
+	m_device.GetGraphicDevice().Render( box );
+
+	//GaugeDesc box;
+	//box.size = Vector2(130.0f, 30.0f);
+	//box.position = Vector2(m_x - 25.0f, m_y - 5.0f);
+	//box.textureRec1 = Rect(0,0,130,30);
+	//box.textureRec2 = Rect(0,0,130,30);
+	//box.max = 150.0f;
+	//box.point = 70.0f;
+	//box.texture1 = TEXTUREID_HPBOX;
+	//box.texture2 = TEXTUREID_HPBOX;
+	//m_device.GetGraphicDevice().Render( box );
+
+
 }
 
 /*=========================================================================*/

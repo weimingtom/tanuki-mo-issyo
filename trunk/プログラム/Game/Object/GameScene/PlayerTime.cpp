@@ -43,12 +43,12 @@ void PlayerTime::Initialize()
 	switch( m_player.GetPlayerParameter().GetPlayerID())
 	{
 	case(0):
-		m_x = m_player.GetPosition().x + 360.0f;
-		m_y = m_player.GetPosition().y + 50.0f;
+		m_x = m_player.GetPosition().x + 300.0f;
+		m_y = m_player.GetPosition().y + 130.0f;
 		break;
 	case(1):
-		m_x = m_player.GetPosition().x + 30.0f;
-		m_y = m_player.GetPosition().y + 50.0f;
+		m_x = m_player.GetPosition().x + 20.0f;
+		m_y = m_player.GetPosition().y + 130.0f;
 		break;
 	}
 }
@@ -81,11 +81,16 @@ bool PlayerTime::IsTerminated()
  */
 void PlayerTime::RenderObject()
 {
-	SpriteDesc sd;
-	sd.textureID = TEXTUREID_AVATAR1;
-
-	sd.rect = Rect( m_x, m_y, m_x + BLOCK_SIZE, m_y + BLOCK_SIZE );
-	m_device.GetGraphicDevice().Render( sd );
+	GaugeDesc gd1;
+	gd1.size = Vector2(100.0f, 20.0f);
+	gd1.position = Vector2(m_x, m_y);
+	gd1.textureRec1 = Rect(0,0,100,20);
+	gd1.textureRec2 = Rect(0,0,100,20);
+	gd1.max = 100;
+	gd1.point = m_player.GetPlayerParameter().GetPlayerTime();
+	gd1.texture1 = TEXTUREID_MAXHP;
+	gd1.texture2 = TEXTUREID_HP;
+	m_device.GetGraphicDevice().Render( gd1 );
 
 }
 

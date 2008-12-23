@@ -88,11 +88,13 @@ private:
 	/** プレーヤ */
 	Player& m_player;
 
+	//
+	GaugeDesc	m_gaugeDesc;
+
 	/** y座標　*/
 	float m_y;
 	/** x座標　*/
 	float m_x;
-
 
 };
 
