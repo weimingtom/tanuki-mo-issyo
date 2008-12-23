@@ -438,6 +438,113 @@ void GraphicDeviceBase::Render(const GaugeDesc &desc)
 	Render( sd );
 }
 
+/**
+ * @brief テキストを描画<br>
+ * 
+ * @param[in] desc テキスト記述子.
+ * @return なし.
+ */
+void GraphicDeviceBase::Render(const TextDesc &desc)
+{
+	
+	HFONT hFont = CreateFont(desc.size, 0, 0, 0,
+		(( desc.code & FONT_CODE_BOLD) != 0) ? FONT_CODE_BOLD : FONT_CODE_NORMAL,
+		(( desc.code & FONT_CODE_ITALIC) != 0) ? true : false,
+		(( desc.code & FONT_CODE_UNDERLINE) != 0) ? true : false,
+		(( desc.code & FONT_CODE_STRIKEOUT) != 0) ? true : false,
+		SHIFTJIS_CHARSET,
+		OUT_STROKE_PRECIS,
+		CLIP_CHARACTER_PRECIS,
+		DEFAULT_CHARSET,
+		DEFAULT_PITCH,
+		desc.font.c_str());
+
+	BYTE* pBitmap;
+	PSIZEL BitmapSize;
+
+	//-------
+
+	if( lstrlen(desc.string.c_str()) == 0)
+	{
+		return ;
+	}
+
+	HDC hDC = wglGetCurrentDC();
+
+	HFONT hFontOld = (HFONT)SelectObject( hDC, hFont );
+	GetTextExtentPoint32( hDC, desc.string.c_str(), lstrlen( desc.string.c_str() ), BitmapSize);
+
+	BITMAP bmp;
+	memset( &bmp, 0, sizeof(BITMAP));
+	bmp.bmWidth			= BitmapSize->cx;
+	bmp.bmHeight		= BitmapSize->cy;
+	bmp.bmWidthBytes	= (( BitmapSize->cx + 7 ) / 8 + 1 ) & (~1);
+	bmp.bmPlanes		= 1;
+	bmp.bmBitsPixel		= 1;
+	bmp.bmBits			= calloc(bmp.bmWidthBytes * BitmapSize->cx, sizeof(BYTE));
+	
+	HBITMAP hbmp = CreateBitmapIndirect( &bmp );
+
+	free( bmp.bmBits );
+
+	if( hbmp == 0)
+	{
+		SelectObject( hDC, hFontOld );
+		return;
+	}
+
+	HDC hMemDC;
+	if( (hMemDC = CreateCompatibleDC( hDC ) ) == 0 )
+	{
+		SelectObject( hDC, hFontOld );
+		DeleteObject( hbmp );
+		return;
+	}
+
+	HBITMAP hPrevBmp = (HBITMAP)SelectObject( hMemDC, hbmp );
+	SetBkColor( hMemDC,RGB(0, 0, 0));
+	SetBkMode( hMemDC, OPAQUE );
+	SetTextColor( hMemDC, RGB(255, 255, 255));
+	HFONT hPrevFont = (HFONT)SelectObject( hMemDC, hFont);
+	TextOut( hMemDC, 0, 0, desc.string.c_str(), lstrlen(desc.string.c_str()) );
+	
+	BITMAP bi;
+	GetObject( hbmp, sizeof(bi), &bi);
+//
+	BITMAPINFO* binf;
+	BITMAP bi2;
+	DWORD bitSize;
+	GetObject( hbmp, sizeof(BITMAP),&bi2);
+	bitSize = bi2.bmHeight * ((( bi2.bmWidth + 31 ) & (~31)) / 8 );
+	pBitmap = (BYTE*)calloc( bitSize, sizeof(BYTE));
+	binf->bmiHeader.biSize			= sizeof(binf->bmiHeader);
+	binf->bmiHeader.biWidth			= bi2.bmWidth;
+	binf->bmiHeader.biHeight		= bi2.bmHeight;
+	binf->bmiHeader.biPlanes		= 1;
+	binf->bmiHeader.biBitCount		= 1;
+	binf->bmiHeader.biCompression	= BI_RGB;
+	binf->bmiHeader.biSizeImage		= bitSize;
+	binf->bmiHeader.biXPelsPerMeter	= 1;
+	binf->bmiHeader.biYPelsPerMeter	= 1;
+	binf->bmiHeader.biClrUsed		= 0;
+	binf->bmiHeader.biClrImportant	= 0;
+
+	GetDIBits( hDC, hbmp, 0, bi2.bmHeight, pBitmap, binf, DIB_RGB_COLORS );
+
+	BitmapSize->cx = (( bi.bmWidth + 31 ) & (~31));
+	BitmapSize->cy = bi.bmHeight;
+
+	SelectObject( hMemDC, hPrevFont );
+	SelectObject( hMemDC, hPrevBmp );
+
+	DeleteDC( hMemDC );
+	SelectObject( hDC, hFontOld );
+	DeleteObject( hbmp );
+
+	
+
+}
+
 	
 /**
  * @brief メッシュを読み込む<br>

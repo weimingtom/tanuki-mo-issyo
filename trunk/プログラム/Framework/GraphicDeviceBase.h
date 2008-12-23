@@ -143,6 +143,14 @@ public:
 	 * @return なし.
 	 */
 	virtual void Render( const GaugeDesc& desc );
+
+	/**
+	 * @brief テキストを描画<br>
+	 * 
+	 * @param[in] desc テキスト記述子.
+	 * @return なし.
+	 */
+	virtual void Render( const TextDesc& desc );
 	
 	
 	/**
