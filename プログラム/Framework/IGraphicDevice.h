@@ -17,6 +17,8 @@
 #include	"IEffectParameter.h"
 #include	"QuadDesc.h"
 #include	"SpriteDesc.h"
+#include	"Define/TextDesc.h"
+#include	"Define/GaugeDesc.h"
 #include	"MeshDesc.h"
 #include	"MeshSkinDesc.h"
 #include	"LightDesc.h"
