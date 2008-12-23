@@ -31,7 +31,7 @@ public:
 	PlayerParameter(int hp, int skillPoint[], int playerTime,
 					int characterID, int score, int playerID,
 					int playerLV, int playerAttack, int playerDefence,
-					int playerType, int cblock, int mblock);
+					int playerType, int cblock, int mblock,int maxHp);
 
 	/*=========================================================================*/
 	/**
@@ -72,7 +72,11 @@ public:
 
 	int GetNextCBlock();
 	int GetNextMBlock();
+
 	void SetNextBlock(int cblock, int mblock);
+
+	int GetMaxHp();
+	void SetMaxHp(int maxHp);
 
 private:
 
@@ -100,6 +104,8 @@ private:
 	int m_nextCBlock;
 	/** 次のブロックのサブID */
 	int m_nextMBlock;
+	/** マックスＨＰ */
+	int m_maxHp;
 
 };
 

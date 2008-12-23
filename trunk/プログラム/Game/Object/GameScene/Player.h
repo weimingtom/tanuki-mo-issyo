@@ -49,7 +49,7 @@ public:
 	 */
 	Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, float x, float y,
 			int hp, int skillPoint[], int playerTime,int characterID, int score, int playerID,int playerLV, int playerAttack,
-			int playerDefence,int playerType );
+			int playerDefence,int playerType, int maxHp);
 	
 
 	/*=========================================================================*/
