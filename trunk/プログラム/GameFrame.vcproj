@@ -545,6 +545,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\PlayerAction.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\PlayerAction.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\PlayerAI.cpp"
 						>
 					</File>

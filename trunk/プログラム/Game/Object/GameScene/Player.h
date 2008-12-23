@@ -29,6 +29,7 @@ class		IGameDevice;
 #include	"Object/GameScene/AIBase.h"
 #include	"Object/GameScene/PlayerAI.h"
 #include	"Object/GameScene/PlayerParameter.h"
+#include	"Object/GameScene/PlayerAction.h"
 
 /**
  * @brief PlayerÅD
@@ -48,7 +49,7 @@ public:
 	 */
 	Player(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, float x, float y,
 			int hp, int skillPoint[], int playerTime,int characterID, int score, int playerID,int playerLV, int playerAttack,
-			int playerDefence,int playerType);
+			int playerDefence,int playerType );
 	
 
 	/*=========================================================================*/
@@ -98,6 +99,7 @@ public:
 	AIBase& GetAI();
 	void SetAI(AIBase* ai);
 	PlayerParameter& GetPlayerParameter();
+	PlayerAction& GetPlayerAction();
 
 private:
 
@@ -118,6 +120,7 @@ private:
 	CharacterScreen	m_characterScreen;
 	AIBase*			m_AI;
 	StatusScreen	m_statusScreen;
+	PlayerAction	m_playerAction;
 
 	float m_x;
 	float m_y;
