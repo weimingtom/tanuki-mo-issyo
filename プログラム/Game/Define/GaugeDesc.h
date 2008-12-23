@@ -28,13 +28,17 @@ struct GaugeDesc
 	float point;
 	/** サイズ */
 	Vector2 size;
-
+	/** 表示座標 */
 	Vector2 position;
 
+	/** テクスチャID1 */
 	int texture1;
+	/** テクスチャID2 */
 	int texture2;
 
+	/** テクスチャ切り取りサイズ1 */
 	Rect textureRec1;
+	/** テクスチャ切り取りサイズ2 */
 	Rect textureRec2;
 };
 

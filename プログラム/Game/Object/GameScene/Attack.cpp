@@ -47,7 +47,7 @@ void Attack::Initialize()
 		m_y = m_player.GetPosition().y + 60.0f;
 		break;
 	case(1):
-		m_x = m_player.GetPosition().x + 90.0f;
+		m_x = m_player.GetPosition().x + 20.0f;
 		m_y = m_player.GetPosition().y + 60.0f;
 		break;
 	}
@@ -82,11 +82,16 @@ bool Attack::IsTerminated()
  */
 void Attack::RenderObject()
 {
-	SpriteDesc sd;
-	sd.textureID = TEXTUREID_POWER;
-
-	sd.rect = Rect( m_x, m_y, m_x + BLOCK_SIZE, m_y + BLOCK_SIZE );
-	m_device.GetGraphicDevice().Render( sd );
+	GaugeDesc gd1;
+	gd1.size = Vector2(100.0f, 20.0f);
+	gd1.position = Vector2(m_x, m_y);
+	gd1.textureRec1 = Rect(0,0,100,20);
+	gd1.textureRec2 = Rect(0,0,100,20);
+	gd1.max = 100;
+	gd1.point = m_player.GetPlayerParameter().GetPlayerAttack();
+	gd1.texture1 = TEXTUREID_MAXHP;
+	gd1.texture2 = TEXTUREID_HP;
+	m_device.GetGraphicDevice().Render( gd1 );
 
 }
 

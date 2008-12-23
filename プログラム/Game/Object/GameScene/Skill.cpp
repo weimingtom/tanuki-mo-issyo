@@ -47,11 +47,11 @@ void Skill::Initialize()
 	{
 	case(0):
 		m_x = m_player.GetPosition().x + 300.0f;
-		m_y = m_player.GetPosition().y + 170.0f;
+		m_y = m_player.GetPosition().y + 240.0f;
 		break;
 	case(1):
 		m_x = m_player.GetPosition().x + 90.0f;
-		m_y = m_player.GetPosition().y + 170.0f;
+		m_y = m_player.GetPosition().y + 240.0f;
 		break;
 	}
 

@@ -53,9 +53,9 @@ ObjectFactory::~ObjectFactory()
  * @return 生成したオブジェクトのポインタ.
  */
 
-Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState, float x, float y, int hp, int skillpoint[],
+Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState, float x, float y, int maxHp, int hp, int skillpoint[],
 		int playerTime, int characterID, int score, int playerID, int playerLV, int playerAttack,
-		int playerDefence, int playerType,int maxHp)
+		int playerDefence, int playerType)
 {
 	Player* object;
 	object = new Player(m_device, m_objectManager, m_option, gameSceneState, x, y,

@@ -116,8 +116,6 @@ private:
 	NextBlock	m_nextBlock;
 	/** キャラクタタイプ */
 	CharacterType	m_characterType;
-	/** スキル */
-	Skill		m_skill;
 	/** 攻撃力 */
 	Attack		m_attack;
 	/** 防御壁 */

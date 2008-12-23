@@ -47,11 +47,11 @@ void CharacterType::Initialize()
 	{
 	case(0):
 		m_x = m_player.GetPosition().x + 300.0f;
-		m_y = m_player.GetPosition().y + 140.0f;
+		m_y = m_player.GetPosition().y + 210.0f;
 		break;
 	case(1):
 		m_x = m_player.GetPosition().x + 90.0f;
-		m_y = m_player.GetPosition().y + 140.0f;
+		m_y = m_player.GetPosition().y + 210.0f;
 		break;
 	}
 }

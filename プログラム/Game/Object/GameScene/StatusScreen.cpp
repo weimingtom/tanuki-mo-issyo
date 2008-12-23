@@ -34,7 +34,6 @@ StatusScreen::StatusScreen(IGameDevice &device, ObjectManager &objectManager, Op
 		m_playerTime(device,objectManager,option,gameSceneState, m_player),
 		m_nextBlock(device, objectManager, option, gameSceneState, m_player),
 		m_characterType(device, objectManager, option, gameSceneState, m_player),
-		m_skill(device, objectManager, option, gameSceneState, m_player),
 		m_attack(device, objectManager, option, gameSceneState, m_player),
 		m_defence(device, objectManager, option, gameSceneState, m_player)
 {
@@ -64,7 +63,6 @@ void StatusScreen::Initialize()
 	m_playerTime.Initialize();
 	m_nextBlock.Initialize();
 	m_characterType.Initialize();
-	m_skill.Initialize();
 	m_attack.Initialize();
 	m_defence.Initialize();
 }
@@ -82,7 +80,6 @@ void StatusScreen::Terminate()
 	m_playerTime.Terminate();
 	m_nextBlock.Terminate();
 	m_characterType.Terminate();
-	m_skill.Terminate();
 	m_attack.Terminate();
 	m_defence.Terminate();
 	m_isTerminated = true;
@@ -113,7 +110,6 @@ void StatusScreen::RenderObject()
 	m_playerTime.RenderObject();
 	m_nextBlock.RenderObject();
 	m_characterType.RenderObject();
-	m_skill.RenderObject();
 	m_attack.RenderObject();
 	m_defence.RenderObject();
 }
@@ -132,7 +128,6 @@ void StatusScreen::UpdateObject(float frameTimer)
 	m_playerTime.UpdateObject(frameTimer);
 	m_nextBlock.UpdateObject(frameTimer);
 	m_characterType.UpdateObject(frameTimer);
-	m_skill.UpdateObject(frameTimer);
 	m_attack.UpdateObject(frameTimer);
 	m_defence.UpdateObject(frameTimer);
 }
