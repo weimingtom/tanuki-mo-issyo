@@ -415,6 +415,28 @@ void GraphicDeviceBase::Render( const SpriteDesc& desc )
 	glPopMatrix();
 }
 
+/**
+ * @brief ゲージを描画<br>
+ * 
+ * @param[in] desc ゲージ記述子.
+ * @return なし.
+ */
+void GraphicDeviceBase::Render(const GaugeDesc &desc)
+{
+	SpriteDesc sd;
+
+	sd.textureID = desc.texture1;
+	
+	sd.rect = Rect(desc.position.x,desc.position.y,desc.position.x+(desc.max/desc.size.x*desc.point),desc.position.y+desc.size.y);
+	sd.srcRect = Rect(desc.textureRec1.left,desc.textureRec1.top,desc.textureRec1.left+(desc.max/(desc.textureRec1.right-desc.textureRec1.left)*desc.point),desc.textureRec1.bottom);
+	Render( sd );
+
+	sd.textureID = desc.texture2;
+	
+	sd.rect = Rect(desc.position.x,desc.position.y,desc.position.x+desc.size.x,desc.position.y+desc.size.y);
+	sd.srcRect = Rect(desc.textureRec2.left,desc.textureRec2.top,desc.textureRec2.right,desc.textureRec2.bottom);
+	Render( sd );
+}
 
 	
 /**
