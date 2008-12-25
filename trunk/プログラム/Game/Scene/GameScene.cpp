@@ -35,10 +35,10 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 
 	int skill[4] = {0,0,0,0};
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
-		m_state,50.0f, 50.0f, 150, 100, skill, 50, 30, TEXTUREID_AVATAR1, 0, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
+		m_state,50.0f, 50.0f, 150, 100, skill, 15, 15, TEXTUREID_AVATAR1, 0, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
 
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
-		m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 50, 30, TEXTUREID_AVATAR2, 0, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
+		m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 20, 20, TEXTUREID_AVATAR2, 0, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
 
 }
 

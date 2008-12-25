@@ -89,5 +89,10 @@ void CharacterScreen::UpdateObject(float frameTimer)
 	m_avatar.UpdateObject(frameTimer);
 }
 
+Avatar& CharacterScreen::GetAvatar()
+{
+	return m_avatar;
+}
+
 
 /*===== EOF ===================================================================*/

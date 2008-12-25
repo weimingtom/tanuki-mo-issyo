@@ -85,6 +85,8 @@ public:
 	 */
 	void UpdateObject(float frameTimer);
 
+	Avatar& GetAvatar();
+
 private:
 	/** I—¹ƒtƒ‰ƒO */
 	bool m_isTerminated;

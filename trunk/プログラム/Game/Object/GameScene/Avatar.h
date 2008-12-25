@@ -21,14 +21,6 @@
 #include	"Manager/Scene/Option/Option.h"
 class		Player;
 
-
-enum 
-{
-	ANIMATION_STATE_STAND = 0,
-	ANIMATION_STATE_ATTACK,
-	ANIMATION_STATE_DAMAGE
-};
-
 /**
  * @brief Avater．
  */
@@ -86,6 +78,9 @@ public:
 	 * @param[in] frameTimer 更新タイマ.
 	 */
 	void UpdateObject(float frameTimer);
+
+	int GetAnimationState();
+	void SetAnimationState(int state);
 
 private:
 	/** 終了フラグ */

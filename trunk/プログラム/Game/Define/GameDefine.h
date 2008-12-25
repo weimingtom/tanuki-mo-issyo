@@ -38,6 +38,12 @@ typedef struct
 	int y;
 }IntPoint;
 
+enum 
+{
+	AVATAR_ANIMATION_STATE_STAND = 0,
+	AVATAR_ANIMATION_STATE_ATTACK,
+	AVATAR_ANIMATION_STATE_DAMAGE
+};
 
 #endif
 

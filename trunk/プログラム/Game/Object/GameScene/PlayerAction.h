@@ -49,7 +49,7 @@ public:
 	void Initialize();
 	/*=========================================================================*/
 
-	void Attack(Player& player);
+	void Attack(Player* player);
 	void Damage(int damage);
 	void AddSkillPoint(int id);
 	void ClearSkillPoint();
@@ -57,6 +57,8 @@ public:
 	void AddAttack(int num);
 	void AddDefence(int num);
 	void AddScore(int num);
+	void AddTime(int num);
+	void SubTime(int num);
 
 private:
 
