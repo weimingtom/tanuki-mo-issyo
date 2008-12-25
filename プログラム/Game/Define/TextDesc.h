@@ -32,6 +32,7 @@ struct TextDesc
 	std::string font;
 	std::string string;
 	Vector2 position;
+	Color4 color;
 };
 
 #endif

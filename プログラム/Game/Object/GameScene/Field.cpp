@@ -249,33 +249,29 @@ void Field::CheckBlock( void )
 						switch(m_fieldBlock[i][j])
 						{
 						case TEXTUREID_BLOCK1:
-							m_player.GetPlayerParameter().SetPlayerAttack(m_player.GetPlayerParameter().GetPlayerAttack() + 10);
+							m_player.GetPlayerAction().AddAttack(10);
 							break;
 						case TEXTUREID_BLOCK2:
-							m_player.GetPlayerParameter().SetPlayerDefence(m_player.GetPlayerParameter().GetPlayerDefence() + 10);
+							m_player.GetPlayerAction().AddDefence(10);
 							break;
 						case TEXTUREID_BLOCK3:
-							m_player.GetPlayerParameter().SetHp(m_player.GetPlayerParameter().GetHp() + 10);
+							m_player.GetPlayerAction().AddHP(10);
 							break;
 						case TEXTUREID_SBLOCK1:
-							skill[0] ++;
-							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							m_player.GetPlayerAction().AddSkillPoint(0);
 							break;
 						case TEXTUREID_SBLOCK2:
-							skill[1] ++;
-							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							m_player.GetPlayerAction().AddSkillPoint(1);
 							break;
 						case TEXTUREID_SBLOCK3:
-							skill[2] ++;
-							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							m_player.GetPlayerAction().AddSkillPoint(2);
 							break;
 						case TEXTUREID_SBLOCK4:
-							skill[3] ++;
-							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							m_player.GetPlayerAction().AddSkillPoint(3);
 							break;
 						}
 						BlockDelete(i, j);
-						m_player.GetPlayerParameter().SetScore(m_player.GetPlayerParameter().GetScore() + (num * 10));
+						m_player.GetPlayerAction().AddScore(10 * num);
 					}
 			}
 		}

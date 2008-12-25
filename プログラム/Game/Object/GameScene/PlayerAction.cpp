@@ -62,4 +62,38 @@ void PlayerAction::Damage(int damage)
 {
 	m_player.GetPlayerParameter().SetHp(m_player.GetPlayerParameter().GetHp()-damage);
 }
+
+void PlayerAction::AddSkillPoint(int id)
+{
+	int* skill;
+	skill = m_player.GetPlayerParameter().GetSkillPoint();
+	skill[id]++;
+	m_player.GetPlayerParameter().SetSkillPoint(skill);
+}
+
+void PlayerAction::ClearSkillPoint()
+{
+	int skill[4] = {0, 0, 0, 0};
+	m_player.GetPlayerParameter().SetSkillPoint(skill);
+}
+
+void PlayerAction::AddHP(int num)
+{
+	m_player.GetPlayerParameter().SetHp(m_player.GetPlayerParameter().GetHp() + num);
+}
+
+void PlayerAction::AddAttack(int num)
+{
+	m_player.GetPlayerParameter().SetPlayerAttack(m_player.GetPlayerParameter().GetPlayerAttack() + num);
+}
+
+void PlayerAction::AddDefence(int num)
+{
+	m_player.GetPlayerParameter().SetPlayerDefence(m_player.GetPlayerParameter().GetPlayerDefence() + num);
+}
+
+void PlayerAction::AddScore(int num)
+{
+	m_player.GetPlayerParameter().SetScore(m_player.GetPlayerParameter().GetScore() + num);
+}
 /*===== EOF ===================================================================*/
