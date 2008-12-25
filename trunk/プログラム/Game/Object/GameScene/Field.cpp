@@ -122,7 +122,7 @@ void Field::RenderObject()
 					sd.textureID = m_fieldBlock[x][y];
 				} else
 				{
-					//continue;
+					continue;
 					sd.textureID = TEXTUREID_SBLOCK4;
 				}
 				m_device.GetGraphicDevice().Render( sd );
@@ -237,8 +237,38 @@ void Field::CheckBlock( void )
 						BlockCount( i, j, m_fieldBlock[i][j], num , checkMatrix);
 					if(num >= 4)
 					{
+						int* skill;
+						skill = m_player.GetPlayerParameter().GetSkillPoint();
+						switch(m_fieldBlock[i][j])
+						{
+						case TEXTUREID_BLOCK1:
+							m_player.GetPlayerParameter().SetPlayerAttack(m_player.GetPlayerParameter().GetPlayerAttack() + 10);
+							break;
+						case TEXTUREID_BLOCK2:
+							m_player.GetPlayerParameter().SetPlayerDefence(m_player.GetPlayerParameter().GetPlayerDefence() + 10);
+							break;
+						case TEXTUREID_BLOCK3:
+							m_player.GetPlayerParameter().SetHp(m_player.GetPlayerParameter().GetHp() + 10);
+							break;
+						case TEXTUREID_SBLOCK1:
+							skill[0] ++;
+							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							break;
+						case TEXTUREID_SBLOCK2:
+							skill[1] ++;
+							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							break;
+						case TEXTUREID_SBLOCK3:
+							skill[2] ++;
+							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							break;
+						case TEXTUREID_SBLOCK4:
+							skill[3] ++;
+							m_player.GetPlayerParameter().SetSkillPoint(skill);
+							break;
+						}
 						BlockDelete(i, j);
-					std::cout << "num:" << num << std::endl;
+						m_player.GetPlayerParameter().SetScore(m_player.GetPlayerParameter().GetScore() + (num * 10));
 					}
 			}
 		}

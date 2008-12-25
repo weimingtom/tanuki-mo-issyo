@@ -73,7 +73,10 @@ int* PlayerParameter::GetSkillPoint()
 
 void PlayerParameter::SetSkillPoint(int skillPoint[])
 {
-	m_skillPoint[4] = skillPoint[4];
+	m_skillPoint[0] = skillPoint[0];
+	m_skillPoint[1] = skillPoint[1];
+	m_skillPoint[2] = skillPoint[2];
+	m_skillPoint[3] = skillPoint[3];
 }
 
 

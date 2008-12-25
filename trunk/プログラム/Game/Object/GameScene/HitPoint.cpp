@@ -103,24 +103,12 @@ void HitPoint::RenderObject()
 	gd1.texture1 = TEXTUREID_MAXHP;
 	gd1.texture2 = TEXTUREID_HP;
 	m_device.GetGraphicDevice().Render( gd1 );
-
+/*
 	SpriteDesc box;
 	box.textureID = TEXTUREID_HPBOX;
 	box.rect = Rect(m_x - 20.0f ,m_y - 5.0f ,m_x+110.0f ,m_y+25.0f);
 	m_device.GetGraphicDevice().Render( box );
-
-	
-
-	//GaugeDesc box;
-	//box.size = Vector2(130.0f, 30.0f);
-	//box.position = Vector2(m_x - 25.0f, m_y - 5.0f);
-	//box.textureRec1 = Rect(0,0,130,30);
-	//box.textureRec2 = Rect(0,0,130,30);
-	//box.max = 150.0f;
-	//box.point = 70.0f;
-	//box.texture1 = TEXTUREID_HPBOX;
-	//box.texture2 = TEXTUREID_HPBOX;
-	//m_device.GetGraphicDevice().Render( box );
+*/
 
 
 }
