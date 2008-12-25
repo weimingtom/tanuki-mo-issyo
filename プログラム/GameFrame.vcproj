@@ -457,6 +457,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\BackGround.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\BackGround.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Block.cpp"
 						>
 					</File>

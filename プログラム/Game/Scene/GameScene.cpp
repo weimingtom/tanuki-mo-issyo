@@ -31,14 +31,15 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 	m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option), m_isTerminated(false), m_state()
 {
 	m_objectManager = new ObjectManager(device,option);
+	m_backGround = new BackGround(m_device, m_state);
+
 	int skill[4] = {0,0,0,0};
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
 		m_state,50.0f, 50.0f, 150, 100, skill, 50, 30, TEXTUREID_AVATAR1, 12000, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
 
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
 		m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 50, 30, TEXTUREID_AVATAR2, 12000, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
-		
-	
+
 }
 
 /*=============================================================================*/
@@ -49,6 +50,7 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 GameScene::~GameScene()
 {
 	delete m_objectManager;
+	delete m_backGround;
 }
 
 /*=============================================================================*/
@@ -69,15 +71,18 @@ void GameScene::Initialize()
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SBLOCK3,"sblock3.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SBLOCK4,"sblock4.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_MAXHP,"maxhp.dds",COLORKEYFLAG_NONE);
-	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_HP,"hp.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_HP,"gauge_www.dds",COLORKEYFLAG_AUTO);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_HPBOX,"box360.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SKILL,"skill.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_SCORE,"score.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_POWER,"power.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_GAUGE_FRONT,"gauge.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_GAUGE_BACK,"gaugeback.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_FIELD_BACKGROUND,"fd.dds",COLORKEYFLAG_NONE);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_BACKGROUND,"bg.dds",COLORKEYFLAG_NONE);
 
 	m_objectManager->Initialize();
+	m_backGround->Initialize();
 
 }
 
@@ -89,6 +94,7 @@ void GameScene::Initialize()
 void GameScene::Terminate()
 {
 	m_objectManager->Terminate();
+	m_backGround->Terminate();
 	m_isTerminated = true;
 }
 
@@ -111,6 +117,7 @@ bool GameScene::IsTerminated()
 void GameScene::RenderScene()
 {
 	m_objectManager->RenderObject();
+	m_backGround->RenderObject();
 }
 
 /*=============================================================================*/
@@ -122,6 +129,7 @@ void GameScene::RenderScene()
 void GameScene::UpdateScene(float frameTimer)
 {
 	m_objectManager->UpdateObject(frameTimer);
+	m_backGround->UpdateObject(frameTimer);
 }
 
 /*===== EOF ===================================================================*/
