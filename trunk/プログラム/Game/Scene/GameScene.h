@@ -20,6 +20,7 @@
 #include	"Manager/Scene/SceneManagerMediator.h"
 #include	"Manager/Scene/Option/Option.h"
 #include	"Scene/GameSceneState.h"
+#include	"Object/GameScene/BackGround.h"
 
 
 /**
@@ -91,6 +92,8 @@ private:
 	bool							m_isTerminated;
 	/** シーンステート */
 	GameSceneState					m_state;
+	/** バックグラウンド */
+	BackGround*						m_backGround;
 
 };
 
