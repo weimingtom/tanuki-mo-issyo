@@ -85,6 +85,14 @@ bool HitPoint::IsTerminated()
  */
 void HitPoint::RenderObject()
 {
+	TextDesc  ht;
+	ht.size		= 19;
+	ht.position	= Vector2(m_x, m_y);
+	ht.code		= FONT_CODE_NORMAL;
+	ht.font		= "HGçsèëëÃ";
+	ht.string	= "ÇgÇo";
+	m_device.GetGraphicDevice().Render( ht );
+
 	GaugeDesc gd1;
 	gd1.size = Vector2(100.0f, 20.0f);
 	gd1.position = Vector2(m_x, m_y);
@@ -100,6 +108,8 @@ void HitPoint::RenderObject()
 	box.textureID = TEXTUREID_HPBOX;
 	box.rect = Rect(m_x - 20.0f ,m_y - 5.0f ,m_x+110.0f ,m_y+25.0f);
 	m_device.GetGraphicDevice().Render( box );
+
+	
 
 	//GaugeDesc box;
 	//box.size = Vector2(130.0f, 30.0f);

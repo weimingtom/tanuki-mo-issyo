@@ -82,6 +82,15 @@ bool Defence::IsTerminated()
  */
 void Defence::RenderObject()
 {
+
+	TextDesc  dt;
+	dt.size		= 20;
+	dt.position	= Vector2(m_x, m_y);
+	dt.code		= FONT_CODE_NORMAL;
+	dt.font		= "HGçsèëëÃ";
+	dt.string	= "ñhå‰óÕ";
+	m_device.GetGraphicDevice().Render( dt );
+
 	GaugeDesc gd1;
 	gd1.size = Vector2(100.0f, 20.0f);
 	gd1.position = Vector2(m_x, m_y);
@@ -92,6 +101,9 @@ void Defence::RenderObject()
 	gd1.texture1 = TEXTUREID_MAXHP;
 	gd1.texture2 = TEXTUREID_HP;
 	m_device.GetGraphicDevice().Render( gd1 );
+
+	
+	
 
 }
 
