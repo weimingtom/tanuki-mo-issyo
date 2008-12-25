@@ -85,7 +85,7 @@ bool CharacterType::IsTerminated()
 void CharacterType::RenderObject()
 {
 	SpriteDesc sd;
-	sd.textureID = m_player.GetPlayerParameter().GetCharacterID();
+	sd.textureID = m_player.GetPlayerParameter().GetPlayerType();
 	
 	sd.rect = Rect(m_x ,m_y ,m_x+BLOCK_SIZE ,m_y+BLOCK_SIZE);
 	m_device.GetGraphicDevice().Render( sd );

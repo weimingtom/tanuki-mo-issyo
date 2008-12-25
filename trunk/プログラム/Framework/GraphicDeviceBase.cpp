@@ -399,16 +399,40 @@ void GraphicDeviceBase::Render( const SpriteDesc& desc )
 		glColor4f(desc.color.r, desc.color.g, desc.color.b, desc.color.a);
 
 		glTexCoord2f( srcRect.left, srcRect.top);
-		glVertex3f( 0.0f, 0.0f, 0.0f);
+		if(!desc.reverse)
+		{
+			glVertex3f( 0.0f, 0.0f, 0.0f);
+		} else
+		{
+			glVertex3f( m_size.x, 0.0f, 0.0f);
+		}
 
 		glTexCoord2f( srcRect.left, srcRect.bottom);
-		glVertex3f( 0.0f, m_size.y, 0.0f);
+		if(!desc.reverse)
+		{
+			glVertex3f( 0.0f, m_size.y, 0.0f);
+		} else
+		{
+			glVertex3f( m_size.x, m_size.y, 0.0f);
+		}
 
 		glTexCoord2f( srcRect.right, srcRect.bottom);
-		glVertex3f( m_size.x, m_size.y, 0.0f);
+		if(!desc.reverse)
+		{
+			glVertex3f( m_size.x, m_size.y, 0.0f);
+		} else
+		{
+			glVertex3f( 0.0f, m_size.y, 0.0f);
+		}
 
 		glTexCoord2f( srcRect.right, srcRect.top);
-		glVertex3f( m_size.x, 0.0f, 0.0f);
+		if(!desc.reverse)
+		{
+			glVertex3f( m_size.x, 0.0f, 0.0f);
+		} else
+		{
+			glVertex3f( 0.0f, 0.0f, 0.0f);
+		}
 
 	glEnd();
 
@@ -471,6 +495,11 @@ void GraphicDeviceBase::Render(const TextDesc &desc)
 	/* テクスチャを無効にする */
 	glDisable( GL_TEXTURE_2D );
 	glDisable( GL_TEXTURE_1D );
+
+	if(( desc.color.r == 0.0f) && (desc.color.g == 0.0f) && (desc.color.b == 0) && (desc.color.a == 0.0f))
+	{
+		glColor4f(desc.color.r, desc.color.g, desc.color.b, desc.color.a);
+	}
 
 	/* フォントを作成する */
 	hFont = CreateFontHandler( desc.code, desc.size, desc.font.c_str() );

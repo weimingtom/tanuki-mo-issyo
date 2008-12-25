@@ -73,9 +73,9 @@ RendererGL::~RendererGL()
 void RendererGL::initialize()
 {
 	// 面カリングの設定
-	glEnable( GL_CULL_FACE );
-	glCullFace( GL_BACK );
-	glFrontFace( GL_CCW );
+	//glEnable( GL_CULL_FACE );
+	//glCullFace( GL_BACK );
+	//glFrontFace( GL_CCW );
 	
 	// デプスバッファを1.0でクリアする
 	glEnable( GL_DEPTH_TEST );

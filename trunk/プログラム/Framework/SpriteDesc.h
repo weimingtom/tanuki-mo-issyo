@@ -49,6 +49,8 @@ struct SpriteDesc
 	/** ポリゴンの色 */
 	Color4		color;
 
+	bool reverse;
+
 	/**
 	 * コンストラクタ
 	 */
@@ -58,6 +60,7 @@ struct SpriteDesc
 		effectID( EFFECTID_COM_SPRITE ),
 		textureID( TEXTUREID_NONE ),
 		angle( 0.0f ),
+		reverse(false),
 		textureName( "g_BaseMap" ),
 		techniqueName( "Sprite" ),
 		color( 1.0f, 1.0f, 1.0f, 1.0f )

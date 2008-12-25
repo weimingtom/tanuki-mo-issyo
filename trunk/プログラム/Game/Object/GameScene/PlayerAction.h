@@ -51,6 +51,12 @@ public:
 
 	void Attack(Player& player);
 	void Damage(int damage);
+	void AddSkillPoint(int id);
+	void ClearSkillPoint();
+	void AddHP(int num);
+	void AddAttack(int num);
+	void AddDefence(int num);
+	void AddScore(int num);
 
 private:
 
