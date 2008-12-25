@@ -14,6 +14,7 @@
 
 #include	"SkillPoint.h"
 #include	"Player.h"
+#include	<sstream>
 
 /*=========================================================================*/
 /**
@@ -84,16 +85,27 @@ bool SkillPoint::IsTerminated()
  */
 void SkillPoint::RenderObject()
 {
-	SpriteDesc sd[4];
-	sd[0].textureID = TEXTUREID_SKILL;
-	sd[1].textureID = TEXTUREID_SKILL;
-	sd[2].textureID = TEXTUREID_SKILL;
-	sd[3].textureID = TEXTUREID_SKILL;
+
+	m_player.GetPlayerParameter().GetSkillPoint();
+	SpriteDesc sd;
+	TextDesc td;
+	std::stringstream ss;
+	sd.textureID = TEXTUREID_SBLOCK1;
+	
+	td.code = FONT_CODE_NORMAL;
+	td.font = "ÇlÇr ÉSÉVÉbÉN";
+	td.size = 15;
 	
 	for( int i = 0; i < 4; i++ )
 	{
-		sd[i].rect = Rect(m_x + i*60 ,m_y ,m_x+BLOCK_SIZE + i*60 ,m_y+BLOCK_SIZE);
-		m_device.GetGraphicDevice().Render( sd[i] );
+		sd.rect = Rect(m_x + (i*60) ,m_y ,m_x+BLOCK_SIZE + (i*60) ,m_y+BLOCK_SIZE);
+		m_device.GetGraphicDevice().Render( sd );
+		td.position = Vector2( m_x + (i * 60) + BLOCK_SIZE + 10.0f, m_y);
+		ss.str("");
+		ss << (m_player.GetPlayerParameter().GetSkillPoint())[i];
+		td.string = ss.str();
+		m_device.GetGraphicDevice().Render( td );
+		sd.textureID ++;
 	}
 }
 

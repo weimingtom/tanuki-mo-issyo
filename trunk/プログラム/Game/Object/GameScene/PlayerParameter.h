@@ -28,7 +28,7 @@ public:
 	 * @brief コンストラクタ.
 	 *
 	 */
-	PlayerParameter(int hp, int skillPoint[], int playerTime,
+	PlayerParameter(int hp, int skillPoint[], int maxPlayerTime, int playerTime,
 					int characterID, int score, int playerID,
 					int playerLV, int playerAttack, int playerDefence,
 					int playerType, int cblock, int mblock,int maxHp);
@@ -43,7 +43,7 @@ public:
 	int GetHp();
 	void SetHp(int hp); 
 
-	int GetSkillPoint();
+	int* GetSkillPoint();
 	void SetSkillPoint(int skillPoint[]);
 	
 	int GetPlayerTime();
@@ -78,6 +78,9 @@ public:
 	int GetMaxHp();
 	void SetMaxHp(int maxHp);
 
+	int GetMaxPlayerTime();
+	void SetMaxPlayerTime(int maxPlayerTime);
+
 private:
 
 	/** HP */
@@ -106,6 +109,8 @@ private:
 	int m_nextMBlock;
 	/** マックスＨＰ */
 	int m_maxHp;
+	/** プレイヤータイム最大値 */
+	int m_maxPlayerTime;
 
 };
 

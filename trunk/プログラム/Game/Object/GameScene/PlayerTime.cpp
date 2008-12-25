@@ -81,16 +81,25 @@ bool PlayerTime::IsTerminated()
  */
 void PlayerTime::RenderObject()
 {
+	TextDesc td;
+	td.code = FONT_CODE_NORMAL;
+	td.font = "ÇlÇr ÉSÉVÉbÉN";
+	td.position = Vector2(m_x+ 30.0f, m_y);
+	td.size = 15;
+	td.string = "Time";
+	m_device.GetGraphicDevice().Render( td );
+
 	GaugeDesc gd1;
 	gd1.size = Vector2(100.0f, 20.0f);
 	gd1.position = Vector2(m_x, m_y);
 	gd1.textureRec1 = Rect(0,0,100,20);
 	gd1.textureRec2 = Rect(0,0,100,20);
-	gd1.max = 100;
+	gd1.max = m_player.GetPlayerParameter().GetMaxPlayerTime();
 	gd1.point = m_player.GetPlayerParameter().GetPlayerTime();
 	gd1.texture1 = TEXTUREID_MAXHP;
 	gd1.texture2 = TEXTUREID_HP;
 	m_device.GetGraphicDevice().Render( gd1 );
+
 
 }
 

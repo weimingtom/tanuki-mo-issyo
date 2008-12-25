@@ -14,6 +14,7 @@
 
 #include	"Score.h"
 #include	"Player.h"
+#include	<sstream>
 
 /*=========================================================================*/
 /**
@@ -84,11 +85,16 @@ bool Score::IsTerminated()
  */
 void Score::RenderObject()
 {
-	SpriteDesc sd;
-	sd.textureID = TEXTUREID_SCORE;
-	
-	sd.rect = Rect(m_x ,m_y ,m_x+100 ,m_y+20);
-	m_device.GetGraphicDevice().Render( sd );
+	TextDesc td;
+	std::stringstream ss;
+
+	td.code = FONT_CODE_NORMAL;
+	td.font = "ÇlÇr ÉSÉVÉbÉN";
+	td.position = Vector2(m_x, m_y);
+	td.size = 15;
+	ss << "Score:" << m_player.GetPlayerParameter().GetScore();
+	td.string = ss.str();
+	m_device.GetGraphicDevice().Render( td );
 }
 
 /*=========================================================================*/

@@ -20,13 +20,17 @@
  * @brief コンストラクタ.
  * 
  */
-PlayerParameter::PlayerParameter(int hp, int skillPoint[], int playerTime,
+PlayerParameter::PlayerParameter(int hp, int skillPoint[], int maxPlayerTime, int playerTime,
 					int characterID, int score, int playerID,
 					int playerLV, int playerAttack, int playerDefence,
 					int playerType, int cblock, int mblock,int maxHp)
 {
 	m_hp = hp;
-	m_skillPoint[4] = skillPoint[4];
+	m_skillPoint[0] = skillPoint[0];
+	m_skillPoint[1] = skillPoint[1];
+	m_skillPoint[2] = skillPoint[2];
+	m_skillPoint[3] = skillPoint[3];
+	m_maxPlayerTime = maxPlayerTime;
 	m_playerTime = playerTime;
 	m_characterID = characterID;
 	m_score = score;
@@ -62,10 +66,11 @@ void PlayerParameter::SetHp(int hp)
 }
 
 
-int PlayerParameter::GetSkillPoint()
+int* PlayerParameter::GetSkillPoint()
 {
-	return m_skillPoint[4];
+	return m_skillPoint;
 }
+
 void PlayerParameter::SetSkillPoint(int skillPoint[])
 {
 	m_skillPoint[4] = skillPoint[4];
@@ -176,4 +181,15 @@ void PlayerParameter::SetMaxHp(int maxHp)
 {
 	m_maxHp = maxHp;
 }
+
+int PlayerParameter::GetMaxPlayerTime()
+{
+	return m_maxPlayerTime;
+}
+
+void PlayerParameter::SetMaxPlayerTime(int maxPlayerTime)
+{
+	m_maxPlayerTime = maxPlayerTime;
+}
+
 /*===== EOF ===================================================================*/

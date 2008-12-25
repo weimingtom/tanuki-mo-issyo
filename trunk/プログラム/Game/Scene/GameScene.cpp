@@ -31,12 +31,12 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 	m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option), m_isTerminated(false), m_state()
 {
 	m_objectManager = new ObjectManager(device,option);
-	int skill[4] = {1,2,3,4};
+	int skill[4] = {0,0,0,0};
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
-		m_state,50.0f, 50.0f, 150, 100, skill, 30, TEXTUREID_AVATAR1, 12000, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
+		m_state,50.0f, 50.0f, 150, 100, skill, 50, 30, TEXTUREID_AVATAR1, 12000, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
 
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
-		m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 30, TEXTUREID_AVATAR2, 12000, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
+		m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 50, 30, TEXTUREID_AVATAR2, 12000, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
 		
 	
 }
