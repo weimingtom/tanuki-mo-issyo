@@ -119,9 +119,9 @@ bool GameScene::IsTerminated()
  */
 void GameScene::RenderScene()
 {
-	m_objectManager->RenderObject();
 	m_backGround->RenderObject();
-}
+	m_objectManager->RenderObject();
+	}
 
 /*=============================================================================*/
 /**

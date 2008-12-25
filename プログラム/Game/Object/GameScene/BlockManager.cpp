@@ -106,6 +106,7 @@ bool BlockManager::IsTerminated()
  */
 void BlockManager::RenderObject()
 {
+	m_field.RenderObject();
 	if(m_block){
 		m_block->RenderObject();
 	}
@@ -113,7 +114,6 @@ void BlockManager::RenderObject()
 	{
 		(*i)->RenderObject();
 	}
-	m_field.RenderObject();
 }
 
 /*=============================================================================*/

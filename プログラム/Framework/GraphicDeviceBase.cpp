@@ -395,6 +395,8 @@ void GraphicDeviceBase::Render( const SpriteDesc& desc )
 	glTranslatef(desc.rect.left, desc.rect.top, 0.0f);
 	glRotatef(desc.angle, 0.0f, 0.0f, 1.0f);
 
+	
+	glDepthMask( GL_FALSE );
 	glBegin(GL_QUADS);
 		glColor4f(desc.color.r, desc.color.g, desc.color.b, desc.color.a);
 
@@ -435,6 +437,7 @@ void GraphicDeviceBase::Render( const SpriteDesc& desc )
 		}
 
 	glEnd();
+	glDepthMask( GL_TRUE );
 
 	glPopMatrix();
 }
@@ -454,25 +457,22 @@ void GraphicDeviceBase::Render(const GaugeDesc &desc_)
 	if (desc.textureRec1 == Rect(0,0,0,0))
 	{
 		desc.textureRec1 = Rect(0,0,(float)GetTextureDesc(desc.texture1).width,(float)GetTextureDesc(desc.texture1).height);
-		/*desc.textureRec1.bottom = 0;
-		desc.textureRec1.left = 0;
-		desc.textureRec1.right = GetTextureDesc(desc.texture1).width;
-		desc.textureRec1.top = GetTextureDesc(desc.texture1).height;*/
 	}
 	if (desc.textureRec2 == Rect(0,0,0,0))
 	{
 		desc.textureRec2 = Rect(0,0,(float)GetTextureDesc(desc.texture2).width,(float)GetTextureDesc(desc.texture2).height);
 	}
-	sd.textureID = desc.texture1;
-	
-	sd.rect = Rect(desc.position.x,desc.position.y,desc.position.x+(desc.size.x/desc.max*desc.point),desc.position.y+desc.size.y);
-	sd.srcRect = Rect(desc.textureRec1.left,desc.textureRec1.top,desc.textureRec1.left+(desc.max/(desc.textureRec1.right-desc.textureRec1.left)*desc.point),desc.textureRec1.bottom);
-	Render( sd );
 
 	sd.textureID = desc.texture2;
 	
 	sd.rect = Rect(desc.position.x,desc.position.y,desc.position.x+desc.size.x,desc.position.y+desc.size.y);
 	sd.srcRect = Rect(desc.textureRec2.left,desc.textureRec2.top,desc.textureRec2.right,desc.textureRec2.bottom);
+	Render( sd );
+
+	sd.textureID = desc.texture1;
+	
+	sd.rect = Rect(desc.position.x,desc.position.y,desc.position.x+(desc.size.x/desc.max*desc.point),desc.position.y+desc.size.y);
+	sd.srcRect = Rect(desc.textureRec1.left,desc.textureRec1.top,desc.textureRec1.left+(desc.max/(desc.textureRec1.right-desc.textureRec1.left)*desc.point),desc.textureRec1.bottom);
 	Render( sd );
 }
 
