@@ -82,16 +82,28 @@ bool Attack::IsTerminated()
  */
 void Attack::RenderObject()
 {
+
+	TextDesc at1;
+	at1.code = FONT_CODE_NORMAL;
+	at1.font = "HGPñæí©B";
+	at1.position = Vector2(m_x+22.5f,m_y);
+	at1.size = 20;
+	at1.string = "çUåÇóÕ";
+	m_device.GetGraphicDevice().Render( at1 );
+
+
 	GaugeDesc gd1;
 	gd1.size = Vector2(100.0f, 20.0f);
 	gd1.position = Vector2(m_x, m_y);
 	gd1.textureRec1 = Rect(0,0,100,20);
 	gd1.textureRec2 = Rect(0,0,100,20);
 	gd1.max = 100;
-	gd1.point = m_player.GetPlayerParameter().GetPlayerAttack();
+	gd1.point = (float)m_player.GetPlayerParameter().GetPlayerAttack();
 	gd1.texture1 = TEXTUREID_MAXHP;
 	gd1.texture2 = TEXTUREID_HP;
 	m_device.GetGraphicDevice().Render( gd1 );
+
+	
 
 }
 

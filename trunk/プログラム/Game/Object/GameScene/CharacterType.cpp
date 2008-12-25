@@ -89,6 +89,14 @@ void CharacterType::RenderObject()
 	
 	sd.rect = Rect(m_x ,m_y ,m_x+BLOCK_SIZE ,m_y+BLOCK_SIZE);
 	m_device.GetGraphicDevice().Render( sd );
+
+	TextDesc	ct1;
+	ct1.code = FONT_CODE_NORMAL;
+	ct1.font = "HG‘n‰pŠpÎß¯Ìß‘Ì";
+	ct1.position = Vector2(m_x-25,m_y);
+	ct1.size = 25;
+	ct1.string = "–³";
+	m_device.GetGraphicDevice().Render( ct1 );
 }
 
 /*=========================================================================*/
