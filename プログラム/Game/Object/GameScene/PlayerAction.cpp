@@ -48,9 +48,10 @@ void PlayerAction::Initialize()
  * @brief アタック.
  * 
  */
-void PlayerAction::Attack(Player& player)
+void PlayerAction::Attack(Player* player)
 {
-	player.GetPlayerAction().Damage(m_player.GetPlayerParameter().GetPlayerAttack());
+	player->GetPlayerAction().Damage(m_player.GetPlayerParameter().GetPlayerAttack());
+	m_player.GetCharacterScreen().GetAvatar().SetAnimationState(AVATAR_ANIMATION_STATE_ATTACK);
 }
 
 /*=========================================================================*/
@@ -61,6 +62,7 @@ void PlayerAction::Attack(Player& player)
 void PlayerAction::Damage(int damage)
 {
 	m_player.GetPlayerParameter().SetHp(m_player.GetPlayerParameter().GetHp()-damage);
+	m_player.GetCharacterScreen().GetAvatar().SetAnimationState(AVATAR_ANIMATION_STATE_DAMAGE);
 }
 
 void PlayerAction::AddSkillPoint(int id)
@@ -95,5 +97,15 @@ void PlayerAction::AddDefence(int num)
 void PlayerAction::AddScore(int num)
 {
 	m_player.GetPlayerParameter().SetScore(m_player.GetPlayerParameter().GetScore() + num);
+}
+
+void PlayerAction::AddTime(int num)
+{
+	m_player.GetPlayerParameter().SetPlayerTime(m_player.GetPlayerParameter().GetPlayerTime() + num);
+}
+
+void PlayerAction::SubTime(int num)
+{
+	m_player.GetPlayerParameter().SetPlayerTime(m_player.GetPlayerParameter().GetPlayerTime() - num);
 }
 /*===== EOF ===================================================================*/

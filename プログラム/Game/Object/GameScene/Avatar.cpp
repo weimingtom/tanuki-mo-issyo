@@ -56,9 +56,9 @@ void Avatar::Initialize()
 		break;
 	}
 
-	anim = 1;
+	anim = 0;
 	animtime = 0;
-	animState = ANIMATION_STATE_STAND;
+	animState = AVATAR_ANIMATION_STATE_STAND;
 }
 
 /*=========================================================================*/
@@ -106,7 +106,7 @@ void Avatar::RenderObject()
 
 	switch(animState)
 	{
-	case(ANIMATION_STATE_STAND):
+	case(AVATAR_ANIMATION_STATE_STAND):
 
 		sd.textureID = TEXTUREID_STAND;
 		sd.srcRect = Rect((int)(204.8f * anim),0,(int)(204.8f * anim) + 64.0f,110.0f);
@@ -123,7 +123,7 @@ void Avatar::RenderObject()
 				}
 			}
 			break;
-	case(ANIMATION_STATE_ATTACK):
+	case(AVATAR_ANIMATION_STATE_ATTACK):
 
 		sd.textureID = TEXTUREID_ATTACK;
 		sd.rect = Rect(m_x,m_y,m_x+220.0f,m_y+180.0f);
@@ -136,12 +136,12 @@ void Avatar::RenderObject()
 				if(anim >= 5)
 				{
 					anim = 0;
-					animState = ANIMATION_STATE_STAND;
+					animState = AVATAR_ANIMATION_STATE_STAND;
 				}
 			}
 			break;
 		
-	case(ANIMATION_STATE_DAMAGE):
+	case(AVATAR_ANIMATION_STATE_DAMAGE):
 
 		sd.textureID = TEXTUREID_DAMAGE;
 		sd.srcRect = Rect((int)(204.8f * anim),0,(int)(204.8f * anim) + 64.0f,110.0f);
@@ -153,7 +153,7 @@ void Avatar::RenderObject()
 				if(anim >= 5)
 				{
 					anim = 0;
-					animState = ANIMATION_STATE_STAND;
+					animState = AVATAR_ANIMATION_STATE_STAND;
 				}
 			}
 			break;
@@ -172,6 +172,18 @@ void Avatar::RenderObject()
 void Avatar::UpdateObject(float frameTimer)
 {
 
+}
+
+int Avatar::GetAnimationState()
+{
+	return animState;
+}
+
+void Avatar::SetAnimationState(int state)
+{
+	animState = state;
+	anim = 0;
+	animtime = 0;
 }
 
 

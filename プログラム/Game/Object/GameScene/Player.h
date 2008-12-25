@@ -95,6 +95,8 @@ public:
 
 	Vector2 GetPosition();
 	PuzzleScreen& GetPuzzleScreen();
+	StatusScreen& GetStatusScreen();
+	CharacterScreen& GetCharacterScreen();
 
 	AIBase& GetAI();
 	void SetAI(AIBase* ai);
@@ -112,7 +114,7 @@ private:
 	/** ゲームオプション */
 	Option& m_option;
 	/** ゲームシーンステート */
-	GameSceneState m_gameSceneState;
+	GameSceneState& m_gameSceneState;
 	/** プレイヤーパラメータ */
 	PlayerParameter m_playerParameter;
 
@@ -124,6 +126,8 @@ private:
 
 	float m_x;
 	float m_y;
+
+	int m_timer;
 
 };
 
