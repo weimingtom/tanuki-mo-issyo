@@ -22,6 +22,13 @@
 class		Player;
 
 
+enum 
+{
+	ANIMATION_STATE_STAND = 0,
+	ANIMATION_STATE_ATTACK,
+	ANIMATION_STATE_DAMAGE
+};
+
 /**
  * @brief Avater．
  */
@@ -98,6 +105,20 @@ private:
 	float m_y;
 	/** x座標　*/
 	float m_x;
+
+	/** アニメナンバー */
+	int anim;
+
+	/** アニメタイム */
+	float animtime;
+
+
+	/** アニメのじょたい */
+	int animState;
+
+	int animStateStop;
+
+
 
 };
 
