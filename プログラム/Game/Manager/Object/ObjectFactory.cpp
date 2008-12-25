@@ -54,12 +54,12 @@ ObjectFactory::~ObjectFactory()
  */
 
 Player* ObjectFactory::CreatePlayer(GameSceneState& gameSceneState, float x, float y, int maxHp, int hp, int skillpoint[],
-		int playerTime, int characterID, int score, int playerID, int playerLV, int playerAttack,
+		int maxPlayerTime,int playerTime, int characterID, int score, int playerID, int playerLV, int playerAttack,
 		int playerDefence, int playerType)
 {
 	Player* object;
 	object = new Player(m_device, m_objectManager, m_option, gameSceneState, x, y,
-		hp,skillpoint,playerTime,characterID,score,playerID,playerLV,playerAttack,playerDefence,playerType,maxHp);
+		hp,skillpoint,maxPlayerTime,playerTime,characterID,score,playerID,playerLV,playerAttack,playerDefence,playerType,maxHp);
 	//m_objectManager.AddObject(object);
 	return object;
 }
