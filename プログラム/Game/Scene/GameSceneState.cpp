@@ -20,7 +20,8 @@
  * @brief コンストラクタ.
  * 
  */
-GameSceneState::GameSceneState()
+GameSceneState::GameSceneState(ObjectManager& objectManager) :
+	m_objectManager(objectManager)
 {
 	m_playerList.clear();
 }
@@ -106,6 +107,16 @@ Player* GameSceneState::GetPlayer(int num)
 int GameSceneState::GetPlayerNum()
 {
 	return m_playerList.size();
+}
+
+int GameSceneState::GetGameState()
+{
+	return m_gameState;
+}
+
+void GameSceneState::SetGameState(int state)
+{
+	m_gameState = state;
 }
 
 /*===== EOF ===================================================================*/

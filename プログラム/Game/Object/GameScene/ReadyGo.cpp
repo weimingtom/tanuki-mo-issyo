@@ -59,6 +59,7 @@ void ReadyGo::Initialize()
  */
 void ReadyGo::Terminate()
 {
+	m_gameSceneState.SetGameState(GAME_STATE_MAIN);
 	m_isTerminated = true;
 }
 

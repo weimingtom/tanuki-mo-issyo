@@ -18,6 +18,7 @@
 
 #include	"Object/GameScene/Player.h"
 #include	"Object/GameScene/Block.h"
+#include	"Object/GameScene/BackGround.h"
 #include	"Object/GameScene/Result.h"
 #include	"Object/GameScene/ReadyGo.h"
 #include	"Manager/Object/ObjectManager.h"
@@ -73,6 +74,13 @@ Block* ObjectFactory::CreateBlock(GameSceneState& gameSceneState, Player& player
 	Block* object;
 	object = new Block(m_device, m_objectManager, m_option, gameSceneState, player, blockCID, blockMID);
 	//m_objectManager.AddObject(object);
+	return object;
+}
+
+BackGround* ObjectFactory::CreateBackGround(GameSceneState& gameSceneState)
+{
+	BackGround* object;
+	object = new BackGround(m_device, gameSceneState);
 	return object;
 }
 

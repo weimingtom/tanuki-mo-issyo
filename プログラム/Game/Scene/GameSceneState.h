@@ -17,6 +17,7 @@
 /*===== インクルード ==========================================================*/
 #include	<vector>
 class		Player;
+#include	"Manager/Object/ObjectManager.h"
 
 
 /**
@@ -31,7 +32,7 @@ public:
 	 * @brief コンストラクタ.
 	 * 
 	 */
-	GameSceneState();
+	GameSceneState(ObjectManager& objectManager);
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
@@ -76,10 +77,19 @@ public:
 	 */
 	int GetPlayerNum();
 
+	int GetGameState();
+	void SetGameState(int state);
+
 private:
+
+	/** オブジェクトマネージャ */
+	ObjectManager& m_objectManager;
 
 	/** プレーヤリスト */
 	std::vector<Player*> m_playerList;
+
+	/** ゲームステート */
+	int m_gameState;
 };
 
 #endif

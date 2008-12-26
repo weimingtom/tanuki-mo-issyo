@@ -21,6 +21,8 @@
 #include	"Manager/Scene/Option/Option.h"
 #include	"Scene/GameSceneState.h"
 #include	"Object/GameScene/BackGround.h"
+#include	"Object/GameScene/Result.h"
+#include	"Object/GameScene/ReadyGo.h"
 
 
 /**
@@ -91,9 +93,9 @@ private:
 	/** 終了フラグ */
 	bool							m_isTerminated;
 	/** シーンステート */
-	GameSceneState					m_state;
+	GameSceneState*					m_state;
 	/** バックグラウンド */
-	BackGround*						m_backGround;
+	//BackGround*						m_backGround;
 
 };
 

@@ -148,7 +148,10 @@ void Field::RenderObject()
  */
 void Field::UpdateObject(float frameTimer)
 {
-
+	if(m_gameSceneState.GetGameState() != GAME_STATE_MAIN)
+	{
+		return;
+	}
 	if(m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0)
 	{
 		CheckBlock();
