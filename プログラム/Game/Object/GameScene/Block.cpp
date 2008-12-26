@@ -37,6 +37,7 @@ Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, 
 	m_blockID[1] = blockMID;
 	InitializeMatrix();
 	m_speed = 1.0f;
+	m_hispeed = 5.0f;
 	m_timer = 60;
 }
 
@@ -71,8 +72,8 @@ void Block::Initialize()
  */
 void Block::Terminate()
 {
-	for(int i=0; i<3; i++){
-		for(int j=0; j<3; j++){
+	for(int i=2; i>=0; i--){
+		for(int j=2; j>=0; j--){
 			if(m_blockMatrix[i][j] != 0 ){
 				m_player.GetPuzzleScreen().GetBlockManager().AddFallBlock(new FallBlock(m_device,m_objectManager,m_option,m_gameSceneState,m_player,m_tx+(BLOCK_SIZE*(j-1)),m_ty+(BLOCK_SIZE*(i-1)),m_blockMatrix[i][j]));
 			}
@@ -110,6 +111,7 @@ void Block::RenderObject()
 			}
 		}
 	}
+
 }
 
 /*=============================================================================*/
@@ -126,18 +128,17 @@ void Block::UpdateObject(float frameTimer)
 	}
 	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
 	
-
 	IntPoint MatrixPosition;
 
-	/**配列の位置*/
-	MatrixPosition.x = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x;
-	MatrixPosition.y = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y;
-
-	/***/
+	/** 横移動速度 */
 	float m_bspeed = 5.0f;
 
+	/**配列の位置*/
+	MatrixPosition.x = GetFieldMatrixPosition(m_tx + (BLOCK_SIZE/2), m_ty).x;
+	MatrixPosition.y = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE)).y;
+
 	/**移動入力処理*/
-	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_LEFT) == true ) 
+	if(m_player.GetAI().GetKeyTrigger(GAMEKEY_LEFT) == true ) 
 
 	{
 		if(!ColisionMatrix(frame,MatrixPosition.x+1,MatrixPosition.y)){
@@ -156,8 +157,9 @@ void Block::UpdateObject(float frameTimer)
 	}
 	if(m_player.GetAI().GetKeyDown(GAMEKEY_DOWN) == true) 
 	{
-		if(!ColisionMatrix(frame,MatrixPosition.x,GetFieldMatrixPosition(m_tx, m_ty + m_speed + (BLOCK_SIZE/2)).y)){
-			m_ty += 1.0f;
+		if(!ColisionMatrix(frame,MatrixPosition.x,GetFieldMatrixPosition(m_tx + (BLOCK_SIZE/2), m_ty + m_hispeed + (BLOCK_SIZE)).y)){
+			m_ty += m_hispeed;
+			m_y = m_ty;
 		} else
 		{
 			m_timer = 0;
@@ -165,20 +167,19 @@ void Block::UpdateObject(float frameTimer)
 	}
 
 	/**落下処理*/
-	if(!ColisionMatrix(frame,MatrixPosition.x,GetFieldMatrixPosition(m_tx, m_ty + m_speed + (BLOCK_SIZE)).y)) 
+	if(!ColisionMatrix(frame,MatrixPosition.x,GetFieldMatrixPosition(m_tx + (BLOCK_SIZE/2), m_ty + m_speed + (BLOCK_SIZE)).y)) 
 	{
 		m_ty += m_speed;
 	} else
 	{
 		m_timer --;
 		if(m_timer < 0) Terminate();
-		m_ty = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((GetFieldMatrixPosition(m_tx, m_ty + m_speed ).y)*BLOCK_SIZE)-0.01f;
+		m_ty = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((GetFieldMatrixPosition(m_tx, m_ty + m_speed ).y)*BLOCK_SIZE)-0.01;
 	}
 	
 	/**回転入力処理*/
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_CIRCLE) == true)
 	{
-	
 		SpinBlock(SPINBLOCK_RIGHT);
 	}
 	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_TRIANGLE) == true)
@@ -249,6 +250,8 @@ void Block::InitializeMatrix()
 void Block::SpinBlock(int direction)
 {
 	int buf[3][3];
+
+	/** ブロック配列を回転させる */
 	for(int x=0; x<3; x++)
 	{
 		for(int y=0; y<3; y++)
@@ -283,7 +286,7 @@ void Block::SpinBlock(int direction)
 	}
 	
 	IntPoint MatrixPosition;
-	MatrixPosition.x = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x;
+	MatrixPosition.x = GetFieldMatrixPosition(m_tx + (BLOCK_SIZE/2), m_ty).x;
 	MatrixPosition.y = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y;
 
 	if(ColisionMatrix(frame,MatrixPosition.x,MatrixPosition.y))
@@ -292,7 +295,7 @@ void Block::SpinBlock(int direction)
 			{
 			case 0:
 				m_ty -= BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx + (BLOCK_SIZE/2), m_ty).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
 				{
 					m_ty += BLOCK_SIZE;
 					SpinBlock(direction);
@@ -300,7 +303,7 @@ void Block::SpinBlock(int direction)
 				break;
 			case 1:
 				m_tx += BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx + (BLOCK_SIZE/2), m_ty).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
 				{
 					m_tx -= BLOCK_SIZE;
 					SpinBlock(direction);
@@ -308,7 +311,7 @@ void Block::SpinBlock(int direction)
 				break;
 			case 3:
 				m_tx -= BLOCK_SIZE;
-				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
+				if(ColisionMatrix(frame,GetFieldMatrixPosition(m_tx + (BLOCK_SIZE/2), m_ty).x,GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE/2)).y))
 				{
 					m_tx += BLOCK_SIZE;
 					SpinBlock(direction);

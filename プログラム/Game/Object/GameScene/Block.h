@@ -140,6 +140,9 @@ private:
 	/** スピード */
 	float m_speed;
 
+	/** 高速落下時スピード */
+	float m_hispeed;
+
 	/** X位置 */
 	float m_x;
 	/** Y位置 */

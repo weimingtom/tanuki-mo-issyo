@@ -17,6 +17,7 @@
 #include "Object/GameScene/Player.h"
 #include "Define/GameDefine.h"
 #include <iostream>
+#include "Object/GameScene/Effect/BlockDeleteEffect.h"
 
 /*===== íËêîêÈåæ ==============================================================*/
 
@@ -152,10 +153,13 @@ void Field::UpdateObject(float frameTimer)
 	{
 		return;
 	}
-	if(m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0)
+	if((m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0) || (m_player.GetPlayerParameter().GetIsCreateBlock() == true))
 	{
 		CheckBlock();
-
+		if(!m_player.GetPlayerParameter().GetIsCreateBlock())
+		{
+			return;
+		}
 		ChangeToFallBlock();
 
 		if((m_fieldBlock[(int)(FIELD_WIDTH/2)][0] != 0 ) || (m_fieldBlock[(int)(FIELD_WIDTH/2)+1][0] != 0))
@@ -255,6 +259,7 @@ void Field::CheckBlock( void )
 						BlockCount( i, j, m_fieldBlock[i][j], num , checkMatrix);
 					if(num >= 4)
 					{
+						m_player.GetPlayerParameter().SetIsCreateBlock(false);
 						int* skill;
 						skill = m_player.GetPlayerParameter().GetSkillPoint();
 						switch(m_fieldBlock[i][j])
@@ -328,8 +333,11 @@ void Field::BlockCount(int x ,int y ,int id , int &num, CheckMatrix & checkMatri
 /** ÉuÉçÉbÉNè¡ñ≈ */
 void Field::BlockDelete(int x ,int y)
 {
+	m_player.GetPlayerParameter().SetIsCreateBlock(false);
+	
 	int id = m_fieldBlock[x][y];
 	m_fieldBlock[x][y] = 0;
+	m_objectManager.AddObject(m_objectManager.GetEffectFactory().CreateBlockDeleteEffect(m_gameSceneState, m_player, m_x + (BLOCK_SIZE*x), m_y + (BLOCK_SIZE*y), id));
 
 	if(m_fieldBlock[x][y+1] == id ){
 		BlockDelete(x, y+1);

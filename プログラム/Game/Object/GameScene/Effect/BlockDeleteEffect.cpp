@@ -1,6 +1,6 @@
 /*******************************************************************************/
 /**
- * @file FallBlock.h.
+ * @file BlockDeleteEffect.h.
  * 
  * @brief フォールブロッククラス定義.
  *
@@ -12,7 +12,7 @@
  */
 /*******************************************************************************/
 
-#include "FallBlock.h"
+#include "BlockDeleteEffect.h"
 #include "Object/GameScene/Player.h"
 
 
@@ -20,17 +20,19 @@
 /**
 * @brief コンストラクタ
 */
-FallBlock::FallBlock(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player, float x, float y, int blockID) :
+BlockDeleteEffect::BlockDeleteEffect(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player, float x, float y, int blockID) :
 m_device(device), m_objectManager(objectManager), m_option(option), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false), m_x(x), m_y(y), m_blockID(blockID)
 {
-	m_speed	= 5.0f;
+	m_speed = 0.5f;
+	m_timer = 30.0f;
+	m_size = 0.0f;
 }
 /*=========================================================================*/
 /**
  * @brief デストラクタ.
  * 
  */
-FallBlock::~FallBlock()
+BlockDeleteEffect::~BlockDeleteEffect()
 {
 
 }
@@ -40,7 +42,7 @@ FallBlock::~FallBlock()
  * @brief 初期化処理.
  * 
  */
-void FallBlock::Initialize()
+void BlockDeleteEffect::Initialize()
 {
 
 }
@@ -50,11 +52,12 @@ void FallBlock::Initialize()
  * @brief 終了処理.
  * 
  */
-void FallBlock::Terminate()
+void BlockDeleteEffect::Terminate()
 {
-	IntPoint pos = GetFieldMatrixPosition(m_x, m_y);
-	m_player.GetPuzzleScreen().GetBlockManager().GetField().SetBlock(pos.x, pos.y, m_blockID);
+	//IntPoint pos = GetFieldMatrixPosition(m_x, m_y);
+	//m_player.GetPuzzleScreen().GetBlockManager().GetField().SetBlock(pos.x, pos.y, m_blockID);
 	m_isTerminated = true;
+	m_player.GetPlayerParameter().SetIsCreateBlock(true);
 }
 
 /*=========================================================================*/
@@ -63,7 +66,7 @@ void FallBlock::Terminate()
  * 
  * @return 終了フラグ.
  */
-bool FallBlock::IsTerminated()
+bool BlockDeleteEffect::IsTerminated()
 {
 	return m_isTerminated;
 }
@@ -73,12 +76,12 @@ bool FallBlock::IsTerminated()
  * @brief オブジェクトの描画処理.
  * 
  */
-void FallBlock::RenderObject()
+void BlockDeleteEffect::RenderObject()
 {
 	SpriteDesc sd;
 	sd.textureID = m_blockID;
 	
-	sd.rect = Rect(m_x,m_y,m_x+(BLOCK_SIZE),m_y+(BLOCK_SIZE));
+	sd.rect = Rect(m_x + m_size,m_y + m_size,m_x + BLOCK_SIZE - m_size,m_y + BLOCK_SIZE - m_size);
 	m_device.GetGraphicDevice().Render( sd );
 }
 
@@ -88,23 +91,18 @@ void FallBlock::RenderObject()
  * 
  * @param[in] frameTimer 更新タイマ.
  */
-void FallBlock::UpdateObject(float frameTimer)
+void BlockDeleteEffect::UpdateObject(float frameTimer)
 {
 	if(m_gameSceneState.GetGameState() != GAME_STATE_MAIN)
 	{
 		return;
 	}
-	FieldMatrix frame;
-	IntPoint pos = GetFieldMatrixPosition(m_x + (BLOCK_SIZE/2), m_y + m_speed + (BLOCK_SIZE));
-	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
-	if(!ColisionMatrix(frame,pos.x,pos.y)) 
+	m_timer --;
+	if(m_timer <= 0)
 	{
-		m_y += m_speed;
-	} else
-	{
-		m_y = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((pos.y)*BLOCK_SIZE) - (BLOCK_SIZE);
 		Terminate();
 	}
+	m_size += m_speed;
 }
 
 /*=============================================================================*/
@@ -116,7 +114,7 @@ void FallBlock::UpdateObject(float frameTimer)
  *
  * @return 配列の番号.
  */
-IntPoint FallBlock::GetFieldMatrixPosition(float x, float y)
+IntPoint BlockDeleteEffect::GetFieldMatrixPosition(float x, float y)
 {
 	IntPoint tmp;
 	Vector2 fieldPosition = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition();
@@ -126,20 +124,3 @@ IntPoint FallBlock::GetFieldMatrixPosition(float x, float y)
 	return tmp;
 }
 
-/*=============================================================================*/
-/**
- * @brief ブロックの下にブロックがあるか
- * 
- * @param[in] matrix 配列.
- * @param[in] x 横の位置.
- * @param[in] y 縦の位置.
- */
-bool FallBlock::ColisionMatrix(FieldMatrix matrix, int x, int y)
-{
-	if(matrix.matrix[x][y] != 0)
-	{
-		return true;
-	}
-
-	return	false;
-}

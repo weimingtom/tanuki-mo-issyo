@@ -349,6 +349,14 @@
 					Name="Object"
 					>
 					<File
+						RelativePath=".\Game\Manager\Object\EffectFactory.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Manager\Object\EffectFactory.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Manager\Object\ObjectFactory.cpp"
 						>
 					</File>
@@ -585,19 +593,19 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Game\Object\GameScene\Result.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Game\Object\GameScene\Result.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Game\Object\GameScene\ReadyGo.cpp"
 						>
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\ReadyGo.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Result.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Result.h"
 						>
 					</File>
 					<File
@@ -632,6 +640,18 @@
 						RelativePath=".\Game\Object\GameScene\StatusScreen.h"
 						>
 					</File>
+					<Filter
+						Name="Effect"
+						>
+						<File
+							RelativePath=".\Game\Object\GameScene\Effect\BlockDeleteEffect.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\Effect\BlockDeleteEffect.h"
+							>
+						</File>
+					</Filter>
 				</Filter>
 			</Filter>
 		</Filter>

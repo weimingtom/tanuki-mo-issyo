@@ -43,6 +43,7 @@ PlayerParameter::PlayerParameter(int hp, int skillPoint[], int maxPlayerTime, in
 	m_nextMBlock = mblock;
 	m_maxHp = maxHp;
 	m_playerJudge = PLAYER_JUDGE_NONE;
+	m_isCreateBlock = true;
 
 }
 
@@ -204,6 +205,16 @@ int PlayerParameter::GetPlayerJudge()
 void PlayerParameter::SetPlayerJudge(int judge)
 {
 	m_playerJudge = judge;
+}
+
+bool PlayerParameter::GetIsCreateBlock()
+{
+	return m_isCreateBlock;
+}
+
+void PlayerParameter::SetIsCreateBlock(bool flag)
+{
+	m_isCreateBlock = flag;
 }
 
 /*===== EOF ===================================================================*/
