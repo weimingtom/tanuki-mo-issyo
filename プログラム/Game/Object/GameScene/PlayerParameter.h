@@ -81,6 +81,9 @@ public:
 	int GetMaxPlayerTime();
 	void SetMaxPlayerTime(int maxPlayerTime);
 
+	int GetPlayerJudge();
+	void SetPlayerJudge(int judge);
+
 private:
 
 	/** HP */
@@ -111,6 +114,8 @@ private:
 	int m_maxHp;
 	/** プレイヤータイム最大値 */
 	int m_maxPlayerTime;
+	/** プレイヤー勝敗状態 */
+	int m_playerJudge;
 
 };
 

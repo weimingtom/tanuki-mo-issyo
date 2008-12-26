@@ -42,6 +42,7 @@ PlayerParameter::PlayerParameter(int hp, int skillPoint[], int maxPlayerTime, in
 	m_nextCBlock = cblock;
 	m_nextMBlock = mblock;
 	m_maxHp = maxHp;
+	m_playerJudge = PLAYER_JUDGE_NONE;
 
 }
 
@@ -193,6 +194,16 @@ int PlayerParameter::GetMaxPlayerTime()
 void PlayerParameter::SetMaxPlayerTime(int maxPlayerTime)
 {
 	m_maxPlayerTime = maxPlayerTime;
+}
+
+int PlayerParameter::GetPlayerJudge()
+{
+	return m_playerJudge;
+}
+
+void PlayerParameter::SetPlayerJudge(int judge)
+{
+	m_playerJudge = judge;
 }
 
 /*===== EOF ===================================================================*/

@@ -59,6 +59,8 @@ public:
 	void AddScore(int num);
 	void AddTime(int num);
 	void SubTime(int num);
+	void PlayerLose();
+	void PlayerWin();
 
 private:
 

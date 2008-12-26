@@ -14,6 +14,7 @@
 
 #include "PlayerAction.h"
 #include "Player.h"
+#include "Object/GameScene/Result.h"
 
 /*=========================================================================*/
 /**
@@ -63,6 +64,10 @@ void PlayerAction::Damage(int damage)
 {
 	m_player.GetPlayerParameter().SetHp(m_player.GetPlayerParameter().GetHp()-damage);
 	m_player.GetCharacterScreen().GetAvatar().SetAnimationState(AVATAR_ANIMATION_STATE_DAMAGE);
+	if(m_player.GetPlayerParameter().GetHp() <= 0)
+	{
+		PlayerLose();
+	}
 }
 
 void PlayerAction::AddSkillPoint(int id)
@@ -107,5 +112,35 @@ void PlayerAction::AddTime(int num)
 void PlayerAction::SubTime(int num)
 {
 	m_player.GetPlayerParameter().SetPlayerTime(m_player.GetPlayerParameter().GetPlayerTime() - num);
+}
+
+void PlayerAction::PlayerWin()
+{
+	/*
+	m_gameSceneState.SetGameState(GAME_STATE_RESULT);
+	m_player.GetPlayerParameter().SetPlayerJudge(PLAYER_JUDGE_WIN);
+	if(m_player.GetPlayerParameter().GetPlayerID() != m_gameSceneState.GetPlayer(0)->GetPlayerParameter().GetPlayerID())
+	{
+		m_gameSceneState.GetPlayer(0)->GetPlayerParameter().SetPlayerJudge(PLAYER_JUDGE_LOSE);
+	} else
+	{
+		m_gameSceneState.GetPlayer(1)->GetPlayerParameter().SetPlayerJudge(PLAYER_JUDGE_LOSE);
+	}
+	m_objectManager.AddObject(m_objectManager.GetObjectFactory().CreateResult(m_gameSceneState));
+	*/
+}
+
+void PlayerAction::PlayerLose()
+{
+	m_gameSceneState.SetGameState(GAME_STATE_RESULT);
+	m_player.GetPlayerParameter().SetPlayerJudge(PLAYER_JUDGE_LOSE);
+	if(m_player.GetPlayerParameter().GetPlayerID() != m_gameSceneState.GetPlayer(0)->GetPlayerParameter().GetPlayerID())
+	{
+		m_gameSceneState.GetPlayer(0)->GetPlayerParameter().SetPlayerJudge(PLAYER_JUDGE_WIN);
+	} else
+	{
+		m_gameSceneState.GetPlayer(1)->GetPlayerParameter().SetPlayerJudge(PLAYER_JUDGE_WIN);
+	}
+	m_objectManager.AddObject(m_objectManager.GetObjectFactory().CreateResult(m_gameSceneState));
 }
 /*===== EOF ===================================================================*/

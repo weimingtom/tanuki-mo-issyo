@@ -53,6 +53,13 @@ enum
 	GAME_STATE_RESULT
 };
 
+enum
+{
+	PLAYER_JUDGE_NONE = 0,
+	PLAYER_JUDGE_WIN,
+	PLAYER_JUDGE_LOSE
+};
+
 #endif
 
 /*===== EOF ===================================================================*/
