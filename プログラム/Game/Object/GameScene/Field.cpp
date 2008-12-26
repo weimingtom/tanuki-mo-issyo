@@ -157,6 +157,12 @@ void Field::UpdateObject(float frameTimer)
 		CheckBlock();
 
 		ChangeToFallBlock();
+
+		if(m_fieldBlock[FIELD_WIDTH/2][0] != 0 )
+		{
+			return;
+		}
+
 		if(m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0)
 		{
 			m_player.GetPuzzleScreen().GetBlockManager().CreateBlock();
