@@ -521,14 +521,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Game\Object\GameScene\Gauge.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Game\Object\GameScene\Gauge.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Game\Object\GameScene\HitPoint.cpp"
 						>
 					</File>
@@ -590,6 +582,14 @@
 					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\PuzzleScreen.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Result.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\Result.h"
 						>
 					</File>
 					<File

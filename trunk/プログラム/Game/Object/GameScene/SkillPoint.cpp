@@ -86,6 +86,7 @@ bool SkillPoint::IsTerminated()
 void SkillPoint::RenderObject()
 {
 
+	/** スキルポイント表示 */
 	m_player.GetPlayerParameter().GetSkillPoint();
 	SpriteDesc sd;
 	TextDesc td;

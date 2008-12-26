@@ -111,7 +111,7 @@ private:
 	/** ƒAƒjƒ‚Ì‚¶‚å‚½‚¢ */
 	int animState;
 
-	int animStateStop;
+
 
 
 

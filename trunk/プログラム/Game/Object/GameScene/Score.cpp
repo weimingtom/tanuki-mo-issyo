@@ -85,6 +85,8 @@ bool Score::IsTerminated()
  */
 void Score::RenderObject()
 {
+
+	/** スコア表記 */
 	TextDesc td;
 	std::stringstream ss;
 

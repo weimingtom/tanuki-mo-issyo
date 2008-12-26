@@ -2,7 +2,7 @@
 /*
  * @file BlockManager.cpp.
  * 
- * @brief ブロックマネージャークラス(空).
+ * @brief ブロックマネージャークラス.
  *
  * @date 2008/12/04.
  *

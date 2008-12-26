@@ -1,63 +1,54 @@
 /*******************************************************************************/
 /**
- * @file BlockManager.h.
+ * @file Result.h.
  * 
- * @brief ブロックマネージャ.
+ * @brief リザルトクラスヘッダ定義.
  *
- * @date 2008/12/04.
+ * @date 2008/12/26.
  *
  * @version 1.00.
  *
- * @author Tsubasa Uragami.
+ * @author Jun Futagawa.
  */
 /*******************************************************************************/
+#ifndef _RESULT_H_
+#define _RESULT_H_
 
-#ifndef _BLOCKMANAGER_H_
-#define _BLOCKMANAGER_H_
-
-#include	<vector>
 #include	"IGameDevice.h"
-#include	"Manager/Object/ObjectManager.h"
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
-#include	"Manager/Scene/Option/Option.h"
-#include	"Object/GameScene/Block.h"
-#include	"Object/GameScene/FallBlock.h"
-#include	"Object/GameScene/Field.h"
-class		Player;
-class		IGameDevice;
 
-class BlockManager : public ObjectBase
+class Result : public ObjectBase
 {
 public:
 	/*=========================================================================*/
 	/**
 	 * @brief コンストラクタ.
-	 * 
-	 * @param[in] device ゲームデバイス.
-	 * @param[in] objectManager オブジェクトマネージャ.
-	 * @param[in] option ゲームオプション.
-	 * @param[in] gameSceneState ゲームシーンステート.
+	 *
 	 */
-	BlockManager(IGameDevice& device, ObjectManager& objectManager, Option& option, GameSceneState& gameSceneState, Player& player);
+	Result(IGameDevice& device, GameSceneState& gameSceneState);
+
 	/*=========================================================================*/
 	/**
 	 * @brief デストラクタ.
 	 *
 	 */
-	~BlockManager();
+	~Result();
+
 	/*=========================================================================*/
 	/**
 	 * @brief 初期化処理.
 	 * 
 	 */
 	void Initialize();
+
 	/*=========================================================================*/
 	/**
 	 * @brief 終了処理.
 	 * 
 	 */
 	void Terminate();
+
 	/*=========================================================================*/
 	/**
 	 * @brief 終了しているかどうか.
@@ -65,12 +56,14 @@ public:
 	 * @return 終了フラグ.
 	 */
 	bool IsTerminated();
+
 	/*=========================================================================*/
 	/**
 	 * @brief オブジェクトの描画処理.
 	 * 
 	 */
 	void RenderObject();
+
 	/*=========================================================================*/
 	/**
 	 * @brief オブジェクトの更新処理.
@@ -79,32 +72,17 @@ public:
 	 */
 	void UpdateObject(float frameTimer);
 
-	Field&			GetField();
-
-	void CreateBlock();
-
-	void AddFallBlock(FallBlock* fallBlock);
-
-	int GetFallBlockNum();
-
-private:
+	private:
 	/** 終了フラグ */
-	bool			m_isTerminated;
-	IGameDevice&	m_device;
-	ObjectManager&	m_objectManager;
-	Option&			m_option;
-	GameSceneState&	m_gameSceneState;
-	Player& m_player;
+	bool m_isTerminated;
+	/** ゲームデバイス */
+	IGameDevice& m_device;
+	/** ゲームシーンステート */
+	GameSceneState& m_gameSceneState;
 
-	/** ブロック */
-	Block			*m_block;
-	/** フィールド */
-	Field			m_field;
-	/** フォールブロック */
-	std::vector<FallBlock*> m_fallBlock;
 };
-
 
 #endif
 
 /*===== EOF ===================================================================*/
+

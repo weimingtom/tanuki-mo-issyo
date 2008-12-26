@@ -100,7 +100,7 @@ private:
 	GameSceneState& m_gameSceneState;
 	/** プレーヤ */
 	Player&		m_player;
-
+	/** アバター */
 	Avatar		m_avatar;
 
 };

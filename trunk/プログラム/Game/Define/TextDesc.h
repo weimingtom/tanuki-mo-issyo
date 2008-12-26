@@ -27,11 +27,17 @@
 
 struct TextDesc
 {
+	/** フォントスタイル指定 */
 	unsigned int code;
+	/** 文字サイズ指定 */
 	unsigned int size;
+	/** フォント名 */
 	std::string font;
+	/** 表示する文字列 */
 	std::string string;
+	/** ポジション */
 	Vector2 position;
+	/** 文字カラー */
 	Color4 color;
 };
 

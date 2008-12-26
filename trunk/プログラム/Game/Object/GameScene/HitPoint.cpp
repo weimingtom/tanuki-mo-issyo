@@ -85,6 +85,8 @@ bool HitPoint::IsTerminated()
  */
 void HitPoint::RenderObject()
 {
+
+/** ‚g‚oƒQ[ƒW•\‹L */
 	TextDesc  ht;
 	ht.size		= 19;
 	ht.position	= Vector2(m_x, m_y);
