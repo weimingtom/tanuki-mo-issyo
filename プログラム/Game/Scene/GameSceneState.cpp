@@ -14,6 +14,8 @@
 
 /*===== インクルード ==========================================================*/
 #include	"Scene/GameSceneState.h"
+#include	"Object/GameScene/Player.h"
+#include	"Object/GameScene/PlayerParameter.h"
 
 /*=============================================================================*/
 /**
@@ -117,6 +119,17 @@ int GameSceneState::GetGameState()
 void GameSceneState::SetGameState(int state)
 {
 	m_gameState = state;
+}
+
+Player* GameSceneState::GetTargetPlayer(Player *player)
+{
+	if(player->GetPlayerParameter().GetPlayerID() != GetPlayer(0)->GetPlayerParameter().GetPlayerID())
+	{
+		return GetPlayer(0);
+	} else
+	{
+		return GetPlayer(1);
+	}
 }
 
 /*===== EOF ===================================================================*/

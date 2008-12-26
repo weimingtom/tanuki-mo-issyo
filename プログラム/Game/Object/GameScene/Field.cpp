@@ -168,8 +168,15 @@ void Field::UpdateObject(float frameTimer)
 			return;
 		}
 
-		if(m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0)
+		if((m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0) && 
+			(m_player.GetCharacterScreen().GetAvatar().GetAnimationState() == AVATAR_ANIMATION_STATE_STAND) &&
+			(m_gameSceneState.GetTargetPlayer(&m_player)->GetCharacterScreen().GetAvatar().GetAnimationState() == AVATAR_ANIMATION_STATE_STAND))
 		{
+			if(m_player.GetPlayerParameter().GetPlayerTime() <= 0)
+			{
+				m_player.GetPlayerAction().Attack(m_gameSceneState.GetTargetPlayer(&m_player));
+				return;
+			}
 			m_player.GetPuzzleScreen().GetBlockManager().CreateBlock();
 		}
 	}
@@ -337,7 +344,7 @@ void Field::BlockDelete(int x ,int y)
 	
 	int id = m_fieldBlock[x][y];
 	m_fieldBlock[x][y] = 0;
-	m_objectManager.AddObject(m_objectManager.GetEffectFactory().CreateBlockDeleteEffect(m_gameSceneState, m_player, m_x + (BLOCK_SIZE*x), m_y + (BLOCK_SIZE*y), id));
+	m_objectManager.AddEffect(m_objectManager.GetEffectFactory().CreateBlockDeleteEffect(m_gameSceneState, m_player, m_x + (BLOCK_SIZE*x), m_y + (BLOCK_SIZE*y), id));
 
 	if(m_fieldBlock[x][y+1] == id ){
 		BlockDelete(x, y+1);
