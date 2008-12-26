@@ -26,6 +26,7 @@ ObjectManager::ObjectManager(IGameDevice &device, Option &option) :
 	m_device(device), m_option(option)
 {
 	m_objectFactory = new ObjectFactory(device, *this, option);
+	m_effectFactory = new EffectFactory(device, *this, option);
 }
 
 /*=============================================================================*/
@@ -36,6 +37,7 @@ ObjectManager::ObjectManager(IGameDevice &device, Option &option) :
 ObjectManager::~ObjectManager()
 {
 	delete m_objectFactory;
+	delete m_effectFactory;
 
 	for(std::vector<ObjectBase*>::iterator i = m_object.begin(); i != m_object.end();)
 	{
@@ -169,6 +171,11 @@ void ObjectManager::UpdateObject(float frameTimer)
 ObjectFactory& ObjectManager::GetObjectFactory()
 {
 	return *m_objectFactory;
+}
+
+EffectFactory& ObjectManager::GetEffectFactory()
+{
+	return *m_effectFactory;
 }
 
 /*===== EOF ===================================================================*/

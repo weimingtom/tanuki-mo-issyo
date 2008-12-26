@@ -84,6 +84,9 @@ public:
 	int GetPlayerJudge();
 	void SetPlayerJudge(int judge);
 
+	bool GetIsCreateBlock();
+	void SetIsCreateBlock(bool flag);
+
 private:
 
 	/** HP */
@@ -116,6 +119,8 @@ private:
 	int m_maxPlayerTime;
 	/** プレイヤー勝敗状態 */
 	int m_playerJudge;
+	/** 次のブロック生成可能状態フラグ */
+	bool m_isCreateBlock;
 
 };
 
