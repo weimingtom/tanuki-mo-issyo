@@ -593,6 +593,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Game\Object\GameScene\ReadyGo.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Game\Object\GameScene\ReadyGo.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Game\Object\GameScene\Score.cpp"
 						>
 					</File>

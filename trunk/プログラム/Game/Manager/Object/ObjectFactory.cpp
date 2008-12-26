@@ -18,7 +18,9 @@
 
 #include	"Object/GameScene/Player.h"
 #include	"Object/GameScene/Block.h"
+#include	"Object/GameScene/ReadyGo.h"
 #include	"Manager/Object/ObjectManager.h"
+
 
 /*=============================================================================*/
 /**
@@ -72,5 +74,14 @@ Block* ObjectFactory::CreateBlock(GameSceneState& gameSceneState, Player& player
 	//m_objectManager.AddObject(object);
 	return object;
 }
+
+ReadyGo* ObjectFactory::CreateReadyGo(GameSceneState& gameSceneState)
+{
+	ReadyGo* readyGo;
+	readyGo = new ReadyGo(m_device, gameSceneState);
+
+	return readyGo;
+}
+
 
 /*===== EOF ===================================================================*/

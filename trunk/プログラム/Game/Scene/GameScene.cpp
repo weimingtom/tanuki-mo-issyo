@@ -40,6 +40,8 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
 		m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 20, 20, TEXTUREID_AVATAR2, 0, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
 
+	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreateReadyGo(m_state));
+
 }
 
 /*=============================================================================*/
@@ -83,6 +85,7 @@ void GameScene::Initialize()
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_BACKGROUND,"bg.dds",COLORKEYFLAG_NONE);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_ATTACK,"attacktest.dds",COLORKEYFLAG_AUTO);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_DAMAGE,"damagetest.dds",COLORKEYFLAG_AUTO);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_READY_GO,"ReadyGo.dds",COLORKEYFLAG_AUTO);
 
 	m_objectManager->Initialize();
 	m_backGround->Initialize();
