@@ -158,8 +158,9 @@ void Field::UpdateObject(float frameTimer)
 
 		ChangeToFallBlock();
 
-		if(m_fieldBlock[FIELD_WIDTH/2][0] != 0 )
+		if((m_fieldBlock[(int)(FIELD_WIDTH/2)][0] != 0 ) || (m_fieldBlock[(int)(FIELD_WIDTH/2)+1][0] != 0))
 		{
+			m_player.GetPlayerAction().PlayerLose();
 			return;
 		}
 

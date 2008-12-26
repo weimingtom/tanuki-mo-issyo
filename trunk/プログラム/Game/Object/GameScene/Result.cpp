@@ -74,39 +74,23 @@ void Result::RenderObject()
 
 /** Ÿ‚¿•‰‚¯•\Ž¦ */
 
-	Vector2 position1;
-	Vector2 position2;
-	SpriteDesc re1;
-	SpriteDesc re2;
-	position1 = m_gameSceneState.GetPlayer(0)->GetPuzzleScreen().GetBlockManager().GetField().GetPosition();
-	position2 = m_gameSceneState.GetPlayer(1)->GetPuzzleScreen().GetBlockManager().GetField().GetPosition();
-	re1.rect = Rect(position1.x+40.0f,position1.y+150.0f,position1.x+240.0f,position1.y+250.0f);
-	re2.rect = Rect(position2.x+40.0f,position2.y+150.0f,position2.x+240.0f,position2.y+250.0f);
-	//if(m_player.GetPlayerParameter().getplayerjudge() == JUDGLE_WIN)
-	//{
-	//if(m_gameSceneState.GetPlayer(0)->GetPlayerParameter() 
-		re1.srcRect = Rect(0,0,512.0f,117.0f);
-	//} else
-	//{
-		re1.srcRect = Rect(0,120.0f,512.0f,256.0f);
-	//}
+	Vector2 position;
+	SpriteDesc sd;
 
-	//if(m_gameSceneState.GetPlayer(1)->GetPlayerParameter() 
-		re2.srcRect = Rect(0,0,512.0f,117.0f);
-	//} else
-	//{
-		re2.srcRect = Rect(0,120.0f,512.0f,256.0f);
-	//}
-
-	re1.textureID = TEXTUREID_JUDGE;
-	re2.textureID = TEXTUREID_JUDGE;
-
-	m_device.GetGraphicDevice().Render( re1 );
-	m_device.GetGraphicDevice().Render( re2 );
-
-	
-	
-
+	sd.textureID = TEXTUREID_JUDGE;
+	for(int i=0; i<2; i++)
+	{
+		position = m_gameSceneState.GetPlayer(i)->GetPuzzleScreen().GetBlockManager().GetField().GetPosition();
+		sd.rect = Rect(position.x+40.0f,position.y+150.0f,position.x+240.0f,position.y+250.0f);
+		if(m_gameSceneState.GetPlayer(i)->GetPlayerParameter().GetPlayerJudge() == PLAYER_JUDGE_LOSE)
+		{
+			sd.srcRect = Rect(0,0,512.0f,117.0f);
+		} else
+		{
+			sd.srcRect = Rect(0,120.0f,512.0f,256.0f);
+		}
+		m_device.GetGraphicDevice().Render( sd );
+	}
 }
 
 /*=========================================================================*/
