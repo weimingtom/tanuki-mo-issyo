@@ -44,7 +44,7 @@ m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option)
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
 		*m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 20, 20, TEXTUREID_AVATAR2, 0, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
 
-	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreateReadyGo(*m_state));
+	m_objectManager->AddEffect(m_objectManager->GetObjectFactory().CreateReadyGo(*m_state));
 
 }
 
@@ -130,6 +130,7 @@ void GameScene::RenderScene()
 {
 //	m_backGround->RenderObject();
 	m_objectManager->RenderObject();
+	m_objectManager->RenderEffect();
 }
 
 /*=============================================================================*/
@@ -141,6 +142,7 @@ void GameScene::RenderScene()
 void GameScene::UpdateScene(float frameTimer)
 {
 	m_objectManager->UpdateObject(frameTimer);
+	m_objectManager->UpdateEffect(frameTimer);
 //	m_backGround->UpdateObject(frameTimer);
 }
 

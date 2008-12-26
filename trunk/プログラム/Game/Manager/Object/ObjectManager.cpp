@@ -48,6 +48,16 @@ ObjectManager::~ObjectManager()
 		delete (*i);
 		i = m_object.erase(i);
 	}
+	
+	for(std::vector<ObjectBase*>::iterator i = m_effect.begin(); i != m_effect.end();)
+	{
+		if(!(*i)->IsTerminated())
+		{
+			(*i)->Terminate();
+		}
+		delete (*i);
+		i = m_effect.erase(i);
+	}
 }
 
 /*=============================================================================*/
@@ -163,6 +173,78 @@ void ObjectManager::UpdateObject(float frameTimer)
 		{
 			delete (*j);
 			m_object.erase(j);
+			i--;
+		}
+	}
+}
+
+/*=============================================================================*/
+/**
+ * @brief エフェクトの追加.
+ * 
+ * @param[in] objectID 追加するオブジェクト.
+ */
+void ObjectManager::AddEffect(ObjectBase* object)
+{
+	object->Initialize();
+	m_effect.push_back(object);
+}
+
+/*=============================================================================*/
+/**
+ * @brief エフェクトの削除.
+ * 
+ * @param[in] object 削除するオブジェクト.
+ */
+void ObjectManager::DelEffect(ObjectBase *object)
+{
+	for(std::vector<ObjectBase*>::iterator i = m_effect.begin(); i != m_effect.end();i++)
+	{
+		if((*i) == object)
+		{
+			if(!(*i)->IsTerminated())
+			{
+				(*i)->Terminate();
+			}
+			delete (*i);
+			m_effect.erase(i);
+		}
+	}
+}
+
+/*=============================================================================*/
+/**
+ * @brief エフェクトの描画処理.
+ * 
+ */
+void ObjectManager::RenderEffect()
+{
+	for(std::vector<ObjectBase*>::iterator i = m_effect.begin(); i != m_effect.end();i++)
+	{
+		(*i)->RenderObject();
+	}
+}
+
+/*=============================================================================*/
+/**
+ * @brief エフェクトの更新処理.
+ * 
+ * @param[in] frameTimer 更新タイマ.
+ */
+void ObjectManager::UpdateEffect(float frameTimer)
+{
+
+	for(unsigned int i = 0; i < m_effect.size(); i++)
+	{
+		std::vector<ObjectBase*>::iterator j = m_effect.begin() += i;
+
+		if(!(*j)->IsTerminated())
+		{
+			(*j)->UpdateObject(frameTimer);
+		} else
+		{
+			delete (*j);
+			m_effect.erase(j);
 			i--;
 		}
 	}

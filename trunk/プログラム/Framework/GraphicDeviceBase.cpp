@@ -24,6 +24,7 @@
 #include	<Ngl/IEffect.h>
 #include	<Ngl/Utility.h>
 #include	<cassert>
+#include	<iostream>
 
 #include	<Ngl/OpenGL/Texture2DGL.h>
 
@@ -478,7 +479,7 @@ void GraphicDeviceBase::Render(const GaugeDesc &desc_)
 	sd.textureID = desc.texture1;
 	
 	sd.rect = Rect(desc.position.x,desc.position.y,desc.position.x+(desc.size.x/desc.max*desc.point),desc.position.y+desc.size.y);
-	sd.srcRect = Rect(desc.textureRec1.left,desc.textureRec1.top,desc.textureRec1.left+(desc.max/(desc.textureRec1.right-desc.textureRec1.left)*desc.point),desc.textureRec1.bottom);
+	sd.srcRect = Rect(desc.textureRec1.left,desc.textureRec1.top,desc.textureRec1.left+((desc.textureRec1.right-desc.textureRec1.left)/desc.max*desc.point),desc.textureRec1.bottom);
 	Render( sd );
 }
 

@@ -91,6 +91,11 @@ public:
 	ObjectFactory& GetObjectFactory();
 	EffectFactory& GetEffectFactory();
 
+	void AddEffect(ObjectBase* object);
+	void DelEffect(ObjectBase* object);
+	void RenderEffect();
+	void UpdateEffect(float frameTimer);
+
 private:
 
 	/** オブジェクトファクトリ */
@@ -98,6 +103,8 @@ private:
 	EffectFactory* m_effectFactory;
 	/** オブジェクトリスト */
 	std::vector<ObjectBase*> m_object;
+	/** エフェクトリスト */
+	std::vector<ObjectBase*> m_effect;
 	/** 終了フラグ */
 	bool m_isTerminated;
 	

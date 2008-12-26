@@ -80,6 +80,8 @@ public:
 	int GetGameState();
 	void SetGameState(int state);
 
+	Player* GetTargetPlayer(Player* player);
+
 private:
 
 	/** オブジェクトマネージャ */

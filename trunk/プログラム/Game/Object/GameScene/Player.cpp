@@ -133,6 +133,7 @@ void Player::UpdateObject(float frameTimer)
 		m_playerAction.SubTime(1);
 	
 	}
+	/*
 	if( m_playerParameter.GetPlayerTime() <= 0)
 	{
 		Player* target;
@@ -147,6 +148,7 @@ void Player::UpdateObject(float frameTimer)
 
 		m_playerParameter.SetPlayerTime( m_playerParameter.GetMaxPlayerTime() );
 	}
+	*/
 
 }
 
