@@ -81,6 +81,8 @@ bool PlayerTime::IsTerminated()
  */
 void PlayerTime::RenderObject()
 {
+
+/** プレイヤータイマーゲージ */
 	TextDesc td;
 	td.code = FONT_CODE_NORMAL;
 	td.font = "ＭＳ ゴシック";

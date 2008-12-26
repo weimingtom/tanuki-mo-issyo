@@ -2,7 +2,7 @@
 /**
  * @file Defence.cpp.
  * 
- * @brief アタッククラスソース定義.
+ * @brief ディフェンスクラスソース定義.
  *
  * @date 2008/12/21.
  *
@@ -83,6 +83,7 @@ bool Defence::IsTerminated()
 void Defence::RenderObject()
 {
 
+	/** 防御力ゲージ表示 */
 	TextDesc  dt;
 	dt.size		= 20;
 	dt.position	= Vector2(m_x, m_y);

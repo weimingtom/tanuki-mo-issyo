@@ -24,6 +24,7 @@ class	GameScene;
 class	GameSceneState;
 class Player;
 class Block;
+#include "Object/GameScene/Result.h"
 
 #include	"Object/GameScene/ReadyGo.h"
 
@@ -64,6 +65,8 @@ public:
 		int playerDefence, int playerType);
 
 	Block* CreateBlock(GameSceneState& gameSceneState,Player& player, int blockCID, int blockMID);
+
+	Result* CreateResult(GameSceneState& gameSceneState);
 
 	ReadyGo* CreateReadyGo(GameSceneState& gameSceneState);
 

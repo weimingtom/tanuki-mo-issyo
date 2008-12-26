@@ -124,9 +124,11 @@ private:
 	StatusScreen	m_statusScreen;
 	PlayerAction	m_playerAction;
 
+	/** ˆÊ’u */
 	float m_x;
 	float m_y;
 
+	/** ŽžŠÔ */
 	int m_timer;
 
 };

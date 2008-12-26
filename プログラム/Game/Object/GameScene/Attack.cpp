@@ -82,6 +82,7 @@ bool Attack::IsTerminated()
  */
 void Attack::RenderObject()
 {
+	//アタックゲージ
 
 	TextDesc at1;
 	at1.code = FONT_CODE_NORMAL;

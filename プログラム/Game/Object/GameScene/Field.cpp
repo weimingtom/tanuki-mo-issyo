@@ -2,7 +2,7 @@
 /*
  * @file Field.cpp.
  * 
- * @brief ファイル説明.
+ * @brief フィールドソース.
  *
  * @date 2008/12/08.
  *
@@ -315,6 +315,7 @@ void Field::BlockCount(int x ,int y ,int id , int &num, CheckMatrix & checkMatri
 	m_fieldBlock[x][y] = buf;
 }
 
+/** ブロック消滅 */
 void Field::BlockDelete(int x ,int y)
 {
 	int id = m_fieldBlock[x][y];
@@ -336,7 +337,7 @@ void Field::BlockDelete(int x ,int y)
 		BlockDelete(x-1, y);
 	}
 }
-
+/** ブロック消滅後の落下処理 */
 void Field::ChangeToFallBlock()
 {
 	for(int x=0; x<FIELD_WIDTH; x++)

@@ -18,6 +18,7 @@
 
 #include	"Object/GameScene/Player.h"
 #include	"Object/GameScene/Block.h"
+#include	"Object/GameScene/Result.h"
 #include	"Object/GameScene/ReadyGo.h"
 #include	"Manager/Object/ObjectManager.h"
 
@@ -72,6 +73,13 @@ Block* ObjectFactory::CreateBlock(GameSceneState& gameSceneState, Player& player
 	Block* object;
 	object = new Block(m_device, m_objectManager, m_option, gameSceneState, player, blockCID, blockMID);
 	//m_objectManager.AddObject(object);
+	return object;
+}
+
+Result* ObjectFactory::CreateResult(GameSceneState &gameSceneState)
+{
+	Result* object;
+	object = new Result(m_device, gameSceneState);
 	return object;
 }
 

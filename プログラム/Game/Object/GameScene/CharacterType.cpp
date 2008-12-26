@@ -84,6 +84,7 @@ bool CharacterType::IsTerminated()
  */
 void CharacterType::RenderObject()
 {
+	/** ‘®«•\‹L */
 	SpriteDesc sd;
 	sd.textureID = m_player.GetPlayerParameter().GetPlayerType();
 	

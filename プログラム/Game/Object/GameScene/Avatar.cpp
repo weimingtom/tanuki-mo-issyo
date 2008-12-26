@@ -101,12 +101,12 @@ void Avatar::RenderObject()
 		sd.reverse = true;
 	}
 	
-		
+	/** アバターアニメーション */
 	animtime++;
 
 	switch(animState)
 	{
-	case(AVATAR_ANIMATION_STATE_STAND):
+	case(AVATAR_ANIMATION_STATE_STAND)://立ち状態
 
 		sd.textureID = TEXTUREID_STAND;
 		sd.srcRect = Rect((int)(204.8f * anim),0,(int)(204.8f * anim) + 64.0f,110.0f);
@@ -123,7 +123,7 @@ void Avatar::RenderObject()
 				}
 			}
 			break;
-	case(AVATAR_ANIMATION_STATE_ATTACK):
+	case(AVATAR_ANIMATION_STATE_ATTACK)://攻撃状態
 
 		sd.textureID = TEXTUREID_ATTACK;
 		sd.rect = Rect(m_x,m_y,m_x+220.0f,m_y+180.0f);
@@ -141,7 +141,7 @@ void Avatar::RenderObject()
 			}
 			break;
 		
-	case(AVATAR_ANIMATION_STATE_DAMAGE):
+	case(AVATAR_ANIMATION_STATE_DAMAGE)://ダメージ状態
 
 		sd.textureID = TEXTUREID_DAMAGE;
 		sd.srcRect = Rect((int)(204.8f * anim),0,(int)(204.8f * anim) + 64.0f,110.0f);

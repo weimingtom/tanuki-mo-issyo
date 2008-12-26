@@ -88,7 +88,7 @@ private:
 	/** プレーヤ */
 	Player& m_player;
 
-	//
+	/** ゲージデスク */
 	GaugeDesc	m_gaugeDesc;
 
 	/** y座標　*/
