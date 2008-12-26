@@ -45,6 +45,14 @@ enum
 	AVATAR_ANIMATION_STATE_DAMAGE
 };
 
+enum
+{
+	GAME_STATE_READY = 0,
+	GAME_STATE_MAIN,
+	GAME_STATE_PAUSE,
+	GAME_STATE_RESULT
+};
+
 #endif
 
 /*===== EOF ===================================================================*/

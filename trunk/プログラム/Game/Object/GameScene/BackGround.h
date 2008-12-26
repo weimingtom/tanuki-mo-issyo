@@ -68,7 +68,6 @@ private:
 	/** ゲームシーンステート */
 	GameSceneState& m_gameSceneState;
 
-
 };
 
 #endif

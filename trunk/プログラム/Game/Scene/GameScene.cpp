@@ -28,21 +28,23 @@
  * @param[in] option ゲームオプション.
  */
 GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMediator, Option& option) :
-	m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option), m_isTerminated(false), m_state()
+m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option), m_isTerminated(false)
 {
 	m_objectManager = new ObjectManager(device,option);
-	m_backGround = new BackGround(m_device, m_state);
+	m_state = new GameSceneState(*m_objectManager);
+
+	m_state->SetGameState(GAME_STATE_READY);
+
+	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreateBackGround(*m_state));
 
 	int skill[4] = {0,0,0,0};
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
-		m_state,50.0f, 50.0f, 150, 100, skill, 15, 15, TEXTUREID_AVATAR1, 0, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
+		*m_state,50.0f, 50.0f, 150, 100, skill, 15, 15, TEXTUREID_AVATAR1, 0, 0, 5, 15, 20, TEXTUREID_SBLOCK1));
 
 	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreatePlayer(
-		m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 20, 20, TEXTUREID_AVATAR2, 0, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
+		*m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 20, 20, TEXTUREID_AVATAR2, 0, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
 
-	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreateResult(m_state));
-
-	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreateReadyGo(m_state));
+	m_objectManager->AddObject(m_objectManager->GetObjectFactory().CreateReadyGo(*m_state));
 
 }
 
@@ -54,7 +56,8 @@ GameScene::GameScene(IGameDevice& device, SceneManagerMediator& sceneManagerMedi
 GameScene::~GameScene()
 {
 	delete m_objectManager;
-	delete m_backGround;
+//	delete m_backGround;
+	delete m_state;
 }
 
 /*=============================================================================*/
@@ -91,7 +94,7 @@ void GameScene::Initialize()
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_READY_GO,"ReadyGo.dds",COLORKEYFLAG_AUTO);
 
 	m_objectManager->Initialize();
-	m_backGround->Initialize();
+//	m_backGround->Initialize();
 
 }
 
@@ -103,7 +106,7 @@ void GameScene::Initialize()
 void GameScene::Terminate()
 {
 	m_objectManager->Terminate();
-	m_backGround->Terminate();
+//	m_backGround->Terminate();
 	m_isTerminated = true;
 }
 
@@ -125,9 +128,9 @@ bool GameScene::IsTerminated()
  */
 void GameScene::RenderScene()
 {
-	m_backGround->RenderObject();
+//	m_backGround->RenderObject();
 	m_objectManager->RenderObject();
-	}
+}
 
 /*=============================================================================*/
 /**
@@ -138,7 +141,7 @@ void GameScene::RenderScene()
 void GameScene::UpdateScene(float frameTimer)
 {
 	m_objectManager->UpdateObject(frameTimer);
-	m_backGround->UpdateObject(frameTimer);
+//	m_backGround->UpdateObject(frameTimer);
 }
 
 /*===== EOF ===================================================================*/

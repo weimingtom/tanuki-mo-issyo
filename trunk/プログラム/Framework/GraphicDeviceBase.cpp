@@ -395,7 +395,13 @@ void GraphicDeviceBase::Render( const SpriteDesc& desc )
 	glTranslatef(desc.rect.left, desc.rect.top, 0.0f);
 	glRotatef(desc.angle, 0.0f, 0.0f, 1.0f);
 
-	
+	if(desc.reverse == true)
+	{
+		glDisable( GL_CULL_FACE );
+	} else
+	{
+		glEnable( GL_CULL_FACE );
+	}
 	glDepthMask( GL_FALSE );
 	glBegin(GL_QUADS);
 		glColor4f(desc.color.r, desc.color.g, desc.color.b, desc.color.a);

@@ -24,10 +24,9 @@ class	GameScene;
 class	GameSceneState;
 class Player;
 class Block;
-#include "Object/GameScene/Result.h"
-
-#include	"Object/GameScene/ReadyGo.h"
-
+class BackGround;
+class Result;
+class ReadyGo;
 
 /**
  * @brief ObjectFactoryÅD
@@ -65,6 +64,7 @@ public:
 		int playerDefence, int playerType);
 
 	Block* CreateBlock(GameSceneState& gameSceneState,Player& player, int blockCID, int blockMID);
+	BackGround* CreateBackGround(GameSceneState& gameSceneState);
 
 	Result* CreateResult(GameSceneState& gameSceneState);
 

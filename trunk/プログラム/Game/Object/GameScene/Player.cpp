@@ -34,7 +34,7 @@ Player::Player(IGameDevice& device, ObjectManager& objectManager, Option& option
 		m_statusScreen(device,objectManager,option,gameSceneState, *this),
 		m_playerParameter(hp,skillPoint,maxPlayerTime,playerTime,characterID,score,playerID,
 						  playerLV,playerAttack,playerDefence, playerType,
-						  TEXTUREID_BLOCK1, TEXTUREID_BLOCK2,maxHp),
+						  Random.randi(TEXTUREID_BLOCK1, TEXTUREID_SBLOCK4), Random.randi(TEXTUREID_BLOCK1, TEXTUREID_SBLOCK4),maxHp),
 		m_AI(NULL),
 		m_playerAction(device,objectManager,option,gameSceneState,*this),
 		m_timer(0)
@@ -122,6 +122,10 @@ void Player::UpdateObject(float frameTimer)
 	m_characterScreen.UpdateObject(frameTimer);
 	m_statusScreen.UpdateObject(frameTimer);
 
+	if(m_gameSceneState.GetGameState() != GAME_STATE_MAIN)
+	{
+		return;
+	}
 	m_timer++;
 	if(m_timer >= 60)
 	{

@@ -120,6 +120,10 @@ void Block::RenderObject()
  */
 void Block::UpdateObject(float frameTimer)
 {
+	if(m_gameSceneState.GetGameState() != GAME_STATE_MAIN)
+	{
+		return;
+	}
 	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
 	
 

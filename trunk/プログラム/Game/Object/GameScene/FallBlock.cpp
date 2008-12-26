@@ -90,6 +90,10 @@ void FallBlock::RenderObject()
  */
 void FallBlock::UpdateObject(float frameTimer)
 {
+	if(m_gameSceneState.GetGameState() != GAME_STATE_MAIN)
+	{
+		return;
+	}
 	FieldMatrix frame;
 	IntPoint pos = GetFieldMatrixPosition(m_x, m_y + m_speed + (BLOCK_SIZE));
 	m_player.GetPuzzleScreen().GetBlockManager().GetField().GetFieldBlockMatrix(&frame);
