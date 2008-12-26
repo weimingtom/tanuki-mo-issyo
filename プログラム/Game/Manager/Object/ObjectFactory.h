@@ -25,6 +25,8 @@ class	GameSceneState;
 class Player;
 class Block;
 
+#include	"Object/GameScene/ReadyGo.h"
+
 
 /**
  * @brief ObjectFactoryÅD
@@ -62,6 +64,9 @@ public:
 		int playerDefence, int playerType);
 
 	Block* CreateBlock(GameSceneState& gameSceneState,Player& player, int blockCID, int blockMID);
+
+	ReadyGo* CreateReadyGo(GameSceneState& gameSceneState);
+
 
 private:
 
