@@ -17,6 +17,7 @@
 #include	"MeshID.h"
 #include	"TextureID.h"
 #include	"EffectID.h"
+#include	"SceneID.h"
 #include	"GameDefine.h"
 #include	<Ngl/ViewportDesc.h>
 #include	<Ngl/Vector2.h>

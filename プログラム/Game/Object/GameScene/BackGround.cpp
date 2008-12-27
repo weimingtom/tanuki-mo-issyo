@@ -60,7 +60,7 @@ bool BackGround::IsTerminated()
 void BackGround::RenderObject()
 {
 	SpriteDesc sd;
-	sd.rect = Rect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
+	sd.rect = Rect(0,0,(float)WINDOW_WIDTH,(float)WINDOW_HEIGHT);
 	sd.textureID = TEXTUREID_BACKGROUND;
 	m_device.GetGraphicDevice().Render( sd );
 	
