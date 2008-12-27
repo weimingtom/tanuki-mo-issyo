@@ -414,6 +414,22 @@
 				Name="Scene"
 				>
 				<File
+					RelativePath=".\Game\Scene\CharacterSelectScene.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Game\Scene\CharacterSelectScene.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Game\Scene\CharacterSelectSceneState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Game\Scene\CharacterSelectSceneState.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Game\Scene\GameScene.cpp"
 					>
 				</File>
