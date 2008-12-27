@@ -25,7 +25,9 @@ enum SceneID
 	/** ゲームシーン */
 	SCENE_ID_GAME,
 	/** タイトル */
-	SCENE_ID_TITLE
+	SCENE_ID_TITLE,
+	/** キャラクタ選択シーン */
+	SCENE_ID_CHARACTER_SELECT
 };
 
 #endif

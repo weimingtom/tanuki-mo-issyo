@@ -144,6 +144,13 @@ void GameScene::UpdateScene(float frameTimer)
 	m_objectManager->UpdateObject(frameTimer);
 	m_objectManager->UpdateEffect(frameTimer);
 //	m_backGround->UpdateObject(frameTimer);
+
+	/** テストコード */
+	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_CANCEL) == true)
+	{
+		m_sceneManagerMediator.ChangeScene(SCENE_ID_GAME);
+	}
+	//-----------------
 }
 
 /*===== EOF ===================================================================*/

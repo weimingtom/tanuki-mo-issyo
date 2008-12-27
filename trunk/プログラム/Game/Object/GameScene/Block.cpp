@@ -174,7 +174,7 @@ void Block::UpdateObject(float frameTimer)
 	{
 		m_timer --;
 		if(m_timer < 0) Terminate();
-		m_ty = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((GetFieldMatrixPosition(m_tx, m_ty + m_speed ).y)*BLOCK_SIZE)-0.01;
+		m_ty = m_player.GetPuzzleScreen().GetBlockManager().GetField().GetPosition().y + ((GetFieldMatrixPosition(m_tx, m_ty + m_speed ).y)*BLOCK_SIZE)-0.01f;
 	}
 	
 	/**‰ñ“]“ü—Íˆ—*/

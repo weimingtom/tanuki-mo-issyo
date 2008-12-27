@@ -109,7 +109,7 @@ void Avatar::RenderObject()
 	case(AVATAR_ANIMATION_STATE_STAND)://—§‚¿ó‘Ô
 
 		sd.textureID = TEXTUREID_STAND;
-		sd.srcRect = Rect((int)(204.8f * anim),0,(int)(204.8f * anim) + 64.0f,110.0f);
+		sd.srcRect = Rect((float)(int)(204.8f * anim),0,(float)(int)(204.8f * anim) + 64.0f,110.0f);
 
 			if(animtime > 6)
 			{
@@ -127,7 +127,7 @@ void Avatar::RenderObject()
 
 		sd.textureID = TEXTUREID_ATTACK;
 		sd.rect = Rect(m_x,m_y,m_x+220.0f,m_y+180.0f);
-		sd.srcRect = Rect((int)(204.8f * anim),0,(int)(204.8f * anim) + 128.0f,110.0f);
+		sd.srcRect = Rect((float)(int)(204.8f * anim),0,(float)(int)(204.8f * anim) + 128.0f,110.0f);
 
 			if(animtime > 6)
 			{
@@ -144,7 +144,7 @@ void Avatar::RenderObject()
 	case(AVATAR_ANIMATION_STATE_DAMAGE)://ƒ_ƒ[ƒWó‘Ô
 
 		sd.textureID = TEXTUREID_DAMAGE;
-		sd.srcRect = Rect((int)(204.8f * anim),0,(int)(204.8f * anim) + 64.0f,110.0f);
+		sd.srcRect = Rect((float)(int)(204.8f * anim),0,(float)(int)(204.8f * anim) + 64.0f,110.0f);
 
 			if(animtime > 6)
 			{

@@ -98,7 +98,7 @@ void Defence::RenderObject()
 	gd1.textureRec2 = Rect(0,0,128,32);
 	gd1.textureRec1 = Rect(0,32,128,64);
 	gd1.max = 100;
-	gd1.point = m_player.GetPlayerParameter().GetPlayerDefence();
+	gd1.point = (float)m_player.GetPlayerParameter().GetPlayerDefence();
 	gd1.texture1 = TEXTUREID_HP;
 	gd1.texture2 = TEXTUREID_HP;
 	m_device.GetGraphicDevice().Render( gd1 );
