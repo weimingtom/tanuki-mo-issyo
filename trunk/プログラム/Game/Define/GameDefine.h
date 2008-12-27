@@ -60,6 +60,12 @@ enum
 	PLAYER_JUDGE_LOSE
 };
 
+enum
+{
+	CUTIN_LEFT = 0,
+	CUTIN_RIGHT
+};
+
 #endif
 
 /*===== EOF ===================================================================*/

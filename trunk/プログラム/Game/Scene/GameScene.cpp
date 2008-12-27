@@ -45,7 +45,8 @@ m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option)
 		*m_state,WINDOW_WIDTH/2, 50.0f, 150, 100, skill, 20, 20, TEXTUREID_AVATAR2, 0, 1, 5, 15, 20, TEXTUREID_SBLOCK1));
 
 	m_objectManager->AddEffect(m_objectManager->GetObjectFactory().CreateReadyGo(*m_state));
-
+	m_objectManager->AddEffect(m_objectManager->GetEffectFactory().CreateCutinEffect(*m_state, CUTIN_LEFT));
+	m_objectManager->AddEffect(m_objectManager->GetEffectFactory().CreateCutinEffect(*m_state, CUTIN_RIGHT));
 }
 
 /*=============================================================================*/
@@ -92,6 +93,7 @@ void GameScene::Initialize()
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_DAMAGE,"damagetest.dds",COLORKEYFLAG_AUTO);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_JUDGE,"Judge.dds",COLORKEYFLAG_AUTO);
 	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_READY_GO,"ReadyGo.dds",COLORKEYFLAG_AUTO);
+	m_device.GetGraphicDevice().LoadTexture(TEXTUREID_CUTIN,"cutin.dds",COLORKEYFLAG_NONE);
 
 	m_objectManager->Initialize();
 //	m_backGround->Initialize();

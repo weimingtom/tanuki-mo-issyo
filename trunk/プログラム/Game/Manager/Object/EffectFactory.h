@@ -15,7 +15,7 @@
 #define _EFFECT_FACTORY_H_
 
 /*===== インクルード ==========================================================*/
-class ObjectManager;
+class	ObjectManager;
 
 class	IGameDevice;
 class	Option;
@@ -25,6 +25,7 @@ class	GameSceneState;
 class	Player;
 
 class	BlockDeleteEffect;
+class	CutinEffect;
 
 /**
  * @brief EffectFactory．
@@ -57,6 +58,15 @@ public:
 	 * @return 生成したオブジェクトのポインタ.
 	 */
 	BlockDeleteEffect* CreateBlockDeleteEffect(GameSceneState& gameSceneState,Player& player,float x, float y, int blockID);
+
+	/*=========================================================================*/
+	/**
+	 * @brief カットインの生成.
+	 * 
+	 * @param[in] CutInID 生成するカットインのID.
+	 * @return 生成したカットインのポインタ.
+	 */
+	CutinEffect* CreateCutinEffect(GameSceneState& gameSceneState,int id);
 
 private:
 
