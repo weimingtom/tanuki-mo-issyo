@@ -28,6 +28,8 @@
 TitleScene::TitleScene(IGameDevice& device, SceneManagerMediator& sceneManagerMediator, Option& option) :
 m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option), m_isTerminated(false)
 {
+	m_objectManager = new ObjectManager(device,option);
+	m_state = new TitleSceneState(*m_objectManager);
 	
 }
 
@@ -39,6 +41,7 @@ m_device(device), m_sceneManagerMediator(sceneManagerMediator), m_option(option)
 TitleScene::~TitleScene()
 {
 	delete m_objectManager;
+	delete m_state;
 
 }
 
@@ -112,6 +115,7 @@ void TitleScene::RenderScene()
 {
 //	m_backGround->RenderObject();
 	m_objectManager->RenderObject();
+	m_objectManager->RenderEffect();
 
 }
 
@@ -124,6 +128,7 @@ void TitleScene::RenderScene()
 void TitleScene::UpdateScene(float frameTimer)
 {
 	m_objectManager->UpdateObject(frameTimer);
+	m_objectManager->UpdateEffect(frameTimer);
 //	m_backGround->UpdateObject(frameTimer);
 }
 

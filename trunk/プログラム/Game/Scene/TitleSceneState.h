@@ -16,7 +16,6 @@
 
 /*===== インクルード ==========================================================*/
 #include	<vector>
-class		Player;
 #include	"Manager/Object/ObjectManager.h"
 
 
@@ -47,10 +46,6 @@ private:
 
 	/** オブジェクトマネージャ */
 	ObjectManager& m_objectManager;
-
-
-	/** ゲームステート */
-	int m_titleState;
 };
 
 #endif

@@ -19,6 +19,7 @@
 #include	"IGameDevice.h"
 #include	"Manager/Scene/SceneManagerMediator.h"
 #include	"Manager/Scene/Option/Option.h"
+#include	"Scene/TitleSceneState.h"
 
 
 /**
@@ -89,7 +90,7 @@ private:
 	/** 終了フラグ */
 	bool							m_isTerminated;
 	/** シーンステート */
-	//GameSceneState*					m_state;
+	TitleSceneState*					m_state;
 	/** バックグラウンド */
 	//BackGround*						m_backGround;
 
