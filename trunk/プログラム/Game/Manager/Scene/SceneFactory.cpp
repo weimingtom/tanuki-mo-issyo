@@ -14,6 +14,7 @@
 #include	"Manager/Scene/SceneFactory.h"
 #include	"Define/SceneID.h"
 #include	"Scene/GameScene.h"
+#include	"Scene/TitleScene.h"
 
 
 /*=============================================================================*/
@@ -53,6 +54,9 @@ SceneBase* SceneFactory::CreateScene(int sceneID)
 	{
 	case SCENE_ID_GAME:
 		scene = new GameScene(m_device, m_sceneManagerMediator, m_option);
+		break;
+	case SCENE_ID_TITLE:
+		scene = new TitleScene(m_device, m_sceneManagerMediator, m_option);
 		break;
 	default:
 		return scene;
