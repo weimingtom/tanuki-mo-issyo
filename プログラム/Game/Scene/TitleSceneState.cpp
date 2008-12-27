@@ -24,7 +24,6 @@
 TitleSceneState::TitleSceneState(ObjectManager& objectManager) :
 	m_objectManager(objectManager)
 {
-	
 }
 
 /*=============================================================================*/
