@@ -20,6 +20,7 @@
 #include	"Manager/Object/ObjectManager.h"
 
 #include	"Object/GameScene/Effect/BlockDeleteEffect.h"
+#include	"Object/GameScene/Effect/CutinEffect.h"
 
 
 /*=============================================================================*/
@@ -58,6 +59,20 @@ BlockDeleteEffect* EffectFactory::CreateBlockDeleteEffect(GameSceneState& gameSc
 {
 	BlockDeleteEffect* object;
 	object = new BlockDeleteEffect(m_device, m_objectManager, m_option, gameSceneState, player, x, y, blockID);
+	return object;
+}
+
+/*=============================================================================*/
+/**
+ * @brief オブジェクトの生成.
+ * 
+ * @param[in] objectID 生成するオブジェクトのID.
+ * @return 生成したオブジェクトのポインタ.
+ */
+CutinEffect* EffectFactory::CreateCutinEffect(GameSceneState &gameSceneState, int id)
+{
+	CutinEffect*	object;
+	object = new CutinEffect( m_device, gameSceneState , id);
 	return object;
 }
 

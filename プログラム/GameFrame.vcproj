@@ -649,14 +649,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Game\Object\GameScene\Skill.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Game\Object\GameScene\Skill.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Game\Object\GameScene\SkillPoint.cpp"
 						>
 					</File>
@@ -681,6 +673,14 @@
 						</File>
 						<File
 							RelativePath=".\Game\Object\GameScene\Effect\BlockDeleteEffect.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\Effect\CutinEffect.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\Effect\CutinEffect.h"
 							>
 						</File>
 					</Filter>

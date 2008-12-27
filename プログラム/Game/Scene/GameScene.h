@@ -23,6 +23,7 @@
 #include	"Object/GameScene/BackGround.h"
 #include	"Object/GameScene/Result.h"
 #include	"Object/GameScene/ReadyGo.h"
+#include	"Object/GameScene/Effect/CutinEffect.h"
 
 
 /**
