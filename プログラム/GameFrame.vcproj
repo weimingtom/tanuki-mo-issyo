@@ -433,6 +433,22 @@
 					RelativePath=".\Game\Scene\SceneBase.h"
 					>
 				</File>
+				<File
+					RelativePath=".\Game\Scene\TitleScene.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Game\Scene\TitleScene.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Game\Scene\TitleSceneState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Game\Scene\TitleSceneState.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Object"

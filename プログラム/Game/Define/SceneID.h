@@ -24,6 +24,8 @@ enum SceneID
 	SCENE_ID_NONE,
 	/** ゲームシーン */
 	SCENE_ID_GAME,
+	/** タイトル */
+	SCENE_ID_TITLE
 };
 
 #endif
