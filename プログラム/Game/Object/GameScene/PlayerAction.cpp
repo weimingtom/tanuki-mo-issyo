@@ -15,6 +15,7 @@
 #include "PlayerAction.h"
 #include "Player.h"
 #include "Object/GameScene/Result.h"
+#include "Object/GameScene/Effect/CutinEffect.h"
 
 /*=========================================================================*/
 /**
@@ -51,6 +52,15 @@ void PlayerAction::Initialize()
  */
 void PlayerAction::Attack(Player* player)
 {
+	int id;
+	if(m_player.GetPlayerParameter().GetPlayerID() == 0)
+	{
+		id = CUTIN_LEFT;
+	} else
+	{
+		id = CUTIN_RIGHT;
+	}
+	m_objectManager.AddEffect(m_objectManager.GetEffectFactory().CreateCutinEffect(m_gameSceneState, id));
 	m_player.GetPlayerParameter().SetPlayerTime(m_player.GetPlayerParameter().GetMaxPlayerTime());
 	player->GetPlayerAction().Damage(m_player.GetPlayerParameter().GetPlayerAttack());
 	m_player.GetCharacterScreen().GetAvatar().SetAnimationState(AVATAR_ANIMATION_STATE_ATTACK);
