@@ -16,8 +16,6 @@
 #include	<Ngl/TinyXML/XMLDomParserTinyXML.h>
 #include	<Ngl/XML/XMLUtil.h>
 #include	"XMLLoader.h"
-#include	"Define/SpriteInfo.h"
-
 /*===== ’è”éŒ¾ ==============================================================*/
 
 
