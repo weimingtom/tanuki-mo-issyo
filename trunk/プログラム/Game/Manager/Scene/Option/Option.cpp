@@ -84,7 +84,18 @@ void Option::LoadSpriteInfo()
 {
 	XMLLoader loader;
 
-	m_attackSpriteInfo = loader.LoadSpriteInfo("attacktest.dds");
+	m_attackSpriteInfo			= loader.LoadSpriteInfo("attack");
+	m_defenceSpriteInfo			= loader.LoadSpriteInfo("defence");
+	m_fieldSpriteInfo			= loader.LoadSpriteInfo("field");
+	m_avaterSpriteInfo			= loader.LoadSpriteInfo("avater");
+	m_hitPointSpriteInfo		= loader.LoadSpriteInfo("hitpoint");
+	m_nextBlockSpriteInfo		= loader.LoadSpriteInfo("nextblock");
+	m_playerTimeSpriteInfo		= loader.LoadSpriteInfo("playertime");
+	m_skillPoint1SpriteInfo		= loader.LoadSpriteInfo("skillpoint1");
+	m_skillPoint2SpriteInfo		= loader.LoadSpriteInfo("skillpoint2");
+	m_skillPoint3SpriteInfo		= loader.LoadSpriteInfo("skillpoint3");
+	m_skillPoint4SpriteInfo		= loader.LoadSpriteInfo("skillpoint4");
+	m_scoreSpriteInfo			= loader.LoadSpriteInfo("score");
 
 }
 

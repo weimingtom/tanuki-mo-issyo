@@ -75,7 +75,7 @@ private:
 	unsigned int m_seVolume;
 
 	/* ƒCƒ“ƒtƒH‹¤ */
-	SpriteInfo fieldSpriteInfo;
+	SpriteInfo m_fieldSpriteInfo;
 
 	SpriteInfo m_attackSpriteInfo;
 
@@ -89,13 +89,13 @@ private:
 
 	SpriteInfo m_playerTimeSpriteInfo;
 
-	SpriteInfo m_skillPointRedSpriteInfo;
+	SpriteInfo m_skillPoint1SpriteInfo;
 
-	SpriteInfo m_skillPointBlueSpriteInfo;
+	SpriteInfo m_skillPoint2SpriteInfo;
 
-	SpriteInfo m_skillPointYellowSpriteInfo;
+	SpriteInfo m_skillPoint3SpriteInfo;
 
-	SpriteInfo m_skillPointWhiteSpriteInfo;
+	SpriteInfo m_skillPoint4SpriteInfo;
 
 	SpriteInfo m_scoreSpriteInfo;
 
