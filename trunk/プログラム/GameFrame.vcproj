@@ -380,6 +380,10 @@
 						RelativePath=".\Game\Manager\Object\ObjectManager.h"
 						>
 					</File>
+					<File
+						RelativePath=".\Game\Define\TextDesc.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
