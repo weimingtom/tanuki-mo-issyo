@@ -23,7 +23,7 @@ CutinEffect::CutinEffect(IGameDevice &device, GameSceneState &gameSceneState,int
 	m_device(device), m_gameSceneState(gameSceneState), m_isTerminated(false), m_id(id)
 {
 	m_size.x = 200.0f;
-	m_size.y = 65.0f;
+	m_size.y = 80.0f;
 	m_y = 200.0f;
 	m_speed = 17.0f;
 	m_vspeed = 0.5f;

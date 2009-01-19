@@ -1,24 +1,21 @@
 /*******************************************************************************/
 /*
- * @file ソースファイル名.cpp.
+ * @file XMLLoader.cpp.
  * 
- * @brief ファイル説明.
+ * @brief XML読み込み補助クラス.
  *
- * @date 2009/00/00.
+ * @date 2009/01/13.
  *
  * @version 1.00.
  *
- * @author Kenji Iwata.			// 編集者以外の名前は削除する
- * @author Tsubasa Uragami.
- * @author Ryosuke Ogawa.
- * @author Jun Futagawa.
- * @author Ryoma Kawasue.
+ * @author Kenji Iwata.
  */
 /*******************************************************************************/
 
 /*===== インクルード ==========================================================*/
-#include	<>
-#include	""
+#include	<Ngl/TinyXML/XMLDomParserTinyXML.h>
+#include	<Ngl/XML/XMLUtil.h>
+#include	"XMLLoader.h"
 
 /*===== 定数宣言 ==============================================================*/
 

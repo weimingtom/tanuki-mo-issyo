@@ -117,7 +117,7 @@ void Field::RenderObject()
 
 	sd_p.rect = Rect(m_x + BLOCK_SIZE, m_y, m_x + (BLOCK_SIZE * (FIELD_WIDTH - 1)), m_y + (BLOCK_SIZE * (FIELD_HEIGHT - 1)));
 	sd_p.textureID = TEXTUREID_FIELD_BACKGROUND;
-	sd_p.color = Color4(1.0f,1.0f,1.0f,0.5f);
+	sd_p.color = Color4(1.0f,1.0f,1.0f,0.8f);
 	m_device.GetGraphicDevice().Render( sd_p );
 
 	SpriteDesc sd;

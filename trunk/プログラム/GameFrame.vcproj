@@ -343,6 +343,14 @@
 							RelativePath=".\Game\Manager\Scene\Option\Option.h"
 							>
 						</File>
+						<File
+							RelativePath=".\Game\Manager\Scene\Option\XMLLoader.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Manager\Scene\Option\XMLLoader.h"
+							>
+						</File>
 					</Filter>
 				</Filter>
 				<Filter
