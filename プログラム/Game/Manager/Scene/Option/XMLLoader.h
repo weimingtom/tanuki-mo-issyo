@@ -1,34 +1,27 @@
 /*******************************************************************************/
 /**
- * @file ヘッダファイル名.h.
+ * @file XMLLoader.h.
  * 
- * @brief ファイル説明.
+ * @brief XML読み込み補助クラス.
  *
- * @date 2009/00/00.
+ * @date 2009/01/13.
  *
  * @version 1.00.
  *
- * @author Kenji Iwata.			// 編集者以外の名前は削除する
- * @author Tsubasa Uragami.
- * @author Ryosuke Ogawa.
- * @author Jun Futagawa.
- * @author Ryoma Kawasue.
+ * @author Kenji Iwata.
  */
 /*******************************************************************************/
-#ifndef __H_
-#define __H_
+#ifndef _XMLLOADER_H_
+#define _XMLLOADER_H_
 
 /*===== インクルード ==========================================================*/
-#include	<>
-#include	""
 
 /*===== 定数宣言 ==============================================================*/
-
 
 /**
  * @brief クラス名．
  */
-class 
+class XMLLoader
 {
 
 public:
