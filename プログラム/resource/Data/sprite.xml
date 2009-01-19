@@ -1,6 +1,151 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <spriteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
- <sprite name="field.dds">
+ <sprite name="field">
+ <textureName>fd.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="attack">
+ <textureName>attacktest.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="avatar">
+ <textureName>avatar1.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="avatar">
+ <textureName>avatar2.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="defence">
+ <textureName>defence.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="hitpoint">
+ <textureName>hitPoint.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="nextblock">
+ <textureName>nextblock.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="playertimer">
+ <textureName>playertimer.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="skillpoint1">
+ <textureName>skillpoint1.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="skillpoint2">
+ <textureName>akillpoint2.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="skillpoint3">
+ <textureName>skillpoint3.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="skillpoint4">
+ <textureName>skillpoint4.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+
+ <sprite name="score">
+ <textureName>score.dds</textureName>
   <srcPositionX>0</srcPositionX>
   <srcPositionY>5</srcPositionY>
   <srcSizeX>10</srcSizeX>
@@ -11,3 +156,4 @@
   <sizeY>35</sizeY>
  </sprite>
 </spriteInfo>
+
