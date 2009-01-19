@@ -410,6 +410,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Game\Define\SpriteInfo.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Game\Define\TextDesc.h"
 					>
 				</File>
