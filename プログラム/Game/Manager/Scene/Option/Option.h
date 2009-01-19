@@ -14,6 +14,7 @@
 #ifndef _OPTION_H_
 #define _OPTION_H_
 
+#include "Define/SpriteInfo.h"
 
 /**
  * @brief Option．
@@ -70,6 +71,32 @@ private:
 	unsigned int m_bgmVolume;
 	/** SE音量 */
 	unsigned int m_seVolume;
+
+	/* インフォ共 */
+	SpriteInfo fieldSpriteInfo;
+
+	SpriteInfo attackSpriteInfo;
+
+	SpriteInfo avaterSpriteInfo;
+
+	SpriteInfo defenceSpriteInfo;
+
+	SpriteInfo hitPointSpriteInfo;
+
+	SpriteInfo nextBlockSpriteInfo;
+
+	SpriteInfo playerTimeSpriteInfo;
+
+	SpriteInfo skillPointRedSpriteInfo;
+
+	SpriteInfo skillPointBlueSpriteInfo;
+
+	SpriteInfo skillPointYellowSpriteInfo;
+
+	SpriteInfo skillPointWhiteSpriteInfo;
+
+	SpriteInfo scoreSpriteInfo;
+
 };
 
 #endif
