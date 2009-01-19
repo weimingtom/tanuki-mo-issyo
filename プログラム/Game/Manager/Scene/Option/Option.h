@@ -65,6 +65,8 @@ public:
 	 */
 	unsigned int GetBGMVolume();
 
+	void LoadSpriteInfo();
+
 private:
 
 	/** BGM‰¹—Ê */
@@ -75,27 +77,27 @@ private:
 	/* ƒCƒ“ƒtƒH‹¤ */
 	SpriteInfo fieldSpriteInfo;
 
-	SpriteInfo attackSpriteInfo;
+	SpriteInfo m_attackSpriteInfo;
 
-	SpriteInfo avaterSpriteInfo;
+	SpriteInfo m_avaterSpriteInfo;
 
-	SpriteInfo defenceSpriteInfo;
+	SpriteInfo m_defenceSpriteInfo;
 
-	SpriteInfo hitPointSpriteInfo;
+	SpriteInfo m_hitPointSpriteInfo;
 
-	SpriteInfo nextBlockSpriteInfo;
+	SpriteInfo m_nextBlockSpriteInfo;
 
-	SpriteInfo playerTimeSpriteInfo;
+	SpriteInfo m_playerTimeSpriteInfo;
 
-	SpriteInfo skillPointRedSpriteInfo;
+	SpriteInfo m_skillPointRedSpriteInfo;
 
-	SpriteInfo skillPointBlueSpriteInfo;
+	SpriteInfo m_skillPointBlueSpriteInfo;
 
-	SpriteInfo skillPointYellowSpriteInfo;
+	SpriteInfo m_skillPointYellowSpriteInfo;
 
-	SpriteInfo skillPointWhiteSpriteInfo;
+	SpriteInfo m_skillPointWhiteSpriteInfo;
 
-	SpriteInfo scoreSpriteInfo;
+	SpriteInfo m_scoreSpriteInfo;
 
 };
 

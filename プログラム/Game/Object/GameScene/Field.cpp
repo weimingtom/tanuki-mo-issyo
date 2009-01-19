@@ -264,7 +264,7 @@ void Field::CheckBlock( void )
 				if( (m_fieldBlock[i][j] != 0) && (m_fieldBlock[i][j] != 255) ){
 					int	num = 0;
 						BlockCount( i, j, m_fieldBlock[i][j], num , checkMatrix);
-					if(num >= 4)
+					if(num >= 3)
 					{
 						m_player.GetPlayerParameter().SetIsCreateBlock(false);
 						int* skill;

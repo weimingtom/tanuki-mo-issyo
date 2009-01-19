@@ -14,6 +14,7 @@
 
 /*===== インクルード ==========================================================*/
 #include	"Manager/Scene/Option/Option.h"
+#include	"Manager/Scene/Option/XMLLoader.h"
 
 
 /*=============================================================================*/
@@ -77,6 +78,14 @@ void Option::SetBGMVolume(unsigned int value)
 unsigned int Option::GetBGMVolume()
 {
 	return m_bgmVolume;
+}
+
+void Option::LoadSpriteInfo()
+{
+	XMLLoader loader;
+
+	m_attackSpriteInfo = loader.LoadSpriteInfo("attacktest.dds");
+
 }
 
 /*===== EOF ===================================================================*/
