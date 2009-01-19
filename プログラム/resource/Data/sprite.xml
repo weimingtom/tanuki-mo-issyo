@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<spriteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <sprite name="field.dds">
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>5</srcPositionY>
+  <srcSizeX>10</srcSizeX>
+  <srcSizeY>15</srcSizeY>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </sprite>
+</spriteInfo>
