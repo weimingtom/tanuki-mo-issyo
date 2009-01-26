@@ -25,6 +25,8 @@
 SceneManager::SceneManager(IGameDevice &device, int sceneID) :
 	m_isTerminated(false), m_device(device)
 {
+	m_option.LoadSpriteInfo();
+
 	m_sceneFactory = new SceneFactory(device, *this, m_option);
 	
 	m_stockScene.clear();

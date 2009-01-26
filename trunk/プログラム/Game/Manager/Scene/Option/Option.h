@@ -74,6 +74,8 @@ private:
 	/** SE‰¹—Ê */
 	unsigned int m_seVolume;
 
+public:
+
 	/* ƒCƒ“ƒtƒH‹¤ */
 	SpriteInfo m_fieldSpriteInfo;
 
@@ -98,7 +100,15 @@ private:
 	SpriteInfo m_skillPoint4SpriteInfo;
 
 	SpriteInfo m_scoreSpriteInfo;
-
+/*
+	SpriteInfo m_block1SpriteInfo;
+	SpriteInfo m_block2SpriteInfo;
+	SpriteInfo m_block3SpriteInfo;
+	SpriteInfo m_sblock1SpriteInfo;
+	SpriteInfo m_sblock2SpriteInfo;
+	SpriteInfo m_sblock3SpriteInfo;
+	SpriteInfo m_sblock4SpriteInfo;
+*/
 };
 
 #endif

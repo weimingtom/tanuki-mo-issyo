@@ -43,8 +43,12 @@ void Attack::Initialize()
 	switch( m_player.GetPlayerParameter().GetPlayerID() )
 	{
 	case(0):
+		/*
 		m_x = m_player.GetPosition().x + 300.0f;
 		m_y = m_player.GetPosition().y + 60.0f;
+		*/
+		m_x = m_option.m_attackSpriteInfo.position.x;
+		m_y = m_option.m_attackSpriteInfo.position.y;
 		break;
 	case(1):
 		m_x = m_player.GetPosition().x + 20.0f;
@@ -94,7 +98,7 @@ void Attack::RenderObject()
 
 
 	GaugeDesc gd1;
-	gd1.size = Vector2(100.0f, 20.0f);
+	gd1.size = Vector2(m_option.m_attackSpriteInfo.size.x, m_option.m_attackSpriteInfo.size.y);
 	gd1.position = Vector2(m_x, m_y);
 	gd1.textureRec2 = Rect(0,0,128,32);
 	gd1.textureRec1 = Rect(0,32,128,64);
