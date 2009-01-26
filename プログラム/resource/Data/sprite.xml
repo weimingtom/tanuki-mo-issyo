@@ -6,10 +6,6 @@
   <srcPositionY>5</srcPositionY>
   <srcSizeX>10</srcSizeX>
   <srcSizeY>15</srcSizeY>
-  <positionX>20</positionX>
-  <positionY>25</positionY>
-  <sizeX>30</sizeX>
-  <sizeY>35</sizeY>
  </sprite>
 
  <sprite name="attack">

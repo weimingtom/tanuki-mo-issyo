@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<drawInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <draw name="field">
+  <spriteName>field</spriteName>
+  <positionX>20</positionX>
+  <positionY>25</positionY>
+  <sizeX>30</sizeX>
+  <sizeY>35</sizeY>
+ </draw>
+
+</drawInfo>
+
