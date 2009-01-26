@@ -14,7 +14,8 @@
 
 /*===== インクルード ==========================================================*/
 #include	"Manager/Object/ObjectManager.h"
-#include "Object/ObjectBase.h"
+#include	"Object/ObjectBase.h"
+
 
 
 /*=============================================================================*/

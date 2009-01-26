@@ -60,7 +60,7 @@ void PlayerAction::Attack(Player* player)
 	{
 		id = CUTIN_RIGHT;
 	}
-	m_objectManager.AddEffect(m_objectManager.GetEffectFactory().CreateCutinEffect(m_gameSceneState, id));
+	m_objectManager.AddEffect(m_objectManager.GetEffectFactory().CreateCutinEffect(m_gameSceneState, *player, id));
 	m_player.GetPlayerParameter().SetPlayerTime(m_player.GetPlayerParameter().GetMaxPlayerTime());
 	player->GetPlayerAction().Damage(m_player.GetPlayerParameter().GetPlayerAttack());
 	m_player.GetCharacterScreen().GetAvatar().SetAnimationState(AVATAR_ANIMATION_STATE_ATTACK);

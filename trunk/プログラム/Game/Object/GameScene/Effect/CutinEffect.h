@@ -17,6 +17,7 @@
 #include	"IGameDevice.h"
 #include	"Object/ObjectBase.h"
 #include	"Scene/GameSceneState.h"
+class		Player;
 
 class CutinEffect : public ObjectBase
 {
@@ -26,7 +27,7 @@ public:
 	 * @brief コンストラクタ.
 	 *
 	 */
-	CutinEffect(IGameDevice& device, GameSceneState& gameSceneState, int id);
+	CutinEffect(IGameDevice& device, GameSceneState& gameSceneState, Player& player, int id );
 
 	/*=========================================================================*/
 	/**
@@ -79,6 +80,8 @@ private:
 	IGameDevice& m_device;
 	/** ゲームシーンステート */
 	GameSceneState& m_gameSceneState;
+	/** プレーヤ */
+	Player& m_player;
 
 	int m_id;
 

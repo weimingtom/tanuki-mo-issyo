@@ -112,6 +112,7 @@ private:
 	IGameDevice& m_device;
 	/** ゲームオプション */
 	Option& m_option;
+	
 
 };
 

@@ -87,6 +87,10 @@ public:
 	bool GetIsCreateBlock();
 	void SetIsCreateBlock(bool flag);
 
+	int GetEffectCount();
+	void AddEffectCount();
+	void SubEffectCount();
+
 private:
 
 	/** HP */
@@ -121,6 +125,8 @@ private:
 	int m_playerJudge;
 	/** 次のブロック生成可能状態フラグ */
 	bool m_isCreateBlock;
+
+	int m_effectCount;
 
 };
 

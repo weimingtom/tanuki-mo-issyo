@@ -66,7 +66,7 @@ public:
 	 * @param[in] CutInID 生成するカットインのID.
 	 * @return 生成したカットインのポインタ.
 	 */
-	CutinEffect* CreateCutinEffect(GameSceneState& gameSceneState,int id);
+	CutinEffect* CreateCutinEffect(GameSceneState& gameSceneState, Player& player, int id);
 
 private:
 
@@ -76,6 +76,7 @@ private:
 	ObjectManager& m_objectManager;
 	/** ゲームオプション */
 	Option& m_option;
+	
 };
 
 #endif
