@@ -50,14 +50,14 @@ SpriteInfo XMLLoader::LoadSpriteInfo( std::string name )
 	SpriteInfo			info;
 	Ngl::XML::XMLFile	file;
 	Ngl::IXMLElement*	spriteInfo;
-	Ngl::IXMLElement*	element;
+	Ngl::IXMLElement*	element = NULL;
 
 	Ngl::TinyXML::XMLDomParserTinyXML xml;
 	xml.load("Resource/Data/sprite.xml", file);
 	spriteInfo = file.getElementByName("spriteInfo");
 	for(unsigned int i=0; i<spriteInfo->childElementCount(); i++)
 	{
-		if(spriteInfo->getElementByIndex(i)->getAttribByName("sprite").getText() == name)
+		if(spriteInfo->getElementByIndex(i)->getAttribByName("name").getText() == name)
 		{
 			element = spriteInfo->getElementByIndex(i);
 			break;
@@ -65,14 +65,25 @@ SpriteInfo XMLLoader::LoadSpriteInfo( std::string name )
 	}
 	if(!element) return info;
 
-	info.srcPosition.x << element->getElementByName("srcPositionX")->getValue();
-	info.srcPosition.y << element->getElementByName("srcPositionY")->getValue();
-	info.srcSize.x << element->getElementByName("srcSize.x")->getValue();
-	info.srcSize.y << element->getElementByName("srcSize.y")->getValue();
-	info.position.x << element->getElementByName("position.x")->getValue();
-	info.position.y << element->getElementByName("position.y")->getValue();
-	info.size.x << element->getElementByName("size.x")->getValue();
-	info.size.y << element->getElementByName("size.y")->getValue();
+	if(element->getElementByName("srcPositionX"))
+		info.srcPosition.x << element->getElementByName("srcPositionX")->getValue();
+	if(element->getElementByName("srcPositionY"))
+		info.srcPosition.y << element->getElementByName("srcPositionY")->getValue();
+	if(element->getElementByName("srcSizeX"))
+		info.srcSize.x << element->getElementByName("srcSizeX")->getValue();
+	if(element->getElementByName("srcSizeY"))
+		info.srcSize.y << element->getElementByName("srcSizeY")->getValue();
+	if(element->getElementByName("positionX"))
+		info.position.x << element->getElementByName("positionX")->getValue();
+	if(element->getElementByName("positionY"))
+		info.position.y << element->getElementByName("positionY")->getValue();
+	if(element->getElementByName("sizeX"))
+		info.size.x << element->getElementByName("sizeX")->getValue();
+	if(element->getElementByName("sizeY"))
+		info.size.y << element->getElementByName("sizeY")->getValue();
+	if(element->getElementByName("textureName"))
+		info.spriteName << element->getElementByName("textureName")->getValue();
+
 
 	return info;
 }
