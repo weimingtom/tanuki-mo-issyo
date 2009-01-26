@@ -69,10 +69,10 @@ BlockDeleteEffect* EffectFactory::CreateBlockDeleteEffect(GameSceneState& gameSc
  * @param[in] objectID 生成するオブジェクトのID.
  * @return 生成したオブジェクトのポインタ.
  */
-CutinEffect* EffectFactory::CreateCutinEffect(GameSceneState &gameSceneState, int id)
+CutinEffect* EffectFactory::CreateCutinEffect(GameSceneState &gameSceneState,Player& player, int id)
 {
 	CutinEffect*	object;
-	object = new CutinEffect( m_device, gameSceneState , id);
+	object = new CutinEffect( m_device, gameSceneState , player, id);
 	return object;
 }
 

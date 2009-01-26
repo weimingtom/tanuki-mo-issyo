@@ -153,7 +153,8 @@ void Field::UpdateObject(float frameTimer)
 	{
 		return;
 	}
-	if((m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0) && (m_player.GetPlayerParameter().GetIsCreateBlock() == true))
+	//if((m_player.GetPuzzleScreen().GetBlockManager().GetFallBlockNum() == 0) && (m_player.GetPlayerParameter().GetIsCreateBlock() == true))
+	if(m_player.GetPlayerParameter().GetEffectCount() == 0 )
 	{
 		CheckBlock();
 		if(!m_player.GetPlayerParameter().GetIsCreateBlock())

@@ -44,6 +44,7 @@ PlayerParameter::PlayerParameter(int hp, int skillPoint[], int maxPlayerTime, in
 	m_maxHp = maxHp;
 	m_playerJudge = PLAYER_JUDGE_NONE;
 	m_isCreateBlock = true;
+	m_effectCount = 0;
 
 }
 
@@ -217,4 +218,19 @@ void PlayerParameter::SetIsCreateBlock(bool flag)
 	m_isCreateBlock = flag;
 }
 
+int PlayerParameter::GetEffectCount()
+{
+	return m_effectCount;
+}
+
+void PlayerParameter::AddEffectCount()
+{
+	m_effectCount++;
+}
+
+void PlayerParameter::SubEffectCount()
+{
+	m_effectCount--;
+
+}
 /*===== EOF ===================================================================*/

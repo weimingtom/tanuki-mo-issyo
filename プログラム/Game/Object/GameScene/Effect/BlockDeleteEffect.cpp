@@ -44,6 +44,7 @@ BlockDeleteEffect::~BlockDeleteEffect()
  */
 void BlockDeleteEffect::Initialize()
 {
+	m_player.GetPlayerParameter().AddEffectCount();
 
 }
 
@@ -58,6 +59,7 @@ void BlockDeleteEffect::Terminate()
 	//m_player.GetPuzzleScreen().GetBlockManager().GetField().SetBlock(pos.x, pos.y, m_blockID);
 	m_isTerminated = true;
 	m_player.GetPlayerParameter().SetIsCreateBlock(true);
+	m_player.GetPlayerParameter().SubEffectCount();
 }
 
 /*=========================================================================*/

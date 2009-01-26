@@ -13,15 +13,16 @@
 /*******************************************************************************/
 
 #include	"CutinEffect.h"
+#include	"Object/GameScene/Player.h"
 
 /*=========================================================================*/
 /**
  * @brief コンストラクタ.
  * 
  */
-CutinEffect::CutinEffect(IGameDevice &device, GameSceneState &gameSceneState,int id) :
-	m_device(device), m_gameSceneState(gameSceneState), m_isTerminated(false), m_id(id)
-{
+CutinEffect::CutinEffect(IGameDevice &device, GameSceneState &gameSceneState, Player& player, int id) :
+	m_device(device), m_gameSceneState(gameSceneState), m_player(player), m_isTerminated(false), m_id(id)
+ {
 	m_size.x = 200.0f;
 	m_size.y = 80.0f;
 	m_y = 200.0f;
@@ -55,6 +56,7 @@ CutinEffect::~CutinEffect()
  */
 void CutinEffect::Initialize()
 {
+	m_player.GetPlayerParameter().AddEffectCount();
 
 }
 
@@ -66,6 +68,7 @@ void CutinEffect::Initialize()
 void CutinEffect::Terminate()
 {
 	m_isTerminated = true;
+	m_player.GetPlayerParameter().SubEffectCount();
 }
 
 /*=========================================================================*/
