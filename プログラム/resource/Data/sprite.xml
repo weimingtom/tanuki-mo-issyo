@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <spriteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <sprite name="fieldframe">
+  <textureName>fieldframe.dds</textureName>
+  <srcPositionX>0</srcPositionX>
+  <srcPositionY>0</srcPositionY>
+  <srcSizeX>484</srcSizeX>
+  <srcSizeY>597</srcSizeY>
+ </sprite>
+
  <sprite name="field">
   <textureName>fd.dds</textureName>
   <srcPositionX>0</srcPositionX>
-  <srcPositionY>5</srcPositionY>
-  <srcSizeX>10</srcSizeX>
-  <srcSizeY>15</srcSizeY>
+  <srcPositionY>0</srcPositionY>
+  <srcSizeX>32</srcSizeX>
+  <srcSizeY>32</srcSizeY>
  </sprite>
 
  <sprite name="attack">
