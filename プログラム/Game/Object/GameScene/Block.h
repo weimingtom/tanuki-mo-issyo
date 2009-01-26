@@ -161,6 +161,8 @@ private:
 
 	/** ê∂ë∂É^ÉCÉ} */
 	int m_timer;
+
+	int m_keytimer;
 };
 
 #endif

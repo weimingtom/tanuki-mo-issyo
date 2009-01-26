@@ -39,6 +39,7 @@ Block::Block(IGameDevice &device, ObjectManager &objectManager, Option &option, 
 	m_speed = 1.0f;
 	m_hispeed = 5.0f;
 	m_timer = 60;
+	m_keytimer = 20;
 }
 
 /*=============================================================================*/
@@ -63,6 +64,15 @@ void Block::Initialize()
 	m_tx = m_x;
 	m_ty = m_y;
 	m_angle = 0;
+
+	if(m_player.GetAI().GetKeyDown(GAMEKEY_LEFT))
+	{
+		m_keytimer = 1;
+	}
+	if(m_player.GetAI().GetKeyDown(GAMEKEY_RIGHT))
+	{
+		m_keytimer = 1;
+	}
 }
 
 /*=============================================================================*/
@@ -138,19 +148,40 @@ void Block::UpdateObject(float frameTimer)
 	MatrixPosition.y = GetFieldMatrixPosition(m_tx, m_ty + (BLOCK_SIZE)).y;
 
 	/**à⁄ìÆì¸óÕèàóù*/
+	
 	if(m_player.GetAI().GetKeyTrigger(GAMEKEY_LEFT) == true ) 
-
 	{
+		m_keytimer=15;
 		if(!ColisionMatrix(frame,MatrixPosition.x+1,MatrixPosition.y)){
 			m_tx += BLOCK_SIZE;
 		}
 	}
 	if(m_player.GetAI().GetKeyTrigger(GAMEKEY_RIGHT) == true ) 
 	{
+		m_keytimer=15;
 		if(!ColisionMatrix(frame,MatrixPosition.x-1,MatrixPosition.y)){
 			m_tx -= BLOCK_SIZE;
 		}
 	}
+
+		if(m_player.GetAI().GetKeyDown(GAMEKEY_LEFT) == true ) 
+		{
+			m_keytimer--;
+			if(!ColisionMatrix(frame,MatrixPosition.x+1,MatrixPosition.y) && m_keytimer<=0){
+				m_tx += BLOCK_SIZE;
+				m_keytimer=5;
+			}
+		}
+		else
+		if(m_player.GetAI().GetKeyDown(GAMEKEY_RIGHT) == true ) 
+		{
+			m_keytimer--;
+			if(!ColisionMatrix(frame,MatrixPosition.x-1,MatrixPosition.y) && m_keytimer<=0){
+				m_tx -= BLOCK_SIZE;
+				m_keytimer=5;
+			}
+		}
+
 	if(m_player.GetAI().GetKeyDown(GAMEKEY_UP) == true) 
 	{
 		m_ty = m_player.GetPosition().y;
@@ -178,11 +209,11 @@ void Block::UpdateObject(float frameTimer)
 	}
 	
 	/**âÒì]ì¸óÕèàóù*/
-	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_CIRCLE) == true)
+	if(m_player.GetAI().GetKeyTrigger(GAMEKEY_CIRCLE) == true)
 	{
 		SpinBlock(SPINBLOCK_RIGHT);
 	}
-	if(m_device.GetInputDevice().GetKeyTrigger(GAMEKEY_TRIANGLE) == true)
+	if(m_player.GetAI().GetKeyTrigger(GAMEKEY_TRIANGLE) == true)
 	{
 		SpinBlock(SPINBLOCK_LEFT);
 	}
@@ -224,6 +255,7 @@ void Block::UpdateObject(float frameTimer)
 
 
 }
+
 
 /*=============================================================================*/
 /**
