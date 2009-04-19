@@ -332,6 +332,10 @@
 						RelativePath=".\Game\Manager\Scene\SceneManagerMediator.h"
 						>
 					</File>
+					<File
+						RelativePath=".\Game\Define\TextDesc.h"
+						>
+					</File>
 					<Filter
 						Name="Option"
 						>
@@ -380,51 +384,47 @@
 						RelativePath=".\Game\Manager\Object\ObjectManager.h"
 						>
 					</File>
-					<File
-						RelativePath=".\Game\Define\TextDesc.h"
+					<Filter
+						Name="Define"
 						>
-					</File>
+						<File
+							RelativePath=".\Game\Define\Define.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\EffectID.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\GameDefine.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\GaugeDesc.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\MeshID.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\SceneID.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\SpriteInfo.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\TextDesc.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Define\TextureID.h"
+							>
+						</File>
+					</Filter>
 				</Filter>
-			</Filter>
-			<Filter
-				Name="Define"
-				>
-				<File
-					RelativePath=".\Game\Define\Define.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\EffectID.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\GameDefine.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\GaugeDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\MeshID.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\SceneID.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\SpriteInfo.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\TextDesc.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Game\Define\TextureID.h"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="Scene"
@@ -492,10 +492,6 @@
 				<Filter
 					Name="GameScene"
 					>
-					<File
-						RelativePath=".\Game\Object\GameScene\AIBase.h"
-						>
-					</File>
 					<File
 						RelativePath=".\Game\Object\GameScene\Attack.cpp"
 						>
@@ -609,14 +605,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\Game\Object\GameScene\PlayerAI.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\Game\Object\GameScene\PlayerAI.h"
-						>
-					</File>
-					<File
 						RelativePath=".\Game\Object\GameScene\PlayerParameter.cpp"
 						>
 					</File>
@@ -697,6 +685,46 @@
 						</File>
 						<File
 							RelativePath=".\Game\Object\GameScene\Effect\CutinEffect.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="AI"
+						>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\AIBase.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\AIRoutineBase.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\ComputerAI.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\ComputerAI.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\KeyInfo.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\NormalAI.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\NormalAI.h"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\PlayerAI.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\Game\Object\GameScene\AI\PlayerAI.h"
 							>
 						</File>
 					</Filter>

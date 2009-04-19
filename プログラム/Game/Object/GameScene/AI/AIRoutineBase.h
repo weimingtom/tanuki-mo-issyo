@@ -1,27 +1,26 @@
 /*******************************************************************************/
 /**
- * @file AIBase.h.
+ * @file AIRoutineBase.h.
  * 
- * @brief AIベースクラス定義.
+ * @brief AIルーチンベースクラス定義.
  *
- * @date 2008/12/15.
+ * @date 2009/04/17.
  *
  * @version 1.00.
  *
  * @author Tsubasa Uragami.
  */
 /*******************************************************************************/
-#ifndef _AIBASE_H_
-#define _AIBASE_H_
+#ifndef _AIROUTINEBASE_H_
+#define _AIROUTINEBASE_H_
 
 /*===== インクルード ==========================================================*/
 
 
-class AIBase{
+class AIRoutineBase{
 public:
-	virtual ~AIBase(){}
-	virtual bool GetKeyTrigger(unsigned int key) = 0;
-	virtual bool GetKeyDown(unsigned int key)	 = 0;
+	virtual ~AIRoutineBase(){}
+	virtual void Update(float frameTimer)		 = 0;
 
 };
 #endif

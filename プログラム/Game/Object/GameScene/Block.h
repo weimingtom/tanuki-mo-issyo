@@ -117,6 +117,7 @@ public:
 
 	void	m_SpinBlock (int direction);
 
+	int		GetAngle();
 
 private:
 
