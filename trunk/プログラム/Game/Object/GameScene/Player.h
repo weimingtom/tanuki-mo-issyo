@@ -26,8 +26,8 @@ class		IGameDevice;
 #include    "Object/GameScene/CharacterScreen.h"
 #include	"Object/GameScene/StatusScreen.h"
 #include	"Object/GameScene/Player.h"
-#include	"Object/GameScene/AIBase.h"
-#include	"Object/GameScene/PlayerAI.h"
+#include	"Object/GameScene/AI/AIBase.h"
+#include	"Object/GameScene/AI/PlayerAI.h"
 #include	"Object/GameScene/PlayerParameter.h"
 #include	"Object/GameScene/PlayerAction.h"
 

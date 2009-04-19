@@ -132,6 +132,7 @@ void Block::RenderObject()
  */
 void Block::UpdateObject(float frameTimer)
 {
+	m_player.GetAI().Update(frameTimer);
 	if(m_gameSceneState.GetGameState() != GAME_STATE_MAIN)
 	{
 		return;
@@ -397,6 +398,11 @@ bool	Block::ColisionMatrix(FieldMatrix matrix,int x,int y)
 	}
 
 	return	false;
+}
+
+int Block::GetAngle()
+{
+	return	m_angle;
 }
 
 /*===== EOF ===================================================================*/
